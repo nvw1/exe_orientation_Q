@@ -1,0 +1,49 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<form  method="post" enctype="multipart/form-data" id ="uploadimage">
+  <div class='preview'>
+  </div>
+  <div>
+    <p>Please take a photo of your whole team and submit 
+      it to the game master to verify</p>
+    <input type="file" id = "file" name = "file"
+    accept="image/*" capture>
+  </div>
+    <input type ="submit" value="Upload Image" name="submit" id="submit_button">
+    
+    </form>
+
+
+<script type="text/javascript">
+      $(document).ready(function(e){
+        $("#uploadimage1").on('submit',(function(e){
+          e.preventDefault();
+          $.ajax({
+            url: 'upload.php',
+            type: 'post',
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            success: function(response){
+              if(response =='upload successful'){
+                alert('file uploaded');
+              } else{
+                alert('file not uploaded');
+                alert(response);
+              }
+            }
+          });
+        }));
+      });
+     
+</script>
+
+</body>
+</html>
