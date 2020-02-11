@@ -1,43 +1,122 @@
+<!--{% load static %}-->
 <!DOCTYPE html>
-<html style="background-color: #f8f6f8;">
-
+<html lang="en">
 <head>
-    <title>IBM Cloud Web Starter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css"></link>
-    {% load static %}
-    <link rel="stylesheet" href="/static/css/default.css"></link>
-    <script src="{% static 'js/bundle.js' %}" charset="utf-8"></script>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Exe Orientation</title>
+  <meta name="description" content="">
+  <meta name="author" content="The Boys">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+å  ––––––––––––––––––––––––––––––––a–––––––––––––––––– -->
+  <link rel="stylesheet" href="/static/css/skeleton.css"></link>
+  <link rel="stylesheet" href="/static/css/custom.css"></link>
+  
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+
 </head>
-
 <body>
-<div id="new-container">
 
-    <div class="ibm-cloud">
-        <img src="{% static 'images/cloud-header.png' %}">
-    </div>
-
-    <h1 class="title">Congratulations!</h1>
-    <h2 class="subtitle">You are currently running a Django server.</h2>
-
-    <div class="link-section">
-        <div class="left-link-items">
-            <ul class="the-links">
-                <li class="link-item"><img class="right-arrow" src="{% static 'images/arrow-right-transparent-smaller.png' %}"><a href="https://console.bluemix.net/developer/appservice/dashboard?env_id=ibm%3Ayp%3Aus-south">Visit IBM Cloud App Service</a></li>
-                <li class="link-item"><img class="right-arrow" src="{% static 'images/arrow-right-transparent-smaller.png' %}"><a href="https://slack-invite-ibm-cloud-tech.mybluemix.net/">Ask questions on Slack</a></li>
-
-            </ul>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="section exampleOne">
+    <div class="container">
+      <div class="row">
+		<div class="one-half column">
+			<img class="u-full-width" src="{% static '/images/uniExeter.svg' %}">
+			<h4 class="exampleOne-heading">Get to know University of Exeter.</h4>
+		</div>
+        <div class="one-half column">
+		  <h5 class="exampleOne-heading">Play Treasure Hunt</h5>
+		  <form action="">
+			  <input type="text" name="groupCode" placeholder="Enter Code">
+        <br>
+			  <input type="submit" value="Join Group">
+		  </form>
         </div>
-
-        <div class="right-link-items">
-            <ul class="the-links">
-                <!-- Here we could have the language as a variable, and we'd provide the appropriate tag/links -->
-
-                <li class="link-item"><img class="right-arrow" src="{% static 'images/arrow-right-transparent-smaller.png' %}"><a href="https://www.ibm.com/cloud/cli">Install IBM Cloud Developer Tools</a></li>
-                <li class="link-item"><img class="right-arrow" src="{% static 'images/arrow-right-transparent-smaller.png' %}"><a href="https://datascience.ibm.com/">Learn about IBM’s Data Science Experience</a></li>
-
-            </ul>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <div class="section exampleTwo">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column value">
+		  
+          <h2 class="exampleTwo-multiplier">67%</h2>
+          <h5 class="exampleTwo-heading">Written Information</h5>
+          <p class="exampleTwo-description">This is some content that can be changed.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="exampleTwo-multiplier">90%</h2>
+          <h5 class="exampleTwo-heading">Mobile-friendly</h5>
+          <p class="exampleTwo-description">It allows us to adjust our web-page to fit a mobile screen.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="exampleTwo-multiplier">66%</h2>
+          <h5 class="exampleTwo-heading">Change this please</h5>
+          <p class="exampleTwo-description">This was always just placeholder text.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section exampleThree">
+    <div class="container">
+      <h3 class="section-heading">Got any questions?</h3>
+      <p class="section-description">Check out the FAQs to find answers to commonly asked questions</p>
+      <a class="button button-primary" href="/faq/">View FAQs</a>
+    </div>
+  </div>
+
+  <div class="section exampleFour">
+    <div class="container">
+      <h3 class="section-heading">Interesting Tables</h3>
+      <p class="section-description">This is the table theme</p>
+      <div class="container">
+        <table class="center">
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+          </tr>
+          <tr>
+            <td>Cool</td>
+            <td>Row</td>
+            <td>data</td>
+            <td>Amazing</td>
+          </tr>
+          <tr>
+            <td>Super</td>
+            <td>Awesome</td>
+            <td>table</td>
+            <td>W0W</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
