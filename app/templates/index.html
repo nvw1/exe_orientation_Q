@@ -1,4 +1,4 @@
-{% load static %}  
+<!--{% load static %}-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <title>Exe Orientation</title>
   <meta name="description" content="">
-  <meta name="author" content="The Boys">
+  <meta name="author" content="Sam, Niklas">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -20,8 +20,8 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" type="text/css" href="{% static 'WebSkeleton/css/skeleton.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'WebSkeleton/css/custom.css' %}">
+  <link rel="stylesheet" href="/static/css/skeleton.css"></link>
+  <link rel="stylesheet" href="/static/css/custom.css"></link>
   
 
   <!-- Scripts
@@ -38,7 +38,7 @@
     <div class="container">
       <div class="row">
 		<div class="one-half column">
-			<img class="u-full-width" src="{% static 'WebSkeleton/images/uniExeter.svg' %}">
+			<img class="u-full-width" src="{% static '/images/uniExeter.svg' %}">
 			<h4 class="exampleOne-heading">Get to know University of Exeter.</h4>
 		</div>
         <div class="one-half column">
