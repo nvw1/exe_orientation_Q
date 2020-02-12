@@ -11,5 +11,5 @@ Exeter Orientation - A campus treasure hunt.
 	
 	$ ibmcloud dev run
 
-Currently when committed to the feature branch 5:
-You can find the web app at: https://eoq1.eu-gb.mybluemix.net/
+Currently our live application runs from the develop branch at: 
+https://eoq1.eu-gb.mybluemix.net/
