@@ -1,8 +1,9 @@
-{% load static %}<!doctype html>
+<!doctype html>
 <html lang="en">
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
@@ -14,21 +15,24 @@
     <p>Please take a photo of your whole team and submit 
       it to the game master to verify</p>
     <input type="file" id = "file" name = "file"
-    accept="image/*" capture>
+    accept="image/*" capture width = 250 height = 250>
   </div>
     <input type ="submit" value="Upload Image" name="submit" id="submit_button">
     
     </form>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function(e){
-        $("#uploadimage1").on('submit',(function(e){
+        $("#uploadimage").on('submit',(function(e){
           e.preventDefault();
+          var fd = new FormData();
+          var files = $('#file')[0].files[0];
+          fd.append('file',files)
           $.ajax({
             url: 'upload.php',
             type: 'post',
-            data: new FormData(this),
+            data: fd,
             contentType: false,
             processData: false,
             success: function(response){
