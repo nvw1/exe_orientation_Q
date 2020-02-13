@@ -10,7 +10,7 @@ Exeter Orientation - A campus treasure hunt.
 	
 	$ ibmcloud dev run
 
-Currently when committed to the feature branch 5:
+Currently when every time someone commits to the develop branch the application gets redeployed:
 You can find the web app at: https://eoq1.eu-gb.mybluemix.net/
 
 
