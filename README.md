@@ -9,7 +9,7 @@ This service is provided as a django web application.
 2. Run it in a local development container from the app directory. This requires Docker:
 
 ```bash
-ibmcloud dev build
+$ ibmcloud dev build
 ```
 
 ```bash
