@@ -1,6 +1,7 @@
 # exe_orientation_Q
 Exeter Orientation - A campus treasure hunt.
 
+This service is provided as a django web application.
 
 # How to run the code base locally (in IBM cloud style):
 1. Install the IBM cloud developer tools:
