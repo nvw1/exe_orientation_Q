@@ -7,9 +7,14 @@ This service is provided as a django web application.
 1. Install the IBM cloud developer tools:
 	https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started
 2. Run it in a local development container from the app directory. This requires Docker:
-	$ ibmcloud dev build
-	
-	$ ibmcloud dev run
+
+```bash
+ibmcloud dev build
+```
+
+```bash
+$ ibmcloud dev run
+```
 
 Currently when every time someone commits to the develop branch the application gets redeployed:
 You can find the web app at: https://eoq1.eu-gb.mybluemix.net/
