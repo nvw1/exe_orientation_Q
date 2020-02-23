@@ -15,9 +15,9 @@ SECRET_KEY = '+)!83krz^m$i%=uo!4b7ps2s7q=2ikcm#sw!c=#6v9er#hx8or'
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 INSTALLED_APPS = [
+                  'app.apps',
                   'django.contrib.admin',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
@@ -26,6 +26,8 @@ INSTALLED_APPS = [
                   'django.contrib.staticfiles',
                   'livereload',
                   'app',
+                  'require',
+                  'django_node_assets',
                   ]
 
 MIDDLEWARE = [
@@ -80,10 +82,27 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = '/app/static/'
 
 STATICFILES_DIRS = (
                     os.path.join(BASE_DIR, "app", "static"),
                     )
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+STATICFILES_STORAGE= 'require.storage.OptimizedStaticFilesStorage'
+
+
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'game',
+        'USER': 'root',
+        'PASSWORD':'CourseworkPass',
+        'HOST':'localhost',
+        'PORT': '3306',
+    }
+}
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

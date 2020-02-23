@@ -33,6 +33,7 @@ pipenv install
 To run your application locally:
 
 ```bash
+pipenv shell
 python manage.py start
 ```
 
