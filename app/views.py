@@ -1,9 +1,12 @@
+# author : Hao
+
 from __future__ import unicode_literals
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from django.shortcuts import render
 from app.models import Gamecode
+
 
 
 def index(request):

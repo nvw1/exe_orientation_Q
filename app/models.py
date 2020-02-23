@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
+#author :  Hao
 from django.db import models
 
 
+#Used for the game
 class Gamecode(models.Model):
      groupcode = models.CharField(max_length=250)
 
-     def __str__(self):
+     def __str__(self):     #convert objects in to strings
          return self.groupcode
 
-
+#Below table is for testing
 class Musician(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

@@ -31,22 +31,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pythondjangoapp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/staticfiles/css" />
     <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\js" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\images" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\pythondjangoapp" />
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\templates" />
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\staticfiles\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\documents\Knowledge Base" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\js" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\images" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\css" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.Unnamed">
@@ -176,7 +177,7 @@
       <workItem from="1582234399266" duration="815000" />
       <workItem from="1582317708254" duration="9158000" />
       <workItem from="1582400957524" duration="5371000" />
-      <workItem from="1582475617247" duration="1147000" />
+      <workItem from="1582475617247" duration="3607000" />
     </task>
     <servers />
   </component>
@@ -192,22 +193,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1318" y="305" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581981199416" />
-    <state width="1877" height="364" key="GridCell.Tab.0.bottom" timestamp="1582410910949">
+    <state width="1877" height="364" key="GridCell.Tab.0.bottom" timestamp="1582478342649">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="364" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582410910949" />
-    <state width="1877" height="364" key="GridCell.Tab.0.center" timestamp="1582410910949">
+    <state width="1877" height="364" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582478342649" />
+    <state width="1877" height="364" key="GridCell.Tab.0.center" timestamp="1582478342648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="364" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582410910949" />
-    <state width="1877" height="364" key="GridCell.Tab.0.left" timestamp="1582410910949">
+    <state width="1877" height="364" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582478342648" />
+    <state width="1877" height="364" key="GridCell.Tab.0.left" timestamp="1582478342648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="364" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582410910949" />
-    <state width="1877" height="364" key="GridCell.Tab.0.right" timestamp="1582410910949">
+    <state width="1877" height="364" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582478342648" />
+    <state width="1877" height="364" key="GridCell.Tab.0.right" timestamp="1582478342649">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="364" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582410910949" />
+    <state width="1877" height="364" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582478342649" />
     <state x="431" y="269" key="SettingsEditor" timestamp="1582322251754">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
