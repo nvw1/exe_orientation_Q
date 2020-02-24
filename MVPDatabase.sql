@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS mvp_table(
     answer VARCHAR (25)
 )
 
-INSERT INTO mvp_table
+INSERT INTO mvp_table (node_number, question_text, answer)
 VALUES(
     1, 'How many computers are there in the LoveLace room?','37' 
 
