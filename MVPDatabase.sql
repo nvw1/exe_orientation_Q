@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS mvp_table(
 
 INSERT INTO mvp_table
 VALUES(
-    1, 1, 'How many computers are there in the LoveLac room?','37' 
+    1, 'How many computers are there in the LoveLace room?','37' 
 
 );
 
