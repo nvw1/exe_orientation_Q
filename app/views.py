@@ -19,3 +19,6 @@ def handler404(request):
 
 def handler500(request):
     return render(request, '500.html', status=500)
+
+def MVP_treasure_hunt(request):
+	return render(request, 'MVP_treasure_hunt.html')
