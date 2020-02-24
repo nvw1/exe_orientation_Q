@@ -25,6 +25,6 @@ VALUES(
 
 INSERT INTO mvp_table (node_number, question_text, answer)
 VALUES(
-    1, 4, 'How many floors does the Harrison Building have?','4' 
+    4, 'How many floors does the Harrison Building have?','4' 
 
 );
