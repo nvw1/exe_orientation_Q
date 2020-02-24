@@ -19,7 +19,7 @@ VALUES(
 
 INSERT INTO mvp_table (node_number, question_text, answer)
 VALUES(
-    1, 3, 'How much are the rice dishes for students at the innovation cafe?','4.50' 
+    3, 'How much are the rice dishes for students at the innovation cafe?','4.50' 
 
 );
 
