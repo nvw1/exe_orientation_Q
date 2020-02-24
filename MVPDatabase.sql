@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS mvp_table(
-    hunt_id INT PRIMARY KEY,
+    hunt_id INT PRIMARY KEY AUTO_INCREMENT,
     node_number INT NOT NULL,
     question_text VARCHAR(255),
     answer VARCHAR (25)
