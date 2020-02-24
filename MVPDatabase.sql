@@ -11,7 +11,7 @@ VALUES(
 
 );
 
-INSERT INTO mvp_table
+INSERT INTO mvp_table (node_number, question_text, answer)
 VALUES(
     1, 2, 'Which lab in the innovation centre has Windows PC?','Babbage' 
 
