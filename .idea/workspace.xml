@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f190890-abd1-4de5-a46b-c7cab0ab9d0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/exe_orientation_Q.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/exe_orientation_Q.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/all.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/images/logo2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/studentview.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/studentview.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,25 +39,26 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/static/images" />
     <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\documents\Knowledge Base" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\js" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\images" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\IdeaProjects\exe_orientation_Q\app\static\images" />
+      <recent name="C:\Users\user\IdeaProjects\exe_orientation_Q\app\static\css" />
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\staticfiles\css" />
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\staticfiles\images" />
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\pythondjangoapp" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\templates" />
-      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\staticfiles\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\IdeaProjects\exe_orientation_Q\app\static\js" />
+      <recent name="C:\Users\user\IdeaProjects\exe_orientation_Q\app\static\css" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\documents\Knowledge Base" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\js" />
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\static\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -198,7 +199,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="192.168.1.20" />
+      <option name="host" value="10.173.119.65" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -276,7 +277,7 @@
       <workItem from="1582475617247" duration="7235000" />
       <workItem from="1582483658258" duration="16826000" />
       <workItem from="1582505856443" duration="1549000" />
-      <workItem from="1582543480625" duration="461000" />
+      <workItem from="1582543480625" duration="8764000" />
     </task>
     <servers />
   </component>
