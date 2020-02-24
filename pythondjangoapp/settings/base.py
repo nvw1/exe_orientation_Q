@@ -15,6 +15,10 @@ SECRET_KEY = '+)!83krz^m$i%=uo!4b7ps2s7q=2ikcm#sw!c=#6v9er#hx8or'
 
 ALLOWED_HOSTS = ['*']
 
+DATABASE_ENGINE = 'ibm_db_django'
+
+USE_TZ = False
+
 # Application definition
 INSTALLED_APPS = [
                   'app.apps',
@@ -24,12 +28,15 @@ INSTALLED_APPS = [
                   'django.contrib.sessions',
                   'django.contrib.messages',
                   'django.contrib.staticfiles',
+                  'django.contrib.flatpages',
                   'livereload',
                   'app',
                   'require',
                   'django_node_assets',
+              'django.contrib.sites',
                   ]
 
+SITE_ID = 1
 MIDDLEWARE = [
               'django.middleware.security.SecurityMiddleware',
               'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -100,7 +107,6 @@ DATABASES = {
         'NAME': 'game',
         'USER': 'root',
         'PASSWORD':'CourseworkPass',
-        'HOST':'localhost',
         'PORT': '3306',
     }
 }

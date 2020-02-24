@@ -13,5 +13,6 @@ urlpatterns = [
                path('redirect', views.redirect, name='redirect'),
                 path('admin/', admin.site.urls),
              path('gamemaster',views.gamemaster,name='gamemaster'),
+                path('studentview',views.studentview,name='studentview'),
                ]
 urlpatterns += staticfiles_urlpatterns()

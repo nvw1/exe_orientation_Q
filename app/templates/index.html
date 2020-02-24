@@ -48,7 +48,7 @@
               {% csrf_token %}
 			  <input type="text" name="groupCode" placeholder="Enter Code">
         <br>
-			  <input type="submit" value="Join Group">
+			  <input type="submit" value="Join Group" name = 'submit-groupcode'>
               {%if messages%}
                 {% for message in messages %}
                     <div class="alert alert-danger" role="alert">
