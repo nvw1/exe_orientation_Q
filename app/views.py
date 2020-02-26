@@ -14,12 +14,22 @@ num = 1
 
 def index(request):
     global num
-    num = Questions.objects.order_by('auto_increment_id').first()
     return render(request, 'index.html')
 
 
 def redirect(request):
     global num
+    if request.method == 'POST' and 'submit-groupcode' in request.POST:
+        groupcode = str(request.POST.get('groupCode'))
+        print(Gamecode.objects.all())
+        info = Questions.objects.filter(node_num=int(num))
+        if Gamecode.objects.filter(groupcode=groupcode).exists():
+            request.session['groupcode'] = groupcode
+            return render(request, 'studentview.html.',{"groupcode":groupcode, "data":info,"id":id})
+        else:
+            print("Wrong")
+            messages.error(request, 'The game code does not exist')
+            return render(request, 'index.html')
     if request.method == 'POST' and 'submit-question' in request.POST:
         groupcode = request.session['groupcode']
         data = str(request.POST.get('answer'))

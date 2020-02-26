@@ -4,7 +4,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -33,7 +32,7 @@ INSTALLED_APPS = [
                   'app',
                   'require',
                   'django_node_assets',
-              'django.contrib.sites',
+                  'django.contrib.sites',
                   ]
 
 SITE_ID = 1
@@ -103,11 +102,17 @@ STATICFILES_STORAGE= 'require.storage.OptimizedStaticFilesStorage'
 
 DATABASES = {
     'default':{
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'game',
-        'USER': 'root',
-        'PASSWORD':'CourseworkPass',
-        'PORT': '3306',
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'DB-exeterOrientation',
+        'USER': 'user-admin',
+        'PASSWORD': 'v%mRn3os#9P2JnjnV*dJ',
+        'PORT': '',
+        'HOST': 'db-exeter-orientation.database.windows.net',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 13 for SQL Server',
+            'MARS_Connection':'True',
+        },
+
     }
 }
 
