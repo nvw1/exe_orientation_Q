@@ -14,5 +14,6 @@ urlpatterns = [
                 path('admin/', admin.site.urls),
              path('gamemaster',views.gamemaster,name='gamemaster'),
                 path('studentview',views.studentview,name='studentview'),
+                path('hint',views.hint,name="hint")
                ]
 urlpatterns += staticfiles_urlpatterns()

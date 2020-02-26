@@ -234,6 +234,8 @@
 			{% csrf_token %}
 				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
 		   <br>
+                <button type="button" action id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+            <br>
             <br>
 			{%if messages%}
 				   {% for message in messages %}
@@ -273,4 +275,22 @@
   </div>
 </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type = "text/javascript">
+    $(document).ready(function() {
+        $("button").click(function () {
+            $.ajax({
+                url: '/hint',
+                method: 'POST',
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    alert(response);
+                },
+                error: function() {
+                    alert("Failed");
+                }
+            });
+        });
+    });
+</script>
 </body>

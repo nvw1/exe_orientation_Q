@@ -45,11 +45,11 @@
         <div class="one-half column">
 		  <h5 class="exampleOne-heading">Play Treasure Hunt</h5>
 		  <form action="redirect" method = "post">
-              {% csrf_token %}
+              {% csrf_token %}      <!-- This is used for cross site request forgery protection by django -->
 			  <input type="text" name="groupCode" placeholder="Enter Code">
         <br>
 			  <input type="submit" value="Join Group" name = 'submit-groupcode'>
-              {%if messages%}
+              {%if messages%}                    #Display python messages if message is received
                 {% for message in messages %}
                     <div class="alert alert-danger" role="alert">
                         {{ message }}
