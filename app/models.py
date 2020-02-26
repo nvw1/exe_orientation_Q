@@ -30,8 +30,29 @@ class Questions(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     questions = models.CharField(max_length=100)
     answers = models.CharField(max_length=100)
+    node_num = models.IntegerField()
 
 
+
+
+
+Questions.objects.all()
+question = "Where is the library located?"
+
+if Questions.objects.filter(questions=question).exists():
+    pass
+    print("exist")
+else:
+    a = Questions(questions=question, answers="The forum",node_num=1)
+    a.save()
+
+question = "Which is the tallest building on campus?"
+if Questions.objects.filter(questions=question).exists():
+    print("exist")
+    pass
+else:
+    b= Questions(questions="Which is the tallest building on campus?", answers="Physics building",node_num=2)
+    b.save()
 
 
 

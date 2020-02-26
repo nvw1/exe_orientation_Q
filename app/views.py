@@ -10,41 +10,32 @@ from app.models import Questions
 
 num = 1
 
+
+
 def index(request):
     global num
-    num = 1
-
+    num = Questions.objects.order_by('auto_increment_id').first()
     return render(request, 'index.html')
+
 
 def redirect(request):
     global num
-    if request.method == 'POST' and 'submit-groupcode' in request.POST:
-        groupcode = str(request.POST.get('groupCode'))
-        print(Gamecode.objects.all())
-        info = Questions.objects.filter(auto_increment_id=num)
-        if Gamecode.objects.filter(groupcode=groupcode).exists():
-            request.session['groupcode'] = groupcode
-            return render(request, 'studentview.html.',{"groupcode":groupcode, "data":info,"id":id})
-        else:
-            print("Wrong")
-            messages.error(request, 'The game code does not exist')
-            return render(request, 'index.html')
     if request.method == 'POST' and 'submit-question' in request.POST:
         groupcode = request.session['groupcode']
         data = str(request.POST.get('answer'))
-        if Questions.objects.filter(answers=data, auto_increment_id=int(num)).exists():
+        if Questions.objects.filter(answers__icontains=data, node_num=int(num)).exists():
             num += 1
-            if Questions.objects.filter(auto_increment_id=int(num)).exists():
-             info = Questions.objects.filter(auto_increment_id=num)
+            if Questions.objects.filter(node_num=int(num)).exists():
+             info = Questions.objects.filter(node_num=num)
              messages.success(request, 'Correct!')
              return render(request, 'studentview.html.',{"groupcode":groupcode,"data":info,"id":id})
             else:
                 num -=1
-                info = Questions.objects.filter(auto_increment_id=num)
+                info = Questions.objects.filter(node_num=num)
                 messages.success(request, 'You have finished the quiz, well done!')
                 return render(request, 'studentview.html.', {"groupcode": groupcode, "data": info, "id": id})
         else:
-            info = Questions.objects.filter(auto_increment_id=num)
+            info = Questions.objects.filter(node_num=num)
             messages.error(request, 'That is the wrong answer, please try again')
             return render(request, 'studentview.html.', {"groupcode": groupcode, "data": info, "id": id})
     print(request.method)
