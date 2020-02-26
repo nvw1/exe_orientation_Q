@@ -23,7 +23,7 @@ To run your application locally:
 
 ```bash
 pipenv shell
-python manage.py runserver 0:8000 --settings=deploy_django-to-azure.settings.local
+python manage.py runserver 0:8000 --settings=deploy_django_to_azure.settings.local
 ```
 
 Your application will be running at `http://localhost:8000`.  
