@@ -18,7 +18,10 @@ Running Django applications has been simplified with a `manage.py` file to avoid
 ```bash
 pipenv install
 ```
-
+To install all the libraries required to run the application locally:
+```bash
+pip install -r requirements.txt
+```
 To run your application locally:
 
 ```bash
