@@ -30,3 +30,6 @@ Your application will be running at `http://localhost:8000`.
 
 ##### Debugging locally
 To debug a `django` project run `python manage.py runserver` with DEBUG set to True in `local.py` to start a native django development server. This comes with the Django's stack-trace debugger, which will present runtime failure stack-traces. For more information, see [Django's documentation](https://docs.djangoproject.com/en/2.0/ref/settings/).
+
+#### Configuration of Django connection to SQL database.
+In the path: exe_orientation_Q/deploy_django_to_azure/settings you can find a file called base.py there is a standard database configuration where the variable <b> DATABASES</b> can be edited to connect to a specific sql database.
