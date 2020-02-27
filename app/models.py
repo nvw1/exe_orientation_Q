@@ -38,7 +38,7 @@ class Questions(models.Model):
 Questions.objects.all()
 question = "Where is the library located?"
 
-if Questions.objects.filter(questions=question).exists():
+if Questions.objects.filter(questions=question.strip()).exists():
     pass
     print("exist")
 else:
@@ -46,7 +46,7 @@ else:
     a.save()
 
 question = "Which is the tallest building on campus?"
-if Questions.objects.filter(questions=question).exists():
+if Questions.objects.filter(questions=question.strip()).exists():
     print("exist")
     pass
 else:

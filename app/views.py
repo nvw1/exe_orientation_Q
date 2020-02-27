@@ -15,6 +15,7 @@ num = 1
 
 def index(request):
     global num       #  Allow variable to be accessed outside the definition
+    num = 1
     return render(request, 'index.html')
 
 
@@ -36,7 +37,7 @@ def redirect(request):
     if request.method == 'POST' and 'submit-question' in request.POST:
         groupcode = request.session['groupcode']         #Get groupcode from user's session
         data = str(request.POST.get('answer'))        #Get text from the input answer box
-        if Questions.objects.filter(answers__icontains=data, node_num=int(num)).exists(): #Check if user get's the answer correct
+        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
             num += 1       # Add 1 to the counter so the questions moves on to the next one
             if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question
              info = Questions.objects.filter(node_num=num)
