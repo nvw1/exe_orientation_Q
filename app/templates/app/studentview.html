@@ -1,4 +1,5 @@
 {% load static %}
+<!-- Authors: Hao, Nik -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 
     <meta charset="UTF-8">
 	<title>Title</title>
-  <link rel="stylesheet" href="{% static 'css/all.css' %}"></link>
+  <link rel="stylesheet" href="app/static/css/all.css"></link>
   <style>
 .observablehq {
   opacity: 1;
@@ -37,7 +38,7 @@
     <link rel="shortcut icon" href="/favicon.png" type="image/png" />
     <link rel="canonical" href="https://openai.com/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
-    
+
     <meta property="og:site_name" content="OpenAI" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="OpenAI" />
@@ -46,7 +47,7 @@
     <meta property="og:image" content="https://openai.com/content/images/2019/05/openai-cover.png" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1350" />
-    
+
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -98,7 +99,7 @@
 </head>
 
 <body>
-  
+
 
 <div class="color-bg mb-2 mb-lg-2.5 position-relative">
 
@@ -108,7 +109,7 @@
 		  <div class="nav-row row d-flex justify-content-between align-items-center">
 			<div class="col-2">
 			  <a href="/" class="nav-symbol fade">
-				<img src="{% static 'images/logo2.png' %}" ></img>
+				<img src="app/static/images/logo2.png" ></img>
 				</div>
 			<div class="col" >
 			  <a href="/" class="nav-wordmark fade">
@@ -116,19 +117,19 @@
 				</div>
 			<div class="col-auto">
 			  <ul class="nav-items d-none d-desktop-flex justify-content-end small-caps">
-							  
+
 				  <li class="nav-item">
 					<a class="fade" href="/about/">About</a>
 				  </li>
-				  
+
 				  <li class="nav-item">
 					<a class="fade" href="/progress/">Progress</a>
 				  </li>
-				  
+
 				  <li class="nav-item">
 					<a class="fade" href="/resources/">Resources</a>
 				  </li>
-				  
+
 				  <li class="nav-item">
 					<a class="fade" href="/blog/">Blog</a>
 				  </li>
@@ -150,22 +151,22 @@
 		</div>
 		<div class="container font-large">
 		  <ul class="mt-0.25 small-caps">
-					  
+
 				<li>
 				  <a class="fade d-block py-0.75" href="/about/">About</a>
 				</li>
 				<hr class="bg-fg">
-			  
+
 				<li>
 				  <a class="fade d-block py-0.75" href="/progress/">Progress</a>
 				</li>
 				<hr class="bg-fg">
-			  
+
 				<li>
 				  <a class="fade d-block py-0.75" href="/resources/">Resources</a>
 				</li>
 				<hr class="bg-fg">
-			  
+
 				<li>
 				  <a class="fade d-block py-0.75" href="/blog/">Blog</a>
 				</li>
@@ -176,9 +177,9 @@
 		  </ul>
 		</div>
 	  </nav>
-	  
+
 	  </header>
-		
+
 	  {% block content %}
 	  <!--first section-->
 
@@ -229,11 +230,13 @@
 	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0">
 		<br>
 		<h3 class="container mb-0.25"style="color:black">Type answer below:</h3>
-		
+
 		<form class="container" action="redirect" method = "post" id="question">
 			{% csrf_token %}
 				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
 		   <br>
+                <button type="button" action id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+            <br>
             <br>
 			{%if messages%}
 				   {% for message in messages %}
@@ -242,7 +245,7 @@
 					   </div>
 				   {% endfor%}
                 <br>
-			{% endif %}
+			   {% endif %}
 
 	</figure>
 					</div>
@@ -253,8 +256,8 @@
 		</div>
 		<div class="container color-white mt-0.5">
 		  <div class="text-center"><a class="btn icon-next right" >
-			<input class="btn  icon-next right fade color-bg-65" type="submit" value="ANSWER " name="submit-question"></a>
-			
+			<input class="btn  icon-next right fade color-bg-65" type="submit" value="ANSWER " name="submit-question" style=""></a>
+
 		</div>
 
 		</div>
@@ -269,8 +272,26 @@
 {% endblock %}
 <div class="position-absolute w-100 h-100 overflow-hidden bg-cool-gray-1 bg-cover trbl-0" style="z-index:-1;pointer-events:none">
 	<div id="gradient" class="position-absolute d-flex justify-content-center align-items-center overflow-hidden trbl-0 observablehq--running" style="z-index:-1;pointer-events:none"></div>
-	
+
   </div>
 </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type = "text/javascript">
+    $(document).ready(function() {
+        $("button").click(function () {
+            $.ajax({
+                url: '/hint',
+                method: 'POST',
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    alert(response);
+                },
+                error: function() {
+                    alert("Failed");
+                }
+            });
+        });
+    });
+</script>
 </body>
