@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
                 ('auto_increment_id', models.AutoField(primary_key=True, serialize=False)),
                 ('questions', models.CharField(max_length=100)),
                 ('answers', models.CharField(max_length=100)),
-				('node_num', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
@@ -25,7 +24,6 @@ class Migration(migrations.Migration):
                 ('auto_increment_id', models.AutoField(primary_key=True, serialize=False)),
                 ('questions', models.CharField(max_length=100)),
                 ('answers', models.CharField(max_length=100)),
-				('node_num', models.IntegerField()),
             ],
         ),
     ]

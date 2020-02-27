@@ -1,11 +1,5 @@
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd)
-    define(['qrcode'], factory);
-  else if (typeof exports === 'object')
-
-    module.exports = factory(require('pythondjangoapp/static/build/qrcode'));
-
-  else root.QCodeDecoder = factory(qrcode);
+   root.QCodeDecoder = factory(qrcode);
 }(this, function (qrcode) {
 
 'use strict';

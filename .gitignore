@@ -107,3 +107,4 @@ venv.bak/
 *.swo
 *.swp
 *.vscode
+.idea/workspace.xml
