@@ -11,65 +11,59 @@ from app.models import Questions
 
 num = 1
 
-def index(request):
-    global num
-    num = 1
 
-    return render(request, 'app/index.html')
+
+def index(request):
+    global num       #  Allow variable to be accessed outside the definition
+    num = 1
+    return render(request, 'index.html')
+
 
 def redirect(request):
-    global num
+    global num       #  Allow variable to be accessed outside the definition
+    # Below is to check if whether the button is for groupcode or answer to question
     if request.method == 'POST' and 'submit-groupcode' in request.POST:
-        print("recieved post and submit-groupcode")
-        print(request.POST)
-        groupcode = str(request.POST.get('groupCode'))
-        print(groupcode)
+        groupcode = str(request.POST.get('groupCode'))    # Get inputted groupcode from the user
         print(Gamecode.objects.all())
-        print("apparently that did work")
-
-        print(Questions)
-        print(Questions.objects.all())
-        info = Questions.objects.filter(node_num=num)
-        print(info)
-        print("info got")
-
-
-        if Gamecode.objects.filter(groupcode=groupcode).exists():
-            print("groupcodes matched")
-            request.session['groupcode'] = groupcode
-            print("session request successful")
-            print(id)
-            return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id})
-
-
-        else:
+        info = Questions.objects.filter(node_num=int(num))    # Get question from the database using num counter
+        if Gamecode.objects.filter(groupcode=groupcode).exists():  #Check if the group code actually exists
+            request.session['groupcode'] = groupcode               #Add group code into user's session
+            return render(request, 'studentview.html.',{"groupcode":groupcode, "data":info,"id":id})
+        else:                        #Case for when the invalid group code is entered
             print("Wrong")
             messages.error(request, 'The game code does not exist')
-            return render(request, 'app/index.html')
-
+            return render(request, 'index.html')
+    # Below is to check if whether the button is for groupcode or answer to question
     if request.method == 'POST' and 'submit-question' in request.POST:
-        groupcode = request.session['groupcode']
-        data = str(request.POST.get('answer'))
-
-        if Questions.objects.filter(answers=data, node_num=int(num)).exists():
-            num += 1
-            if Questions.objects.filter(node_num=int(num)).exists():
+        groupcode = request.session['groupcode']         #Get groupcode from user's session
+        data = str(request.POST.get('answer'))        #Get text from the input answer box
+        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
+            num += 1       # Add 1 to the counter so the questions moves on to the next one
+            if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question
              info = Questions.objects.filter(node_num=num)
-             messages.success(request, 'Correct!')
-             return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id})
-
-            else:
-                num -=1
+             messages.success(request, 'Correct!')  #Generate message saying correct
+             return render(request, 'studentview.html.',{"groupcode":groupcode,"data":info,"id":id})
+            else:                 #Case when the user is on the last question
+                num -=1      #Question stays the same when user has reach the end
                 info = Questions.objects.filter(node_num=num)
-                messages.success(request, 'You have finished the quiz, well done!')
-                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
-                
-        else:
+                messages.success(request, 'You have finished the quiz, well done!')  #Generate message when user finish the quiz
+                return render(request, 'studentview.html.', {"groupcode": groupcode, "data": info, "id": id})
+        else:         #Case when user gets the answer wrong
             info = Questions.objects.filter(node_num=num)
             messages.error(request, 'That is the wrong answer, please try again')
-            return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
+            return render(request, 'studentview.html.', {"groupcode": groupcode, "data": info, "id": id}) #Return incorrect message
     print(request.method)
-    return HttpResponse()
+
+
+def hint(request):
+    hint_get = Questions.objects.values_list('hints',flat=True).filter(node_num=num)
+    print(hint_get)
+    return HttpResponse(hint_get)
+
+
+def health(request):
+    state = {"status": "UP"}
+    return JsonResponse(state)
 
 
 def handler404(request):
