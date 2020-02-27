@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Niklas, Hao">
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+This is the student page
+{% block content %}
+    <h1>This is your group code :{{ groupcode }}</h1>
+    <p>Enjoy the game</p>
+     {% for questions in data %}
+    {{ questions.questions}}
+         <form action="redirect" method = "post" id="question">
+         {% csrf_token %}
+			  <input type="text" name="answer" placeholder="Enter your answer">
+        <br>
+			  <input type="submit" value="answer" name="submit-question">
+
+         </form>
+         {%if messages%}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor%}
+            {% endif %}
+
+{% endfor %}
+{% endblock %}
+</body>
+</html>

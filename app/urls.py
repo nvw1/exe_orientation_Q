@@ -1,3 +1,4 @@
+
 from django.conf.urls import url
 from django.urls import path
 from app import views
@@ -10,4 +11,5 @@ urlpatterns = [
 	path('MVP_treasure_hunt', views.MVP_treasure_hunt, name='MVP_treasure_hunt'),
 	path('redirect', views.redirect, name='redirect'),
 	path('studentview',views.studentview,name='studentview'),
+    path('hint',views.hint,name="hint")
 ]

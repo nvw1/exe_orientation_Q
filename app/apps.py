@@ -1,5 +1,6 @@
+#-*- coding: utf-8 -*-
+#Author : Hao
 from django.apps import AppConfig
 
-
-class AppConfig(AppConfig):
+class GameConfig(AppConfig):
     name = 'app'
