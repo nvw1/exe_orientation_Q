@@ -36,3 +36,5 @@ To debug a `django` project run `python manage.py runserver` with DEBUG set to T
 
 #### Configuration of Django connection to SQL database.
 In the path: `exe_orientation_Q/deploy_django_to_azure/settings` you can find a file called base.py there is a standard database configuration where the variable <b> DATABASES</b> can be edited to connect to a specific sql database.
+
+To be able to connect to the database on your location machine, you will need to install an Microsoft® ODBC Driver 17 for SQL Server. You can download the driver from on windows https://www.microsoft.com/en-us/download/details.aspx?id=56567.
