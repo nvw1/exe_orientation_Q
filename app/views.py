@@ -54,11 +54,11 @@ def redirect(request):
             return render(request, 'studentview.html.', {"groupcode": groupcode, "data": info, "id": id}) #Return incorrect message
     print(request.method)
 
+
 def hint(request):
     hint_get = Questions.objects.values_list('hints',flat=True).filter(node_num=num)
     print(hint_get)
     return HttpResponse(hint_get)
-
 
 
 def health(request):
