@@ -1,6 +1,5 @@
 # author : Hao, Sam
 
-
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -11,7 +10,7 @@ from app.models import Questions
 
 # current node number, global variable
 num = 1
-
+score = 0
 
 
 def index(request):
@@ -22,7 +21,7 @@ def index(request):
 
 
 def redirect(request):
-
+    global score
     global num
   # Below is to check if whether the button is for groupcode or answer to question
 	# process the group code passed from the landing page
@@ -36,7 +35,8 @@ def redirect(request):
         # if the group code exists, load the treasure hunt page with the correct questions
         if Gamecode.objects.filter(groupcode=groupcode).exists():
             request.session['groupcode'] = groupcode         #Add group code into user's session
-            return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id})
+            request.session['score'] = score            #  Add score into user's session
+            return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score})
 
         # otherwise show an error message
         else:
@@ -53,20 +53,19 @@ def redirect(request):
 		# otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
             num += 1       # Add 1 to the counter so the questions moves on to the next one
+            score += 3
             if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question      
               
               
              info = Questions.objects.filter(node_num=num)
              messages.success(request, 'Correct!')  #Generate message saying correct
-             return render(request, 'app/studentview.html.',{"groupcode":groupcode,"data":info,"id":id})
+             
+             return render(request, 'app/studentview.html.',{"groupcode":groupcode,"data":info,"id":id,"score":score})
             else:                 #Case when the user is on the last question
                 num -=1      #Question stays the same when user has reach the end
                 info = Questions.objects.filter(node_num=num)
-                
-                
-
                 messages.success(request, 'You have finished the quiz, well done!')  #Generate message when user finish the quiz
-                return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id})
+                return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id,"score":score})
         else:         #Case when user gets the answer wrong
 
             info = Questions.objects.filter(node_num=num)
@@ -76,9 +75,11 @@ def redirect(request):
 
 
 def hint(request):
-    hint_get = Questions.objects.values_list('hints',flat=True).filter(node_num=num)
-    print(hint_get)
-    return HttpResponse(hint_get)
+    global score
+    hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
+    score1 = request.POST.get('score')
+    score = score1
+    return HttpResponse(hint)
 
 
 def health(request):
