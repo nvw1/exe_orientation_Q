@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+waitress = ">=1.4.2"
+django-pyodbc-azure = ">=2.1"
+django-require = "==1.0.11"
+django-six = "==1.0.4"
+django-contrib-comments = "==1.9.2"
+django-node-assets = "==0.9.7"
+django-filter = "*"
+Django = "==2.1"
+
+[requires]
+python_version = "3.7"
