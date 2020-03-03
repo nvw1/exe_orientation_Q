@@ -1,3 +1,4 @@
+# author : Sam Rapier
 from deploy_django_to_azure.settings.base import *
 
 DEBUG = False

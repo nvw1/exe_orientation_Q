@@ -18,15 +18,23 @@ Running Django applications has been simplified with a `manage.py` file to avoid
 ```bash
 pipenv install
 ```
-
+To install all the libraries required to run the application locally:
+```bash
+pip install -r requirements.txt
+```
 To run your application locally:
 
 ```bash
 pipenv shell
-python manage.py runserver 0:8000 --settings=deploy_django_to_azure.settings.local
+python manage.py runserver --settings=deploy_django_to_azure.settings.local
 ```
 
 Your application will be running at `http://localhost:8000`.  
 
 ##### Debugging locally
 To debug a `django` project run `python manage.py runserver` with DEBUG set to True in `local.py` to start a native django development server. This comes with the Django's stack-trace debugger, which will present runtime failure stack-traces. For more information, see [Django's documentation](https://docs.djangoproject.com/en/2.0/ref/settings/).
+
+#### Configuration of Django connection to SQL database.
+In the path: `exe_orientation_Q/deploy_django_to_azure/settings` you can find a file called base.py there is a standard database configuration where the variable <b> DATABASES</b> can be edited to connect to a specific sql database.
+
+To be able to connect to the database on your location machine, you will need to install an Microsoft® ODBC Driver 17 for SQL Server. You can download the driver from on windows https://www.microsoft.com/en-us/download/details.aspx?id=56567.
