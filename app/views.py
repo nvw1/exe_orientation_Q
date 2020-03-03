@@ -15,7 +15,7 @@ num = 1
 
 
 def index(request):
-	# sets the node num to 1 when landing on index page
+    # sets the node num to 1 when landing on index page
     global num
     num = 1
     return render(request, 'app/index.html')
@@ -24,8 +24,8 @@ def index(request):
 def redirect(request):
 
     global num
-  # Below is to check if whether the button is for groupcode or answer to question
-	# process the group code passed from the landing page
+    # Below is to check if whether the button is for groupcode or answer to question
+    # process the group code passed from the landing page
     if request.method == 'POST' and 'submit-groupcode' in request.POST:
         groupcode = str(request.POST.get('groupCode'))    # Get inputted groupcode from the user
         print(Gamecode.objects.all())
@@ -50,7 +50,7 @@ def redirect(request):
         data = str(request.POST.get('answer'))              #Get text from the input answer box
 
         # if answer is correct for the current node, move onto the next question if it exists, 
-		# otherwise show they have finished the quiz
+        # otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
             num += 1       # Add 1 to the counter so the questions moves on to the next one
             if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question      
@@ -93,7 +93,7 @@ def handler500(request):
     return render(request, '500.html', status=500)
 
 def MVP_treasure_hunt(request):
-	return render(request, 'app/MVP_treasure_hunt.html')
+    return render(request, 'app/MVP_treasure_hunt.html')
 
 def studentview(request):
     return render(request,'app/studentview.html')
