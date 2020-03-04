@@ -287,20 +287,23 @@
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
         {% endfor %}
-        alert(current_question)
     $.ajax({
         url: "/update_request",
         type: "post",
         data: {current_question:current_question,'csrfmiddlewaretoken': "{{ csrf_token }}" },
         success:
         function(result){
-            alert("hell yeah"); //insert text of test.php into your div
+            if (result == "Same Question"){
             setTimeout(function(){
                 sendRequest(); //this will send request again and again;
-            }, 5000);
+            }, 1000);}
+            else{
+                location.reload(true);
+            }
         },
         error: function() {
-                    alert("Failed");
+                    alert("failed")
+                    location.reload(true);
                     setTimeout(function(){
                     sendRequest(); //this will send request again and again;
                      }, 5000);
