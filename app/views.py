@@ -75,10 +75,11 @@ def redirect(request):
 
 
 def hint(request):
-    global score
+    global score           #Global score
     hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
-    score1 = request.POST.get('score')
-    score = score1
+    score1 = request.POST.get('score')        #  Get score from ajax request
+    request.session['score'] = score1      # update score variable
+    score = int(score1)
     return HttpResponse(hint)
 
 
