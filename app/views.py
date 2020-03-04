@@ -60,17 +60,17 @@ def redirect(request):
              info = Questions.objects.filter(node_num=num)
              messages.success(request, 'Correct!')  #Generate message saying correct
              
-             return render(request, 'app/studentview.html.',{"groupcode":groupcode,"data":info,"id":id,"score":score})
+             return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,"score":score})
             else:                 #Case when the user is on the last question
                 num -=1      #Question stays the same when user has reach the end
                 info = Questions.objects.filter(node_num=num)
                 messages.success(request, 'You have finished the quiz, well done!')  #Generate message when user finish the quiz
-                return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id,"score":score})
+                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
         else:         #Case when user gets the answer wrong
 
             info = Questions.objects.filter(node_num=num)
             messages.error(request, 'That is the wrong answer, please try again')
-            return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id}) #Return incorrect message
+            return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id}) #Return incorrect message
     print(request.method)
 
 
