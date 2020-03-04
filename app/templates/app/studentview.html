@@ -209,6 +209,9 @@
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
 				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem">{{ questions.questions}}</h1>
+                <script>
+                    var b = {{ questions.questions }}
+                </script>
 			</div>
 		  </div>
 		</section>
@@ -277,7 +280,36 @@
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script type = "text/javascript">
+
+    function sendRequest(){
+        {% for questions in data %}
+    var current_question =  {{ questions.node_num }}
+        {% endfor %}
+        alert(current_question)
+    $.ajax({
+        url: "/update_request",
+        type: "post",
+        data: {current_question:current_question,'csrfmiddlewaretoken': "{{ csrf_token }}" },
+        success:
+        function(result){
+            alert("hell yeah"); //insert text of test.php into your div
+            setTimeout(function(){
+                sendRequest(); //this will send request again and again;
+            }, 5000);
+        },
+        error: function() {
+                    alert("Failed");
+                    setTimeout(function(){
+                    sendRequest(); //this will send request again and again;
+                     }, 5000);
+                }
+    });
+    }
+    $(window).bind("load",function(){
+        sendRequest();
+    })
     $(document).ready(function() {
         $("button").click(function () {
             $.ajax({

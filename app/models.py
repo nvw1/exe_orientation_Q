@@ -7,7 +7,7 @@ from django.db import models
 #Used for the game
 class Gamecode(models.Model):
     groupcode = models.CharField(max_length=250)
-
+    
     def __str__(self):     #convert objects in to strings
         return self.groupcode
 

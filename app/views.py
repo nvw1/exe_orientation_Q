@@ -78,6 +78,21 @@ def hint(request):
     return HttpResponse(hint_get)
 
 
+def update_request(request):
+    question_num = request.POST.get('current_question')
+    group_num = request.session['groupcode']
+    print(question_num)
+    print(group_num)
+    latest_question = Gamecode.objects.get(groupcode=group_num)
+    latest_num = latest_question.
+    print(latest_question)
+    if question_num != latest_question:
+        print("Not the same question")
+    else:
+        print("Same question")
+    return HttpResponse("Hello")
+
+
 def health(request):
     state = {"status": "UP"}
     return JsonResponse(state)
