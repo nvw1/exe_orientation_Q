@@ -66,20 +66,20 @@ class Groups(models.Model):
     Players_playerID = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
 
 
-# Questions.objects.all()
-# question = "Where is the library located?"
+Questions.objects.all()
+question = "Where is the library located?"
 
-# if Questions.objects.filter(questions=question.strip()).exists():
-#     pass
-#     print("exist")
-# else:
-#     a = Questions(questions=question, answers="The forum",node_num=1,hints="the name also refers to discussion board on the Internet")
-#     a.save()
+if Questions.objects.filter(questions=question.strip()).exists():
+    pass
+    print("exist")
+else:
+    a = Questions(questions=question, answers="The forum",node_num=1,hints="the name also refers to discussion board on the Internet")
+    a.save()
 
-# question = "Which is the tallest building on campus?"
-# if Questions.objects.filter(questions=question.strip()).exists():
-#     print("exist")
-#     pass
-# else:
-#     b= Questions(questions="Which is the tallest building on campus?", answers="Physics building",node_num=2, hints = "What subject did albert einstein study in?")
-#     b.save()
+question = "Which is the tallest building on campus?"
+if Questions.objects.filter(questions=question.strip()).exists():
+    print("exist")
+    pass
+else:
+    b= Questions(questions="Which is the tallest building on campus?", answers="Physics building",node_num=2, hints = "What subject did albert einstein study in?")
+    b.save()
