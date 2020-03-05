@@ -110,6 +110,11 @@ def update_request(request):
         return HttpResponse("Same Question")
 
 
+def reset_question(request):
+    t = Gamecode.objects.get(groupcode='0001')
+    t.questionNum = '1'
+    t.save()
+
 
 def health(request):
     state = {"status": "UP"}

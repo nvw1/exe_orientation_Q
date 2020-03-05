@@ -210,6 +210,7 @@
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
 				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem">{{ questions.questions}}</h1>
+                <button id = "button_1" value = "val_1">reset questions<</button>
                 <script>
                     var b = {{ questions.questions }}
                 </script>
@@ -334,6 +335,14 @@
             });
         });
     });
-
+    $(document).ready(function() {
+        $("#button_1").click(function (){
+            $.ajax({
+                url:'/reset_question',
+                success: function(response){
+                }
+            });
+        });
+    });
 </script>
 </body>
