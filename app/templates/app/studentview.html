@@ -286,16 +286,17 @@
 			  <div class="row flex-nowrap flex-lg-wrap">
 					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-gutter mb-gutter mb-md-gutter">
 
-	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0">
+	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0" style="background-color: transparent;">
 		<br>
-		<h3 class="container mb-0.25"style="color:black"><center>Type answer below:</center></h3>
-
-		<form class="container" action="redirect" method = "post" id="question" >
+		<h1 class="balance-text h2 font-normal" ><center>Type answer below:</center></h1>
+        <br>
+        <br>
+		<form class="container" action="redirect" method = "post" id="question"  >
 			{% csrf_token %}
-				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
+				 <input class="small-copy mb-0.5 mt-0.125" type="text" name="answer" placeholder="Enter your answer" style="display: block; margin: 0 auto;">
 		   <br>
 		   <br>
-                <button  name = gethaction id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+                <button class="small-copy mb-0.5 mt-0.125" name = gethaction id = "gethint" style="display: block; margin: 0 auto;" > Feeling stuck and need a hint? Click me!</button>
             <br>
             <br>
 			{%if messages%}
