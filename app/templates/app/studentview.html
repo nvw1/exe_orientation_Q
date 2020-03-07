@@ -26,6 +26,58 @@
   filter: saturate(150%);
   -webkit-filter: saturate(150%);
 }
+.form{
+	background-color: transparent;
+}
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
 </style>
 
 
@@ -99,7 +151,15 @@
 </head>
 
 <body>
-
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
 
 <div class="color-bg mb-2 mb-lg-2.5 position-relative">
 
@@ -119,22 +179,16 @@
 			  <ul class="nav-items d-none d-desktop-flex justify-content-end small-caps">
 
 				  <li class="nav-item">
-					<a class="fade" href="/about/">About</a>
+					<a class="fade" href="{}"></a>
 				  </li>
 
 				  <li class="nav-item">
-					<a class="fade" href="/progress/">Progress</a>
+					<a class="fade" href="/progress/"></a>
 				  </li>
 
-				  <li class="nav-item">
-					<a class="fade" href="/resources/">Resources</a>
-				  </li>
 
-				  <li class="nav-item">
-					<a class="fade" href="/blog/">Blog</a>
-				  </li>
 			  </ul>
-			  <button class="nav-toggle nav-toggle--open js-mobile-nav-open fade d-desktop-none"><svg id="mobile-nav-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,13H2a1,1,0,0,1,0-2H22a1,1,0,0,1,0,2Z"/><path d="M22,6H2A1,1,0,0,1,2,4H22a1,1,0,0,1,0,2Z"/><path d="M22,20H2a1,1,0,0,1,0-2H22a1,1,0,0,1,0,2Z"/></svg></button>
+			  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 			</div>
 		  </div>
 		</div>
@@ -234,13 +288,14 @@
 
 	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0">
 		<br>
-		<h3 class="container mb-0.25"style="color:black">Type answer below:</h3>
+		<h3 class="container mb-0.25"style="color:black"><center>Type answer below:</center></h3>
 
-		<form class="container" action="redirect" method = "post" id="question">
+		<form class="container" action="redirect" method = "post" id="question" >
 			{% csrf_token %}
 				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
 		   <br>
-                <button type="button1" name = gethaction id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+		   <br>
+                <button  name = gethaction id = "gethint"> Feeling stuck and need a hint? Click me!</button>
             <br>
             <br>
 			{%if messages%}
@@ -284,7 +339,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type = "text/javascript">
+	function openNav() {
+  		document.getElementById("myNav").style.width = "100%";
+	}
 
+	function closeNav() {
+  		document.getElementById("myNav").style.width = "0%";
+	}
     function sendRequest(){
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
