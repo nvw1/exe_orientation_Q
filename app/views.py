@@ -53,8 +53,7 @@ def redirect(request):
 
         # if answer is correct for the current node, move onto the next question if it exists, 
         # otherwise show they have finished the quiz
-        # Check if user get's the answer correct
-        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists():
+        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
             num += 1       # Add 1 to the counter so the questions moves on to the next one
             score += 3
             if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question      
