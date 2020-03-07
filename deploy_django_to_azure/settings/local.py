@@ -17,7 +17,7 @@ STATIC_URL = '/staticfiles/'
 DATABASES = {
     'default':{
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'test-DB-exeterOrientation',
+        'NAME': 'DB-exeterOrientation',
         'USER': 'user-admin',
         'PASSWORD': 'v%mRn3os#9P2JnjnV*dJ',
         'PORT': '',

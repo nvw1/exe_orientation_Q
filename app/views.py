@@ -111,9 +111,11 @@ def update_request(request):
 
 
 def reset_question(request):
+    global num
     t = Gamecode.objects.get(groupcode='0001')
     t.questionNum = '1'
     t.save()
+    num = 1
 
 
 def health(request):
