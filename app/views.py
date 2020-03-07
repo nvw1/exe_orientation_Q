@@ -12,9 +12,8 @@ from app.models import Questions
 num = 1
 score = 0
 
-
 def index(request):
-	# sets the node num to 1 when landing on index page
+    # sets the node num to 1 when landing on index page
     global num
     num = 1
     return render(request, 'app/index.html')
@@ -23,14 +22,14 @@ def index(request):
 def redirect(request):
     global score
     global num
-  # Below is to check if whether the button is for groupcode or answer to question
-	# process the group code passed from the landing page
+    # Below is to check if whether the button is for groupcode or answer to question
+    # process the group code passed from the landing page
     if request.method == 'POST' and 'submit-groupcode' in request.POST:
         groupcode = str(request.POST.get('groupCode'))    # Get inputted groupcode from the user
+        questionNum = Gamecode.objects.get(groupcode = groupcode)
+        num = questionNum.questionNum
         print(Gamecode.objects.all())
-
         info = Questions.objects.filter(node_num=int(num))    # Get question from the database using num counter
-
 
         # if the group code exists, load the treasure hunt page with the correct questions
         if Gamecode.objects.filter(groupcode=groupcode).exists():
@@ -46,31 +45,48 @@ def redirect(request):
 
     # if an answer to question is submitted, check if it is correct
     if request.method == 'POST' and 'submit-question' in request.POST:
+
+
         groupcode = request.session['groupcode']            #Get groupcode from user's sessio
         data = str(request.POST.get('answer'))              #Get text from the input answer box
+        questionNum = Gamecode.objects.get(groupcode=groupcode)
 
         # if answer is correct for the current node, move onto the next question if it exists, 
-		# otherwise show they have finished the quiz
-        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
+        # otherwise show they have finished the quiz
+        # Check if user get's the answer correct
+        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists():
             num += 1       # Add 1 to the counter so the questions moves on to the next one
             score += 3
             if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question      
-              
+             questionNum.questionNum = num
+             questionNum.save()
               
              info = Questions.objects.filter(node_num=num)
              messages.success(request, 'Correct!')  #Generate message saying correct
              
-             return render(request, 'app/studentview.html.',{"groupcode":groupcode,"data":info,"id":id,"score":score})
+             return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,"score":score})
             else:                 #Case when the user is on the last question
                 num -=1      #Question stays the same when user has reach the end
+                questionNum.questionNum = num
+                questionNum.save()
                 info = Questions.objects.filter(node_num=num)
                 messages.success(request, 'You have finished the quiz, well done!')  #Generate message when user finish the quiz
-                return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id,"score":score})
-        else:         #Case when user gets the answer wrong
+                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
+        else:         # Case when user gets the answer wrong
 
             info = Questions.objects.filter(node_num=num)
             messages.error(request, 'That is the wrong answer, please try again')
-            return render(request, 'app/studentview.html.', {"groupcode": groupcode, "data": info, "id": id}) #Return incorrect message
+            # Return incorrect message
+            return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
+    if 'groupcode' in request.session:
+        groupcode = request.session['groupcode']
+        questionNum = Gamecode.objects.get(groupcode=groupcode)
+        num = questionNum.questionNum
+        info = Questions.objects.filter(node_num=int(num))  # Get question from the database using num counter
+        return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
+    else:
+        num = 1
+        return render(request, 'app/index.html')
     print(request.method)
 
 
@@ -83,6 +99,23 @@ def hint(request):
     return HttpResponse(hint)
 
 
+def update_request(request):
+    question_num = request.POST.get('current_question')
+    group_num = request.session['groupcode']
+    latest_question = Gamecode.objects.get(groupcode=group_num)
+    latest_num = latest_question.questionNum
+    if int(question_num) != int(latest_num):
+        return HttpResponse("Not the same")
+    else:
+        return HttpResponse("Same Question")
+
+
+def reset_question(request):
+    t = Gamecode.objects.get(groupcode='0001')
+    t.questionNum = '1'
+    t.save()
+
+
 def health(request):
     state = {"status": "UP"}
     return JsonResponse(state)
@@ -91,11 +124,14 @@ def health(request):
 def handler404(request):
     return render(request, '404.html', status=404)
 
+
 def handler500(request):
     return render(request, '500.html', status=500)
 
+
 def MVP_treasure_hunt(request):
-	return render(request, 'app/MVP_treasure_hunt.html')
+    return render(request, 'app/MVP_treasure_hunt.html')
+
 
 def studentview(request):
     return render(request,'app/studentview.html')
