@@ -3,6 +3,9 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from app.models import Gamecode
@@ -19,6 +22,62 @@ def index(request):
     return render(request, 'app/index.html')
 
 
+@login_required(redirect_field_name='')
+def game_master(request):
+    return render(request,'app/game_master_page.html')
+
+def login_page(request):
+    return render(request, 'app/login_page.html')
+
+def login_view(request):
+    if request.method == 'POST' and 'submit-signUp' in request.POST:
+        newUsername = request.POST['username']
+        newPassword = request.POST['password']
+
+        # if the user does not already exist
+        # if not User.objects.filter(username=newUsername).exist():
+        # set new user
+        print("making new user")
+        newUser = User.objects.create_user(username=newUsername, password=newPassword)
+        newUser.save()
+
+        login(request, newUser)
+
+        messages.success(request, 'Login Success')
+        return render(request, 'app/game_master_page.html')
+
+        # else:
+        #     print("User already exists")
+        #     messages.error(request, 'Username already exists')
+        #     return render(request, 'app/game_master_page.html')
+
+    if request.method == 'POST' and 'submit-logIn' in request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            print("logged in")
+            messages.success(request, 'log in success')
+            return render(request, 'app/game_master_page.html')
+        else:
+            print("log in failure")
+            messages.error(request, 'log in failure')
+            return render(request, 'app/login_page.html')
+
+    print("did not get username or password")
+    messages.error(request, 'did not get username or password')
+    return render(request, 'app/login_page.html')
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, 'did not get username or password')
+    return render(request, 'app/index.html') 
+
+
+
+@login_required
 def redirect(request):
     global score
     global num
@@ -41,11 +100,11 @@ def redirect(request):
             return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score})
 
 
-		# otherwise show an error message
-		else:
-			print("Wrong")
-			messages.error(request, 'The game code does not exist')
-			return render(request, 'app/index.html')
+        # otherwise show an error message
+        else:
+            print("Wrong")
+            messages.error(request, 'The game code does not exist')
+            return render(request, 'app/index.html')
 
     # if an answer to question is submitted, check if it is correct
     if request.method == 'POST' and 'submit-question' in request.POST:
@@ -131,16 +190,16 @@ def reset_question(request):
 
 
 def health(request):
-	state = {"status": "UP"}
-	return JsonResponse(state)
+    state = {"status": "UP"}
+    return JsonResponse(state)
 
 
 def handler404(request):
-	return render(request, '404.html', status=404)
+    return render(request, '404.html', status=404)
 
 
 def handler500(request):
-	return render(request, '500.html', status=500)
+    return render(request, '500.html', status=500)
 
 
 def MVP_treasure_hunt(request):

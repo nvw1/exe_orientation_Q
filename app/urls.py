@@ -15,5 +15,9 @@ urlpatterns = [
 	path('update_request',views.update_request,name="update_request"),
 	path('reset_question',views.reset_question,name="reset_question"),
 	path('faq',views.faq, name="faq"),
-	path('contact',views.contact, name="contact")
+	path('contact',views.contact, name="contact"),
+	path('game_master', views.game_master, name="game_master"),
+	path('login_page', views.login_page, name="login_page"),
+	path('login_view', views.login_view, name="login_view"),
+	path('logout', views.logout_view, name="logout_view")
 ]
