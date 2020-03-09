@@ -40,11 +40,12 @@ def redirect(request):
             request.session['score'] = score            #  Add score into user's session
             return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score})
 
-        # otherwise show an error message
-        else:
-            print("Wrong")
-            messages.error(request, 'The game code does not exist')
-            return render(request, 'app/index.html')
+
+		# otherwise show an error message
+		else:
+			print("Wrong")
+			messages.error(request, 'The game code does not exist')
+			return render(request, 'app/index.html')
 
     # if an answer to question is submitted, check if it is correct
     if request.method == 'POST' and 'submit-question' in request.POST:
@@ -128,17 +129,18 @@ def reset_question(request):
     num = 1
 
 
+
 def health(request):
-    state = {"status": "UP"}
-    return JsonResponse(state)
+	state = {"status": "UP"}
+	return JsonResponse(state)
 
 
 def handler404(request):
-    return render(request, '404.html', status=404)
+	return render(request, '404.html', status=404)
 
 
 def handler500(request):
-    return render(request, '500.html', status=500)
+	return render(request, '500.html', status=500)
 
 
 def MVP_treasure_hunt(request):
@@ -154,3 +156,4 @@ def faq(request):
 
 def contact(request):
     return render(request,'app/contact.html')
+
