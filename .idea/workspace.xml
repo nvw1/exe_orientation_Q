@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f65e46e5-fdf6-46a8-acb0-d240f1659d43" name="Default Changelist" comment="" />
+    <list default="true" id="f65e46e5-fdf6-46a8-acb0-d240f1659d43" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0002_questions_location.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0003_auto_20200308_2050.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0004_auto_20200308_2313.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0005_auto_20200308_2314.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0006_auto_20200308_2315.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0007_auto_20200308_2316.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0008_auto_20200308_2318.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0009_auto_20200308_2348.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +43,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
       <module name="exe_orientation_Q" />
@@ -41,7 +64,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="deploy_django_to_azure.settings.production" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\hjian\.virtualenvs\exe_orientation_Q-tR0wyigz\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\user\.virtualenvs\exe_orientation_Q-oePaPRKV\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -53,8 +76,8 @@
       <option name="browserUrl" value="http://127.0.0.1:8000/" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+      <option name="useCustomRunCommand" value="true" />
+      <option name="customRunCommand" value="python manage.py runserver --settings=deploy_django_to_azure.settings.local" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
