@@ -191,7 +191,8 @@
 			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code</h6>
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
-				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem"># :{{ groupcode }}</h1>
+				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem"># :{{ groupcode }} </h1>
+               <h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem" id = "score">Hello</h1>
 			  <a class="btn icon-next right fade mt-0.5 color-bg-65" href="/">Sign out</a>
 			</div>
 		  </div>
@@ -209,6 +210,10 @@
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
 				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem">{{ questions.questions}}</h1>
+                <button id = "button_1" value = "val_1">reset questions<</button>
+                <script>
+                    var b = {{ questions.questions }}
+                </script>
 			</div>
 		  </div>
 		</section>
@@ -235,7 +240,7 @@
 			{% csrf_token %}
 				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
 		   <br>
-                <button type="button" action id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+                <button type="button1" name = gethaction id = "gethint"> Feeling stuck and need a hint? Click me!</button>
             <br>
             <br>
 			{%if messages%}
@@ -277,18 +282,64 @@
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script type = "text/javascript">
+
+    function sendRequest(){
+        {% for questions in data %}
+    var current_question =  {{ questions.node_num }}
+        {% endfor %}
+    $.ajax({
+        url: "/update_request",
+        type: "post",
+        data: {current_question:current_question,'csrfmiddlewaretoken': "{{ csrf_token }}" },
+        success:
+        function(result){
+            if (result == "Same Question"){
+            setTimeout(function(){
+                sendRequest(); //this will send request again and again;
+            }, 1000);}
+            else{
+                location.reload(true);
+            }
+        },
+        error: function() {
+                    alert("failed")
+                    location.reload(true);
+                    setTimeout(function(){
+                    sendRequest(); //this will send request again and again;
+                     }, 5000);
+                }
+    });
+    }
+    $(window).bind("load",function(){
+        sendRequest();
+    })
     $(document).ready(function() {
-        $("button").click(function () {
+        var a = "{{ score }}";
+        document.getElementById("score").innerHTML = "High score : " + a ;
+        $("#gethint").click(function (e) {
+            a --;
+            document.getElementById("score").innerHTML = "High score : " + a ;
+			e.preventDefault();
             $.ajax({
                 url: '/hint',
-                method: 'POST',
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                type: "post",
+                data :{score:a,'csrfmiddlewaretoken': "{{ csrf_token }}"},
                 success: function (response) {
                     alert(response);
                 },
-                error: function() {
-                    alert("Failed");
+                error: function(xhr, status, error) {
+                    alert("error");
+}
+            });
+        });
+    });
+    $(document).ready(function() {
+        $("#button_1").click(function (){
+            $.ajax({
+                url:'/reset_question',
+                success: function(response){
                 }
             });
         });

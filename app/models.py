@@ -7,21 +7,12 @@ from django.db import models
 #Used for the game
 class Gamecode(models.Model):
     groupcode = models.CharField(max_length=250)
-
+    questionNum = models.IntegerField(default=1)
     def __str__(self):     #convert objects in to strings
         return self.groupcode
 
-#Below table is for testing
-class Musician(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    instrument = models.CharField(max_length=100)
 
-class Album(models.Model):
-    artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    release_date = models.DateField()
-    num_stars = models.IntegerField()
+
 
 
 class Questions(models.Model):
@@ -29,7 +20,7 @@ class Questions(models.Model):
     questions = models.CharField(max_length=100)
     answers = models.CharField(max_length=100)
     node_num = models.IntegerField()
-    hints = models.CharField(max_length=100)
+    hints = models.CharField(max_length=100,default="")
 
 
 
