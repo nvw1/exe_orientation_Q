@@ -14,4 +14,6 @@ urlpatterns = [
 	path('hint', views.hint, name="hint"),
 	path('update_request',views.update_request,name="update_request"),
 	path('reset_question',views.reset_question,name="reset_question"),
+	path('faq',views.faq, name="faq"),
+	path('contact',views.contact, name="contact")
 ]

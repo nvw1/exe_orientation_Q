@@ -82,6 +82,7 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -89,23 +90,75 @@
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
 }
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
 .close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
+  color: white;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
 }
 </style>
 
@@ -173,6 +226,7 @@
 		});
 		</script>
     <script defer src="{% static "js/members.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/config.js" %}"></script>
     <meta name="generator" content="Ghost 3.7" />
     <link rel="alternate" type="application/rss+xml" title="OpenAI" href="" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -181,13 +235,12 @@
 
 <body>
 <div id="myNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="overlay-content">
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+  <div class="overlay-content"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/faq">FAQ</a>
+    <a href="#"></a>
+    <a href="contact">Contact</a>
   </div>
+
 </div>
 
 <div class="color-bg mb-2 mb-lg-2.5 position-relative">
@@ -271,7 +324,8 @@
 		<section class="mt-1 mb-1.5">
 		  <div class="row">
 			<div class="col-12 col-md-2">
-			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code</h6>
+			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code
+                  <button id="myBtn">Open Modal</button>
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
 				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem"># :{{ groupcode }} </h1>
@@ -364,30 +418,32 @@
 	<div id="gradient" class="position-absolute d-flex justify-content-center align-items-center overflow-hidden trbl-0 observablehq--running" style="z-index:-1;pointer-events:none"></div>
 
   </div>
-<div id="id01" class="modal">
 
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+<div id="myModal" class="modal">
 
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Please go to the following location and press the buttons to verify</h2>
     </div>
+    <div class="modal-body">
+      <iframe src="{{ location }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        <h2 id="demo"></h2>
+        <div id="map"></div>
+      <button onclick="getLocation()">Try It</button>
+      <button onclick="setCompletionZone(circPos, radi)">Get Circle</button>
+      <button onclick="pointInCircle(pos, radi, circPos)">Is In Centre</button>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+</div>
+
     </div>
   </form>
 </div>
@@ -434,10 +490,14 @@
         sendRequest();
     })
     $(document).ready(function() {
+        var hint_got = false;
         var a = "{{ score }}";
         document.getElementById("score").innerHTML = "High score : " + a ;
         $("#gethint").click(function (e) {
-            a --;
+            if (hint_got == false) {
+                a--;
+                hint_got = true;
+            }
             document.getElementById("score").innerHTML = "High score : " + a ;
 			e.preventDefault();
             $.ajax({
@@ -458,17 +518,144 @@
             $.ajax({
                 url:'/reset_question',
                 success: function(response){
-                    location.reload(true);
+
                 }
             });
         });
     });
-    var map_check = True;
-    $(document).ready(function()){
-        if (map_check == True){
-             modal.style.display = "block";
+    var map_check = "True";
+    $(window).bind("load",function(){
+        map_check = "{{ map_check }}"
+        if (map_check == "True"){
+            document.getElementById('myModal').style.display='block'
         }
-    }
+    });
 
+</script>
+<script>
+var x = document.getElementById("demo");
+
+var map, infoWindow, pos, marker, radi, circle, lon, lat;
+//This is the center coordinate for the circle for checking if player insde.
+var circPos = {
+
+lat: 50.7329933,
+lng:-3.54309
+}
+
+//This is the radius of circle.
+radi = 60;
+	//Ran at loading of website, intiliazes the map.
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+
+
+            infoWindow.open(map);
+
+      }
+
+	  //Checks if player in the circle
+function pointInCircle(point, radius, center)
+{
+
+
+var p = new google.maps.LatLng(lat, lon );
+var c = new google.maps.LatLng({lat}, lon);
+
+	if((google.maps.geometry.spherical.computeDistanceBetween(p, c)) >= radius )
+	{
+		alert("You no there");
+	}
+	else{
+		alert("You there");
+		document.getElementById('myModal').style.display='none'
+	}
+}
+
+
+//Gets players current location
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+//Shows position of player on the map.
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+    lat = position.coords.latitude
+    lon = position.coords.longitude
+    pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setCenter(pos);
+			map.setZoom(20);
+
+			marker = new google.maps.Marker({
+					  map: map,
+					  position: pos,
+					  title: 'your location'
+					});
+}
+
+//Draws circle of the completion zone.
+function setCompletionZone(posi, radi){
+
+  					marker = new google.maps.Marker({
+					  map: map,
+					  position: posi,
+					  title: 'circle centre'
+					});
+
+					circle = new google.maps.Circle({
+					  map: map,
+					  radius: radi,
+					     strokeColor: '#FF0000',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.35
+					});
+					circle.bindTo('center', marker, 'position');
+
+					marker.setMap(null);
+
+
+}
+
+//Error handling for location request.
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "An unknown error occurred."
+      break;
+  }
+
+var MY_KEY = config.API;
+
+}
+</script>
+
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzaPwjwqJAXVNJh7Yhx50Xdvwb1h-FNV4&callback=initMap">
 </script>
 </body>

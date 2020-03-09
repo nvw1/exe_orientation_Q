@@ -109,3 +109,4 @@ venv.bak/
 *.vscode
 .idea/workspace.xml
 *.xml
+app/static/js/config.js

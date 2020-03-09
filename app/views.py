@@ -22,17 +22,20 @@ def index(request):
 def redirect(request):
     global score
     global num
+    map_check = False
     # Below is to check if whether the button is for groupcode or answer to question
     # process the group code passed from the landing page
     if request.method == 'POST' and 'submit-groupcode' in request.POST:
+
         groupcode = str(request.POST.get('groupCode'))    # Get inputted groupcode from the user
-        questionNum = Gamecode.objects.get(groupcode = groupcode)
-        num = questionNum.questionNum
-        print(Gamecode.objects.all())
-        info = Questions.objects.filter(node_num=int(num))    # Get question from the database using num counter
+
 
         # if the group code exists, load the treasure hunt page with the correct questions
         if Gamecode.objects.filter(groupcode=groupcode).exists():
+            questionNum = Gamecode.objects.get(groupcode=groupcode)
+            num = questionNum.questionNum
+            print(Gamecode.objects.all())
+            info = Questions.objects.filter(node_num=int(num))  # Get question from the database using num counter
             request.session['groupcode'] = groupcode         #Add group code into user's session
             request.session['score'] = score            #  Add score into user's session
             return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score})
@@ -54,18 +57,24 @@ def redirect(request):
         # if answer is correct for the current node, move onto the next question if it exists, 
         # otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
-            num += 1       # Add 1 to the counter so the questions moves on to the next one
-            score += 3
-            if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question      
-             questionNum.questionNum = num
-             questionNum.save()
-              
-             info = Questions.objects.filter(node_num=num)
-             messages.success(request, 'Correct!')  #Generate message saying correct
-             
-             return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,"score":score})
+            latest_question = Questions.objects.get(node_num=num)
+            location = latest_question.location
+            longtitude = latest_question.longtitude
+            latitude = latest_question.latitude
+            map_check = True
+            num += 1  # Add 1 to the counter so the questions moves on to the next one
+            if Questions.objects.filter(node_num=int(num)).exists():     #Check whether if the user is on the last question
+                score += 3
+                questionNum.questionNum = num
+                questionNum.save()
+                print(location)
+                info = Questions.objects.filter(node_num=num)
+                messages.success(request, 'Correct!')  #Generate message saying correct
+                return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,
+                                                               "score":score, "map_check":map_check,
+                                                               "location":location,"longtitude": longtitude,
+                                                               "latitude":latitude})
             else:                 #Case when the user is on the last question
-                num -=1      #Question stays the same when user has reach the end
                 questionNum.questionNum = num
                 questionNum.save()
                 info = Questions.objects.filter(node_num=num)
@@ -136,3 +145,11 @@ def MVP_treasure_hunt(request):
 
 def studentview(request):
     return render(request,'app/studentview.html')
+
+
+def faq(request):
+    return render(request,'app/FAQ.html')
+
+
+def contact(request):
+    return render(request,'app/contact.html')

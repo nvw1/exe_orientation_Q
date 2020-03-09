@@ -10,6 +10,14 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -20,6 +28,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
@@ -86,6 +95,10 @@
       <workItem from="1583406326707" duration="2151000" />
       <workItem from="1583546076186" duration="396000" />
       <workItem from="1583581080122" duration="736000" />
+      <workItem from="1583602694901" duration="1889000" />
+      <workItem from="1583607576790" duration="2257000" />
+      <workItem from="1583673419511" duration="18084000" />
+      <workItem from="1583709735246" duration="3027000" />
     </task>
     <servers />
   </component>
@@ -97,25 +110,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583601932039" />
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom" timestamp="1583602155042">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583711160007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583602155042" />
-    <state width="1877" height="239" key="GridCell.Tab.0.center" timestamp="1583602155042">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
+    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583711160007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583602155042" />
-    <state width="1877" height="239" key="GridCell.Tab.0.left" timestamp="1583602155042">
+    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583711160007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583602155042" />
-    <state width="1877" height="239" key="GridCell.Tab.0.right" timestamp="1583602155042">
+    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583711160007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583602155042" />
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583581088291">
+    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583709741642">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583581088291" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583709741642" />
   </component>
 </project>
