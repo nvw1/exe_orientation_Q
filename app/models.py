@@ -63,16 +63,6 @@ class Hints(models.Model):
     Routes_routeID = models.ForeignKey(Routes, on_delete=models.DO_NOTHING)
     Routes_NodeID = models.IntegerField()
 
-class User(models.Model):
-    userID = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=45)
-    
-
-class Developers(models.Model):
-    devID = models.AutoField(primary_key=True)
-    user_userID = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class Players(models.Model):
     playerID = models.AutoField(primary_key=True)
     user_userID = models.ForeignKey(User, on_delete=models.DO_NOTHING)
