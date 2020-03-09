@@ -26,6 +26,140 @@
   filter: saturate(150%);
   -webkit-filter: saturate(150%);
 }
+.form{
+	background-color: transparent;
+}
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
 </style>
 
 
@@ -92,6 +226,7 @@
 		});
 		</script>
     <script defer src="{% static "js/members.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/config.js" %}"></script>
     <meta name="generator" content="Ghost 3.7" />
     <link rel="alternate" type="application/rss+xml" title="OpenAI" href="" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -99,7 +234,14 @@
 </head>
 
 <body>
+<div id="myNav" class="overlay">
+  <div class="overlay-content"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/faq">FAQ</a>
+    <a href="#"></a>
+    <a href="contact">Contact</a>
+  </div>
 
+</div>
 
 <div class="color-bg mb-2 mb-lg-2.5 position-relative">
 
@@ -119,22 +261,16 @@
 			  <ul class="nav-items d-none d-desktop-flex justify-content-end small-caps">
 
 				  <li class="nav-item">
-					<a class="fade" href="/about/">About</a>
+					<a class="fade" href="{}"></a>
 				  </li>
 
 				  <li class="nav-item">
-					<a class="fade" href="/progress/">Progress</a>
+					<a class="fade" href="/progress/"></a>
 				  </li>
 
-				  <li class="nav-item">
-					<a class="fade" href="/resources/">Resources</a>
-				  </li>
 
-				  <li class="nav-item">
-					<a class="fade" href="/blog/">Blog</a>
-				  </li>
 			  </ul>
-			  <button class="nav-toggle nav-toggle--open js-mobile-nav-open fade d-desktop-none"><svg id="mobile-nav-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,13H2a1,1,0,0,1,0-2H22a1,1,0,0,1,0,2Z"/><path d="M22,6H2A1,1,0,0,1,2,4H22a1,1,0,0,1,0,2Z"/><path d="M22,20H2a1,1,0,0,1,0-2H22a1,1,0,0,1,0,2Z"/></svg></button>
+			  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 			</div>
 		  </div>
 		</div>
@@ -188,7 +324,8 @@
 		<section class="mt-1 mb-1.5">
 		  <div class="row">
 			<div class="col-12 col-md-2">
-			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code</h6>
+			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code
+                  <button id="myBtn">Open Modal</button>
 			</div>
 			<div class="col-12 col-md-10 col-lg-8">
 				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem"># :{{ groupcode }} </h1>
@@ -232,15 +369,17 @@
 			  <div class="row flex-nowrap flex-lg-wrap">
 					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-gutter mb-gutter mb-md-gutter">
 
-	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0">
+	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0" style="background-color: transparent;">
 		<br>
-		<h3 class="container mb-0.25"style="color:black">Type answer below:</h3>
-
-		<form class="container" action="redirect" method = "post" id="question">
+		<h1 class="balance-text h2 font-normal" ><center>Type answer below:</center></h1>
+        <br>
+        <br>
+		<form class="container" action="redirect" method = "post" id="question"  >
 			{% csrf_token %}
-				 <input class="text" type="text" name="answer" placeholder="Enter your answer">
+				 <input class="small-copy mb-0.5 mt-0.125" type="text" name="answer" placeholder="Enter your answer" style="display: block; margin: 0 auto;">
 		   <br>
-                <button type="button1" name = gethaction id = "gethint"> Feeling stuck and need a hint? Click me!</button>
+		   <br>
+                <button class="small-copy mb-0.5 mt-0.125" name = gethaction id = "gethint" style="display: block; margin: 0 auto;" > Feeling stuck and need a hint? Click me!</button>
             <br>
             <br>
 			{%if messages%}
@@ -279,12 +418,47 @@
 	<div id="gradient" class="position-absolute d-flex justify-content-center align-items-center overflow-hidden trbl-0 observablehq--running" style="z-index:-1;pointer-events:none"></div>
 
   </div>
+
+
+    <div class="container">
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Please go to the following location and press the buttons to verify</h2>
+    </div>
+    <div class="modal-body">
+      <iframe src="{{ location }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        <h2 id="demo"></h2>
+        <div id="map"></div>
+      <button onclick="getLocation()">Try It</button>
+      <button onclick="setCompletionZone(circPos, radi)">Get Circle</button>
+      <button onclick="pointInCircle(pos, radi, circPos)">Is In Centre</button>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+    </div>
+  </form>
+</div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type = "text/javascript">
+	function openNav() {
+  		document.getElementById("myNav").style.width = "100%";
+	}
 
+	function closeNav() {
+  		document.getElementById("myNav").style.width = "0%";
+	}
     function sendRequest(){
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
@@ -316,10 +490,14 @@
         sendRequest();
     })
     $(document).ready(function() {
+        var hint_got = false;
         var a = "{{ score }}";
         document.getElementById("score").innerHTML = "High score : " + a ;
         $("#gethint").click(function (e) {
-            a --;
+            if (hint_got == false) {
+                a--;
+                hint_got = true;
+            }
             document.getElementById("score").innerHTML = "High score : " + a ;
 			e.preventDefault();
             $.ajax({
@@ -340,9 +518,144 @@
             $.ajax({
                 url:'/reset_question',
                 success: function(response){
+
                 }
             });
         });
     });
+    var map_check = "True";
+    $(window).bind("load",function(){
+        map_check = "{{ map_check }}"
+        if (map_check == "True"){
+            document.getElementById('myModal').style.display='block'
+        }
+    });
+
+</script>
+<script>
+var x = document.getElementById("demo");
+
+var map, infoWindow, pos, marker, radi, circle, lon, lat;
+//This is the center coordinate for the circle for checking if player insde.
+var circPos = {
+
+lat: 50.7329933,
+lng:-3.54309
+}
+
+//This is the radius of circle.
+radi = 60;
+	//Ran at loading of website, intiliazes the map.
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+
+
+            infoWindow.open(map);
+
+      }
+
+	  //Checks if player in the circle
+function pointInCircle(point, radius, center)
+{
+
+
+var p = new google.maps.LatLng(lat, lon );
+var c = new google.maps.LatLng({lat}, lon);
+
+	if((google.maps.geometry.spherical.computeDistanceBetween(p, c)) >= radius )
+	{
+		alert("You no there");
+	}
+	else{
+		alert("You there");
+		document.getElementById('myModal').style.display='none'
+	}
+}
+
+
+//Gets players current location
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+//Shows position of player on the map.
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+    lat = position.coords.latitude
+    lon = position.coords.longitude
+    pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setCenter(pos);
+			map.setZoom(20);
+
+			marker = new google.maps.Marker({
+					  map: map,
+					  position: pos,
+					  title: 'your location'
+					});
+}
+
+//Draws circle of the completion zone.
+function setCompletionZone(posi, radi){
+
+  					marker = new google.maps.Marker({
+					  map: map,
+					  position: posi,
+					  title: 'circle centre'
+					});
+
+					circle = new google.maps.Circle({
+					  map: map,
+					  radius: radi,
+					     strokeColor: '#FF0000',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.35
+					});
+					circle.bindTo('center', marker, 'position');
+
+					marker.setMap(null);
+
+
+}
+
+//Error handling for location request.
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "An unknown error occurred."
+      break;
+  }
+
+var MY_KEY = config.API;
+
+}
+</script>
+
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzaPwjwqJAXVNJh7Yhx50Xdvwb1h-FNV4&callback=initMap">
 </script>
 </body>
