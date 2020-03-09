@@ -57,6 +57,7 @@ def redirect(request):
         # if answer is correct for the current node, move onto the next question if it exists, 
         # otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
+
             latest_question = Questions.objects.get(node_num=num)
             location = latest_question.location
             longtitude = latest_question.longtitude
@@ -74,6 +75,7 @@ def redirect(request):
                                                                "score":score, "map_check":map_check,
                                                                "location":location,"longtitude": longtitude,
                                                                "latitude":latitude})
+
             else:                 #Case when the user is on the last question
                 questionNum.questionNum = num
                 questionNum.save()
@@ -141,7 +143,6 @@ def handler500(request):
 
 def MVP_treasure_hunt(request):
     return render(request, 'app/MVP_treasure_hunt.html')
-
 
 def studentview(request):
     return render(request,'app/studentview.html')

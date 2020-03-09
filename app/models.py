@@ -11,7 +11,17 @@ class Gamecode(models.Model):
     def __str__(self):     #convert objects in to strings
         return self.groupcode
 
+#Below table is for testing
+# class Musician(models.Model):
+#     first_name = models.CharField(max_length=50)
+#     last_name = models.CharField(max_length=50)
+#     instrument = models.CharField(max_length=100)
 
+# class Album(models.Model):
+#     artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=100)
+#     release_date = models.DateField()
+#     num_stars = models.IntegerField()
 
 class Questions(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
@@ -53,10 +63,21 @@ class Hints(models.Model):
     Routes_routeID = models.ForeignKey(Routes, on_delete=models.DO_NOTHING)
     Routes_NodeID = models.IntegerField()
 
+class User(models.Model):
+    userID = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=45)
+    
+
+class Developers(models.Model):
+    devID = models.AutoField(primary_key=True)
+    user_userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 class Players(models.Model):
     playerID = models.AutoField(primary_key=True)
     user_userID = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+
 
 
 class Groups(models.Model):
