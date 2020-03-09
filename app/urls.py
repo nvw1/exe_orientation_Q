@@ -11,5 +11,9 @@ urlpatterns = [
 	path('MVP_treasure_hunt', views.MVP_treasure_hunt, name='MVP_treasure_hunt'),
 	path('redirect', views.redirect, name='redirect'),
 	path('studentview', views.studentview,name='studentview'),
-	path('hint', views.hint, name="hint")
+	path('hint', views.hint, name="hint"),
+	path('update_request',views.update_request,name="update_request"),
+	path('reset_question',views.reset_question,name="reset_question"),
+	path('faq',views.faq, name="faq"),
+	path('contact',views.contact, name="contact")
 ]
