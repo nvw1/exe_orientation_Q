@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Exe Orientation</title>
+  <meta name="description" content="">
+  <meta name="author" content="Hao">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+  </style>
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+
+</head>
+<body>
+
+	<!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    
+
+    <h1><center>Frequently Asked Questions</center></h1>
+<button class="collapsible">What are the opening time of the SID desk?</button>
+<div class="content">
+ <table border="0">
+<tbody>
+<tr><th>Opening hours</th><th>SID (Streatham Campus)</th><th>Info at St Luke's</th></tr>
+<tr>
+<td>Monday to Friday (term time)</td>
+<td>
+<p>08:00 - 18:00 (Desk)</p>
+<p>09:00 - 17:00 (Phones)</p>
+<p>24 hour access via SID Online</p>
+</td>
+<td>
+<p><strong><br></strong>08:30 - 16:30</p>
+</td>
+</tr>
+<tr>
+<td>Monday to Friday (vacation)</td>
+<td>09:00 - 17:00</td>
+<td>09:00 - 17:00</td>
+</tr>
+<tr>
+<td>Saturday (term time only)</td>
+<td>10:00 - 15:00</td>
+<td><strong>CLOSED</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<button class="collapsible">Change me</button>
+<div class="content">
+  <p>Change me</p>
+</div>
+<button class="collapsible">How do I find my student candidate number?</button>
+<div class="content">
+  <p>You can obtain your candidate number for the current academic year from your online <a href="https://i.exeter.ac.uk">iExeter</a>/SRS record.</p>
+</div>
+<button class="collapsible">Where is the innovation building?</button>
+<div class="content">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.001315555496!2d-3.533126948831451!3d50.73846447435062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da4436e4494cb%3A0x1c62c9fa168f33ac!2sInnovation%20Centre%2C%20Rennes%20Dr%2C%20Exeter%20EX4%204RN!5e0!3m2!1sen!2suk!4v1583676576539!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+<button class="collapsible">Where is the harrison building?</button>
+<div class="content">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.0407281779853!2d-3.534819648831507!3d50.73773347440346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da44487f91b0b%3A0x8619b7fe1d5d6661!2sHarrison%2C%20N%20Park%20Rd%2C%20Exeter%20EX4%204QF!5e0!3m2!1sen!2suk!4v1583676407608!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+<button class="collapsible">Where is the forum?</button>
+<div class="content">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.849954738592!2d-3.527333248831976!3d50.72272277548934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da43d86a27d67%3A0xf6369103a1b93c1b!2sThe%20Forum!5e0!3m2!1sen!2suk!4v1583676513618!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+
+
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+  </script>
+
+</body>
