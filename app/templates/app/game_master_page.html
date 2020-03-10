@@ -1,10 +1,378 @@
+
+{% load static %}
+<!-- Authors: Nik, Hao-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+  <link rel="stylesheet" href="{%static 'css/all.css' %}"></link>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+</head>
+<!-- Gradient background -->
+<style>
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+body{
+background: #4CA1AF;  /* fallback for old browsers */
+/*background: -webkit-linear-gradient(45deg, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(45deg, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* Make card show up when hovering.*/
+.card:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+    input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+         $(function(){
+            $("#myForm").submit(function(event){
+        event.preventDefault();
+        alert("Hello")
+        var routeIdget = $(#routeId).val()
+        alert(routeIdget)
+        $.ajax({
+            method :'POST',
+            url: '/create_route',
+            type: "post",
+            data: {routeId: routeIdget.serialize(), 'csrfmiddlewaretoken': "{{ csrf_token }}"},
+            success: function (response) {
+                if (response == "Exist") {
+                    alert("Sorry the route ID already exist, please enter a new one")
+                } else {
+                    alert("New route created, please insert questions")
+                    routeID = routeIdget
+                    document.getElementById('id01').style.display = 'none'
+                    document.getElementById('id02').style.display = 'block'
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("error");
+            }
+        });
+    };
+});
+});
+</script>
+<body >
+    <!-- Header will just have logout button -->
+<div id="header">
+    <a class="btn">Logout</a>
+</div>
+<!-- Header will just have logout button -->
+<div class="container" id="body-master">
+    <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Create new Route</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-secondary btn-lg">See more</button>
+            <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Start existing Route</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <button class="btn btn-outline-secondary btn-lg">See more</button>
+            <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
+          </div>
+        </div>
+      </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class = "col align-self-end" id="footer"> what
+            <div class = "" id = "logo-bottom-right">Logo will be here in the bottom right!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div id="id01" class="modal">
+
+  <form class="modal-content animate"  id="myForm1">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Route ID</b></label>
+      <input type="text" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
+
+      <label for="psw"><b>Route Name</b></label>
+      <input type="text" placeholder="Enter Route Name" name="routeName" required>
+
+
+
+      <input type="submit" name="click" value="Submit" />
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+    <div id="id02" class="modal">
+      <form class="modal-content animate"  id="myForm2">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Question</b></label>
+      <input type="text" placeholder="Enter Question" name="question" id="question"required>
+
+      <label for="psw"><b>Answer</b></label>
+      <input type="text" placeholder="Enter Answer" name="answer" id="answer" required>
+
+        <label for="psw"><b>Hint</b></label>
+      <input type="text" placeholder="Enter Hint" name="hint" id="hint" required>
+        <label for="location"><b>Location</b></label>
+      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
+        <label for="psw"><b>Latitude</b></label>
+      <input type="text" placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
+        <label for="psw"><b>Longtitude</b></label>
+      <input type="text" placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required>
+
+      <input type="submit" name="click" value="Submit" />
+
+
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Finished</button>
+    </div>
+  </form>
+</div>
+    </div>
+{% csrf_token %}
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var routeID;
+</script>
+<script>
+    $(document).ready(function(){
+
+         $(function(){
+            $("#myForm1").submit(function(event){
+                event.preventDefault();
+                var data1 = $('#routeId').serialize()
+                var name = $('#routeName').serialize()
+                $.ajax({
+                    type: "post",
+                    url: '/create_route',
+                    data : {data2:data1, routeName: name, 'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Exist") {
+                    alert("Sorry the route ID already exist, please enter a new one")
+                } else {
+                    alert("New route created, please insert questions")
+                    routeID = data1
+                    document.getElementById('id01').style.display = 'none'
+                    document.getElementById('id02').style.display = 'block'
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+<!-- Footer will have logo in bottom right -->
+</script>
+<script>
+    var counter = 1;
+    $(document).ready(function(){
+
+         $(function(){
+            $("#myForm2").submit(function(event){
+                event.preventDefault();
+                alert("HEello");
+                var question, answer, hint, location, latitude, longtitude;
+                var question = $('#question').serialize()
+                var answer = $('#answer').serialize()
+                var hint = $('#hint').serialize()
+                var location = $('#location').serialize()
+                var latitude = $('#Latitude').serialize()
+                var longtitude = $('#Longtitude').serialize()
+                alert("Here")
+                $.ajax({
+                    type: "post",
+                    url: '/add_question',
+                    data : {question:question, answer: answer,
+                        hint: hint, location: location, latitude: latitude,
+                         longtitude: longtitude, node_num: counter, routeID:routeID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added successfully") {
+                            alert("Inserted successfully")
+                            document.getElementById("myForm2").reset();
+                } else {
+                    alert("Question not added, please try again")
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+<!-- Footer will have logo in bottom right -->
+</script>
 </body>
-</html>

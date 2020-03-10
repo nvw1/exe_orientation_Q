@@ -43,28 +43,39 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django server.Unnamed">
+    <configuration name="Unnamed (1)" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
+      <module name="exe_orientation_Q" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unnamed" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
       <module name="exe_orientation_Q" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="deploy_django_to_azure.settings.production" />
+        <env name="DJANGO_SETTINGS_MODULE" value="deploy_django_to_azure.settings.local" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\user\.virtualenvs\exe_orientation_Q-oePaPRKV\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\hjian\.virtualenvs\exe_orientation_Q-tR0wyigz\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -76,8 +87,8 @@
       <option name="browserUrl" value="http://127.0.0.1:8000/" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="true" />
-      <option name="customRunCommand" value="python manage.py runserver --settings=deploy_django_to_azure.settings.local" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="runserver --settings=deploy_django_to_azure.settings.local" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
@@ -103,6 +114,10 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Django server.Unnamed" />
+      <item itemvalue="Django server.Unnamed (1)" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -122,6 +137,7 @@
       <workItem from="1583607576790" duration="2257000" />
       <workItem from="1583673419511" duration="18084000" />
       <workItem from="1583709735246" duration="3027000" />
+      <workItem from="1583777464422" duration="25554000" />
     </task>
     <servers />
   </component>
@@ -129,29 +145,37 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583601932039">
+    <state x="679" y="140" key="#Unnamed" timestamp="1583779071643">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583601932039" />
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583711160007">
+    <state x="679" y="140" key="#Unnamed/0.0.1920.1040@0.0.1920.1040" timestamp="1583779071643" />
+    <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583789012498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
-    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583711160007">
+    <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583789012498" />
+    <state x="694" y="299" key="EnvironmentVariablesDialog" timestamp="1583789005968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
-    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583711160007">
+    <state x="694" y="299" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583789005968" />
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583806875734">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
-    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583711160007">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
+    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583806875733">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583711160007" />
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583709741642">
+    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583806875731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583709741642" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875731" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583806875733">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583777725047">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583777725047" />
   </component>
 </project>

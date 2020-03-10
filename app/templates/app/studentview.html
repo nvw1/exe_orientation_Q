@@ -565,7 +565,7 @@ function pointInCircle(point, radius, center)
 
 
 var p = new google.maps.LatLng(lat, lon );
-var c = new google.maps.LatLng({lat}, lon);
+var c = new google.maps.LatLng({{ latitude }}, {{ longtitude }});
 
 	if((google.maps.geometry.spherical.computeDistanceBetween(p, c)) >= radius )
 	{
