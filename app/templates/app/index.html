@@ -1,134 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  {% load static %}
+<html lang="en" dir="ltr">
+  <head>
+      {% load static %}
+      <meta charset="utf-8">
+      <title>Exe Orientation</title>
+      <meta name="description" content="">
+      <meta name="author" content="Sam, Niklas, Hao">
+      <meta name="theme-color" content="#ffffff">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="{% static 'css/STmaster.css' %}">
+     <link rel="stylesheet" href="{% static 'css/STnavbar.css' %}">
+     <link rel="stylesheet" href="{% static 'css/SThome.css' %}">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!--MAIN MENU-S-->
+    <div class="header bg-transparent ">
+      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      <input type="checkbox" id="chk">
+      <label for="chk" class="show-menu-btn">
+        <img src="{% static '/images/STmenu/Hamburger.png' %}">
+      </label>
+      <ul class="menu">
+        <ul class="menu_item">
+          <a href="#">Locations</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/locations.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">Contacts</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/contacts.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">FAQs</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">About</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/about.svg' %}" alt="icon">
+        </ul>
+        <label for="chk" class="hide-menu-btn">
+          <img src="https://img.icons8.com/ios-filled/36/000000/delete-sign.png">
+        </label>
+        <img class="UOE_stamp" src="{% static '/images/STmenu/uniExeter.svg' %}" alt="Universit of Exeter">
+      </ul>
+    </div>
+    <!--MAIN MENU-E-->
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Exe Orientation</title>
-  <meta name="description" content="">
-  <meta name="author" content="Sam, Niklas, Hao">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}"></link>
-  <link rel="stylesheet" href="{% static 'css/skeleton.css' %}"></link>
-
-
-  <!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-
-
-</head>
-<body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="section exampleOne">
-    <div class="container">
-      <div class="row">
-		<div class="one-half column">
-			<img class="u-full-width" src="{% static '/images/uniExeter.svg' %}">
-			<h4 class="exampleOne-heading">Get to know University of Exeter.</h4>
-		</div>
-        <div class="one-half column">
-		  <h5 class="exampleOne-heading">Play Treasure Hunt</h5>
-		  <form action="/redirect" method = "post">
-              {% csrf_token %}
-			  <input type="text" name="groupCode" placeholder="Enter Code">
-        	  <br>
-			  <input type="submit" value="Join Group" name='submit-groupcode'>
-              {%if messages%}
-                {% for message in messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
-                {% endfor%}
-            {% endif %}
-
-		  </form>
-
-
-        </div>
+      <div id="home_container" class="container-fluid p-3 my-3 bg-white text-center ">
+        <h4 id="home_header" class="exampleOne-heading text-left">Find your way round campus. Start your treasure hunt now!</h4>
+         <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
+         <form id="groupform" action="/redirect" method = "post">
+             {% csrf_token %}
+          <div class="input-group justify-content-center">
+           <input id="groupcode" type="text" name="groupCode" placeholder="Game Code" size="8">
+           <button type="submit" name='submit-groupcode'>
+             <img id=submit-groupcode src="{% static '/images/SThome/arrow.svg' %}">
+           </button>
+           {%if messages%}
+             {% for message in messages %}
+                 <div class="alert alert-danger" role="alert">
+                     {{ message }}
+                 </div>
+             {% endfor%}
+         {% endif %}
+         </div>
+        </form>
+        <form id="soloForm" action="/redirect" method="post">
+          <input id="submit-solo" type="submit" value="Single Player" name="submit-solo">
+        </form>
       </div>
-    </div>
-  </div>
 
-  <div class="section exampleTwo">
-    <div class="container">
-      <div class="row">
-        <div class="one-third column value">
-		  
-          <h2 class="exampleTwo-multiplier">67%</h2>
-          <h5 class="exampleTwo-heading">Written Information</h5>
-          <p class="exampleTwo-description">This is some content that can be changed.</p>
-        </div>
-        <div class="one-third column value">
-          <h2 class="exampleTwo-multiplier">90%</h2>
-          <h5 class="exampleTwo-heading">Mobile-friendly</h5>
-          <p class="exampleTwo-description">It allows us to adjust our web-page to fit a mobile screen.</p>
-        </div>
-        <div class="one-third column value">
-          <h2 class="exampleTwo-multiplier">66%</h2>
-          <h5 class="exampleTwo-heading">Change this please</h5>
-          <p class="exampleTwo-description">This was always just placeholder text.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section exampleThree">
-    <div class="container">
-      <h3 class="section-heading">Got any questions?</h3>
-      <p class="section-description">Check out the FAQs to find answers to commonly asked questions</p>
-      <a class="button button-primary" href="/faq">View FAQs</a>
-    </div>
-  </div>
-
-  <div class="section exampleFour">
-    <div class="container">
-      <h3 class="section-heading">Interesting Tables</h3>
-      <p class="section-description">This is the table theme</p>
-      <div class="container">
-        <table class="center">
-          <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 4</th>
-          </tr>
-          <tr>
-            <td>Cool</td>
-            <td>Row</td>
-            <td>data</td>
-            <td>Amazing</td>
-          </tr>
-          <tr>
-            <td>Super</td>
-            <td>Awesome</td>
-            <td>table</td>
-            <td>W0W</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
-
-
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+  </body>
 </html>

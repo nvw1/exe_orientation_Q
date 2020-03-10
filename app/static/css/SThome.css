@@ -1,0 +1,49 @@
+#home_container{
+  width: 80%;
+  max-width: 600px;
+  height:90%;
+}
+
+#home_logo{
+  max-width: 100%;
+  max-height: 100%;
+
+}
+
+#home_header{
+  width: 80%;
+}
+
+#groupcode{
+  font-size: 30px;
+  border: none;
+}
+
+#groupform button{
+  border: none;
+}
+
+#soloForm{
+  margin-top: 20px;
+}
+
+#submit-solo{
+  width:150px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
+  background-color: #09B0EA;
+  color: white;
+  font-weight: bold;
+  border-style: solid;
+}
+
+
+.input-group{
+  border: 3px solid grey;
+  border-radius: 5px;
+  width: 95% !important;
+  max-width: 280px;
+  margin: auto;
+  margin-top: 20px;
+}
