@@ -32,19 +32,21 @@ def login_page(request):
     return render(request, 'app/login_page.html')
 
 def login_view(request):
+    # if sign up button pressed
     if request.method == 'POST' and 'submit-signUp' in request.POST:
         newUsername = request.POST['username']
         newPassword = request.POST['password']
 
         # if the user does not already exist
-        # if not User.objects.filter(username=newUsername).exist():
         # set new user
         print("making new user")
+        # if they are a superuser
         if 'superuser' in request.POST:
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
         else:
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
                     
+        # save the user in the database
         newUser.save()
 
         messages.success(request, 'Successfully made new user')
@@ -55,30 +57,41 @@ def login_view(request):
         #     messages.error(request, 'Username already exists')
         #     return render(request, 'app/game_master_page.html')
 
+    # if the submit button is pressed
     if request.method == 'POST' and 'submit-logIn' in request.POST:
         username = request.POST['username']
         password = request.POST['password']
 
+        # authenticate that the username and password are correct
         user = authenticate(username=username, password=password)
+
+        # if the user exists
         if user is not None:
+            # log them in
             login(request, user)
             print("logged in")
             messages.success(request, 'log in success')
             return render(request, 'app/game_master_page.html')
         else:
+            # report error
             print("log in failure")
             messages.error(request, 'log in failure')
             return render(request, 'app/login_page.html')
 
+    # if the change password button is pressed
     if request.method == 'POST' and 'submit-changePass' in request.POST:
         # oldPass = request.POST['oldPass']
+        # retreive the data
         newPass = request.POST['newPass']
         valPass = request.POST['valPass']
 
+        # retrieve the current user
         user = request.user
 
         if user is not None:
+            # check the passwords match
             if newPass == valPass:
+                # set the new password and save to database
                 user.set_password(newPass)
                 user.save()
                 update_session_auth_hash(request, user)
@@ -88,6 +101,7 @@ def login_view(request):
                 messages.error(request, 'passwords did not match')
                 return render(request, 'app/game_master_page.html')
         else:
+            # report errors
             print("log in failure")
             messages.error(request, 'log in failure')
             return render(request, 'app/login_page.html')
@@ -96,7 +110,7 @@ def login_view(request):
     messages.error(request, 'did not get username or password')
     return render(request, 'app/login_page.html')
 
-
+# log the user out
 def logout_view(request):
     logout(request)
     messages.info(request, 'did not get username or password')
