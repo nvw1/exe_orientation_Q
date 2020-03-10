@@ -158,7 +158,9 @@ def contact(request):
 
 
 def game_master_page(request):
-    return render(request, 'app/game_master_page.html')
+    route_list = Routes.objects.all()
+
+    return render(request, 'app/game_master_page.html',{"route_list":route_list})
 
 
 def create_route(request):
@@ -227,4 +229,21 @@ def removesign(variable):
 
 def get_route(request):
     route_list = Routes.objects.all()
-    return JsonResponse({"route":route_list})
+    for i in route_list.iterator():
+        print(i)
+    return HttpResponse({"route":route_list})
+
+
+
+def create_game(request):
+    groupcode1 = request.POST.get("groupcode")
+    routeID = request.POST.get("routeID")
+    if Gamecode.objects.filter(groupcode=groupcode1).exists():
+        return HttpResponse("Exist")
+    else:
+        a = Gamecode()
+        a.groupcode = groupcode1
+        a.routeID_id= routeID
+        a.save()
+        return HttpResponse("Added")
+

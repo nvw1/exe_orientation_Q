@@ -258,20 +258,19 @@ $(document).ready(function(){
 
 
 
-     <div id="id03" class="modal">
+    <div id="id04" class="modal">
 
   <form class="modal-content animate"  id="createGame">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+
     </div>
 
     <div class="container">
-      <label for="uname"><b>Route ID</b></label>
-      <input type="text" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
-
-      <label for="psw"><b>Route Name</b></label>
-      <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
+        <h1 id ="code"></h1>
+      <label for="uname"><b>Generate a random groupcode or enter your own, please remember the code as it needs to be sent to your tutees</b></label>
+        <input type="text" placeholder="Enter Groupcode" name="groupcode" id="groupcode"required>
+        <button type="button" onclick ="generate()">Generate a groupcode</button>
 
 
 
@@ -280,7 +279,57 @@ $(document).ready(function(){
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <button type="button" onclick="document.getElementById('id04').style.display='none',
+      document.getElementById('id04').style.display='block'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+     <div id="id03" class="modal">
+
+  <form class="modal-content animate"  id="createGame">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    </div>
+
+    <div class="container">
+
+  <h2>Filterable Table</h2>
+  <p>Type something in the input field to search the table for first names, last names or emails:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>RouteID</th>
+        <th>Route Name</th>
+        <th>Create Game</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+    {% for routeID in route_list %}
+      <tr>
+
+        <td>{{ routeID.routeID }}</td>
+        <td>{{ routeID.RouteName }}</td>
+        <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id04').style.display='block',
+        document.getElementById('id03').style.display='none',getID(this) " >Create Game</button></td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
     </div>
   </form>
 </div>
@@ -324,11 +373,16 @@ $(document).ready(function(){
     </div>
 {% csrf_token %}
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 // Get the modal
-let r = Math.random().toString(36).substring(7);
+
 var modal = document.getElementById('id01');
 
+function generate(){
+    let r = Math.random().toString(36).substring(7);
+    document.getElementById("groupcode").value = r;
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
@@ -375,7 +429,6 @@ var routeID;
          $(function(){
             $("#myForm2").submit(function(event){
                 event.preventDefault();
-                alert("HEello");
                 var question, answer, hint, location, latitude, longtitude;
                 var question = $('#question').val()
                 var answer = $('#answer').val()
@@ -383,7 +436,6 @@ var routeID;
                 var location = $('#location').val()
                 var latitude = $('#Latitude').val()
                 var longtitude = $('#Longtitude').val()
-                alert("Here")
                 $.ajax({
                     type: "post",
                     url: '/add_question',
@@ -392,7 +444,7 @@ var routeID;
                          longtitude: longtitude, node_num: counter, routeID:routeID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
                     success: function(response){
                         if (response == "Added successfully") {
-                            alert("Inserted successfully")
+                            alert("Inserted successfully");
                             document.getElementById("myForm2").reset();
                             counter += 1;
                 } else {
@@ -408,19 +460,70 @@ var routeID;
     });
 <!-- Footer will have logo in bottom right -->
 </script>
-<script>
-    $(window).bind("load",function(){
-        alert("hello")
-        $.ajax({
-              url: '/get_route',
-              method :'GET',
-              success: function(response){
-                  alert(response);
-              },
-              error: function(xhr, desc, err){
+    <script>
+        $(document).ready(function(){
+
+         $(function(){
+            $("#createGame").submit(function(event){
+                event.preventDefault();
+                var groupcode;
+                var groupcode = $('#groupcode').val()
+                $.ajax({
+                    type: "post",
+                    url: '/create_game',
+                    data : {routeID:createGameID, groupcode:groupcode,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added") {
+                            alert("Game created, send the groupcode to your tutees for them to join the game");
+                            document.getElementById('id04').style.display = 'none';
+                } else {
+                    alert("Groupcode already exist, please enter or generate a new one and re-submit");
+                    alert(response)
+                }
+                    },
+                    error: function(xhr, desc, err){
                         console.log(err);
+                    }
+                });
+            });
+        });
+    });
+    </script>
+<script>
+    $(window).bind("load",function() {
+        $.ajax({
+            url: '/get_route',
+            method: 'GET',
+            success: function (response) {
+                alert(response);
+            },
+            error: function (xhr, desc, err) {
+                console.log(err);
+            }
         });
     });
 
+</script>
+<script>
+$(window).bind("load",function() {
+    {% for routeID in route_list %}
+    {% endfor %}
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+var createGameID = 0;
+function getID(what){
+    createGameID = what.value;
+    alert(createGameID);
+    document.getElementById("code").innerHTML = "You have selected route: " + createGameID;
+};
 </script>
 </body>
