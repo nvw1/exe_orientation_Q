@@ -6,9 +6,33 @@
 </head>
 <body>
 
-<p>This is the game master page</p>
+<h1>This is the game master page</h1>
 
 <a href="logout">logout</a>
+
+<h3>Change password</h3>
+<!-- <form method="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type="submit">Save changes</button>
+</form> -->
+
+<form action="/login_view" method = "post">
+	{% csrf_token %}
+	<!-- <input type="text" name="username" placeholder="Username"><br> -->
+	<input type="password" name="oldPass" placeholder="Old password"><br>
+	<input type="password" name="newPass" placeholder="New Passowrd"><br>
+	<input type="password" name="valPass" placeholder="enter again"><br>
+	<input type="submit" value="change password" name="submit-changePass"><br>
+	{%if messages%}
+		{% for message in messages %}
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		{% endfor%}
+	{% endif %}
+</form>
+
 
 {% if request.user.is_superuser %}
 	<h3>Make new game master account</h3>

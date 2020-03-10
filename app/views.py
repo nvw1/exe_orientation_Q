@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from app.models import Gamecode
@@ -24,6 +25,7 @@ def index(request):
 
 @login_required(redirect_field_name='')
 def game_master(request):
+    
     return render(request,'app/game_master_page.html')
 
 def login_page(request):
@@ -68,15 +70,39 @@ def login_view(request):
             messages.error(request, 'log in failure')
             return render(request, 'app/login_page.html')
 
+    if request.method == 'POST' and 'submit-changePass' in request.POST:
+        # oldPass = request.POST['oldPass']
+        newPass = request.POST['newPass']
+        valPass = request.POST['valPass']
+
+        user = request.user
+
+        if user is not None:
+            if newPass == valPass:
+                user.set_password(newPass)
+                user.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'password changed')
+                return render(request, 'app/game_master_page.html')
+            else:
+                messages.error(request, 'passwords did not match')
+                return render(request, 'app/game_master_page.html')
+        else:
+            print("log in failure")
+            messages.error(request, 'log in failure')
+            return render(request, 'app/login_page.html')
+
     print("did not get username or password")
     messages.error(request, 'did not get username or password')
     return render(request, 'app/login_page.html')
+
 
 def logout_view(request):
     logout(request)
     messages.info(request, 'did not get username or password')
     return render(request, 'app/index.html') 
 
+        
 
 @login_required
 def redirect(request):
