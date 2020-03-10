@@ -10,6 +10,24 @@
 
 <a href="logout">logout</a>
 
+{% if request.user.is_superuser %}
+	<h3>Make new game master account</h3>
+	<form action="/login_view" method = "post">
+		{% csrf_token %}
+		<input type="text" name="username" placeholder="new username">
+		<input type="password" name="password" placeholder="new password"><br>
+		<input type="checkbox" if="superuser" name="superuser" value="Superuser">
+		<label for="superuser">Superuser</label><br>
+		<input type="submit" value="make account" name="submit-signUp">
+		{%if messages%}
+			{% for message in messages %}
+				<div class="alert alert-danger" role="alert">
+					{{ message }}
+				</div>
+			{% endfor%}
+		{% endif %}
+	</form>
+{% endif %}
 
 </body>
 </html>

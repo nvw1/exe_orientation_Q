@@ -38,12 +38,14 @@ def login_view(request):
         # if not User.objects.filter(username=newUsername).exist():
         # set new user
         print("making new user")
-        newUser = User.objects.create_user(username=newUsername, password=newPassword)
+        if 'superuser' in request.POST:
+            newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
+        else:
+            newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
+                    
         newUser.save()
 
-        login(request, newUser)
-
-        messages.success(request, 'Login Success')
+        messages.success(request, 'Successfully made new user')
         return render(request, 'app/game_master_page.html')
 
         # else:
@@ -74,7 +76,6 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'did not get username or password')
     return render(request, 'app/index.html') 
-
 
 
 @login_required
