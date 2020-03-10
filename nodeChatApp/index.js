@@ -49,6 +49,6 @@ namespace.on('connection', function(socket) {
 });
 
 
-const server = http.listen(8080, function() {
+const server = http.listen(8080, '127.0.0.1', function() {
     console.log('listening on *:8080');
 });
