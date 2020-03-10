@@ -19,4 +19,5 @@ urlpatterns = [
 	path('game_master_page',views.game_master_page, name="game_master_page"),
 	path('create_route',views.create_route,name="create_route"),
 	path('add_question',views.add_question,name="add_question"),
+	path('get_route', views.get_route, name = "get_route")
 ]

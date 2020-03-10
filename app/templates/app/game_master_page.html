@@ -326,6 +326,7 @@ $(document).ready(function(){
 
 <script>
 // Get the modal
+let r = Math.random().toString(36).substring(7);
 var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
@@ -406,5 +407,20 @@ var routeID;
         });
     });
 <!-- Footer will have logo in bottom right -->
+</script>
+<script>
+    $(window).bind("load",function(){
+        alert("hello")
+        $.ajax({
+              url: '/get_route',
+              method :'GET',
+              success: function(response){
+                  alert(response);
+              },
+              error: function(xhr, desc, err){
+                        console.log(err);
+        });
+    });
+
 </script>
 </body>

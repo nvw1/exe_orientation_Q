@@ -223,3 +223,8 @@ def striptext(variable):
 def removesign(variable):
     variable.replace("%"," ")
     return variable
+
+
+def get_route(request):
+    route_list = Routes.objects.all()
+    return JsonResponse({"route":route_list})
