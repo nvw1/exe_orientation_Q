@@ -31,7 +31,7 @@ def redirect(request):
         # if the group code exists, load the treasure hunt page with the correct questions
         if Gamecode.objects.filter(groupcode=groupcode).exists():
             questionNum = Gamecode.objects.get(groupcode=groupcode)
-            routeID = questionNum.routeID
+            routeID = questionNum.routeID_id
             num = questionNum.questionNum
             print(Gamecode.objects.all())
             info = Questions.objects.filter(node_num=int(num),routeID=routeID)  # Get question from the database using num counter
@@ -68,7 +68,7 @@ def redirect(request):
                 questionNum.questionNum = num
                 questionNum.save()
                 print(location)
-                info = Questions.objects.filter(node_num=num)
+                info = Questions.objects.filter(node_num=num, routeID=routeID)
                 messages.success(request, 'Correct!')  #Generate message saying correct
                 return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,
                                                                "score":score, "map_check":map_check,
@@ -98,7 +98,6 @@ def redirect(request):
     else:
         num = 1
         return render(request, 'app/index.html')
-    print(request.method)
 
 
 def hint(request):
@@ -170,11 +169,7 @@ def create_route(request):
         if routeId[i] == "=":
             number = i
     routeId= routeId[number+1::]
-    for i in range(len(routeName)):
-        if routeId[i] == "=":
-            number = i
-    routeName = routeName[number+1::]
-    print(routeId)
+
     print(Routes.objects.filter(routeID=int(routeId)).exists())
     if Routes.objects.filter(routeID=int(routeId)).exists():
         print("Yeah it does")
@@ -198,12 +193,6 @@ def add_question(request):
     longtitude = request.POST.get('longtitude')
     node_num = request.POST.get('node_num')
     routeID = request.POST.get('routeID')
-    question = striptext(question)
-    answer = striptext(answer)
-    hint = striptext(hint)
-    location = striptext(location)
-    latitude = striptext(latitude)
-    longtitude = striptext(longtitude)
     routeID = striptext(routeID)
     print(question,answer,hint,location,latitude,longtitude,node_num,routeID)
     b = Questions()
@@ -229,3 +218,8 @@ def striptext(variable):
             number = i
             break
     return variable[number+1::]
+
+
+def removesign(variable):
+    variable.replace("%"," ")
+    return variable

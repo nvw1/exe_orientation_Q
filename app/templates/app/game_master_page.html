@@ -201,7 +201,7 @@ $(document).ready(function(){
             <h5 class="card-title">Create new Route</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-secondary btn-lg">See more</button>
+            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-secondary btn-lg">Create route</button>
             <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
           </div>
         </div>
@@ -210,7 +210,7 @@ $(document).ready(function(){
             <h5 class="card-title">Start existing Route</h5>
             <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <button class="btn btn-outline-secondary btn-lg">See more</button>
+            <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-outline-secondary btn-lg">Create game</button>
             <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
           </div>
         </div>
@@ -242,7 +242,7 @@ $(document).ready(function(){
       <input type="text" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
 
       <label for="psw"><b>Route Name</b></label>
-      <input type="text" placeholder="Enter Route Name" name="routeName" required>
+      <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
 
 
 
@@ -255,6 +255,37 @@ $(document).ready(function(){
     </div>
   </form>
 </div>
+
+
+
+     <div id="id03" class="modal">
+
+  <form class="modal-content animate"  id="createGame">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Route ID</b></label>
+      <input type="text" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
+
+      <label for="psw"><b>Route Name</b></label>
+      <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
+
+
+
+      <input type="submit" name="click" value="Submit" />
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
 
     <div id="id02" class="modal">
       <form class="modal-content animate"  id="myForm2">
@@ -312,7 +343,7 @@ var routeID;
             $("#myForm1").submit(function(event){
                 event.preventDefault();
                 var data1 = $('#routeId').serialize()
-                var name = $('#routeName').serialize()
+                var name = $('#routeName').val()
                 $.ajax({
                     type: "post",
                     url: '/create_route',
@@ -345,12 +376,12 @@ var routeID;
                 event.preventDefault();
                 alert("HEello");
                 var question, answer, hint, location, latitude, longtitude;
-                var question = $('#question').serialize()
-                var answer = $('#answer').serialize()
-                var hint = $('#hint').serialize()
-                var location = $('#location').serialize()
-                var latitude = $('#Latitude').serialize()
-                var longtitude = $('#Longtitude').serialize()
+                var question = $('#question').val()
+                var answer = $('#answer').val()
+                var hint = $('#hint').val()
+                var location = $('#location').val()
+                var latitude = $('#Latitude').val()
+                var longtitude = $('#Longtitude').val()
                 alert("Here")
                 $.ajax({
                     type: "post",
@@ -362,6 +393,7 @@ var routeID;
                         if (response == "Added successfully") {
                             alert("Inserted successfully")
                             document.getElementById("myForm2").reset();
+                            counter += 1;
                 } else {
                     alert("Question not added, please try again")
                 }

@@ -26,6 +26,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -42,6 +43,12 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/migrations" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\migrations" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.Unnamed">
     <configuration name="Unnamed (1)" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
@@ -137,7 +144,8 @@
       <workItem from="1583607576790" duration="2257000" />
       <workItem from="1583673419511" duration="18084000" />
       <workItem from="1583709735246" duration="3027000" />
-      <workItem from="1583777464422" duration="25554000" />
+      <workItem from="1583777464422" duration="25596000" />
+      <workItem from="1583844176197" duration="5289000" />
     </task>
     <servers />
   </component>
@@ -157,25 +165,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="694" y="299" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583789005968" />
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583806875734">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583847118570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
-    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583806875733">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583847118570" />
+    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583847118570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
-    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583806875731">
+    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583847118570" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583847118570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875731" />
-    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583806875733">
+    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583847118570" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583847118570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583806875733" />
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583777725047">
+    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583847118570" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583844180067">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583777725047" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583844180067" />
   </component>
 </project>
