@@ -68,8 +68,6 @@ class Players(models.Model):
     user_userID = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 
-
-
 class Groups(models.Model):
     GroupID = models.AutoField(primary_key=True)
     GroupName = models.CharField(max_length=45)
