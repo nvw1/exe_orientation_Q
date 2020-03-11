@@ -55,7 +55,7 @@ def redirect(request):
         data = str(request.POST.get('answer'))              #Get text from the input answer box
         questionNum = Gamecode.objects.get(groupcode=groupcode)
 
-        # if answer is correct for the current node, move onto the next question if it exists, 
+        # if answer is correct for the current node, move onto the next question if it exists,
         # otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num)).exists(): #Check if user get's the answer correct
 
@@ -156,4 +156,3 @@ def faq(request):
 
 def contact(request):
     return render(request,'app/contact.html')
-
