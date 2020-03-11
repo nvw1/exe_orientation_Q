@@ -25,7 +25,7 @@ def index(request):
     return render(request, 'app/index.html')
 
 
-@login_required(redirect_field_name='')  
+@login_required(redirect_field_name='')
 def game_master_page(request):
     """load game master page"""
 
@@ -52,7 +52,7 @@ def login_view(request):
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
         else:
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
- 
+
         # save the user in the database
         newUser.save()
 
@@ -121,9 +121,9 @@ def logout_view(request):
     """log out handling"""
     logout(request)
     messages.success(request, 'Logged out successfully!')
-    return render(request, 'app/login_page.html') 
+    return render(request, 'app/login_page.html')
 
-        
+
 
 def redirect(request):
     """handling what happens when the groupcode is entered and submitted aswell as the question logic"""
@@ -171,7 +171,7 @@ def redirect(request):
         data = str(request.POST.get('answer'))              #Get text from the input answer box
         questionNum = Gamecode.objects.get(groupcode=groupcode)
 
-        # if answer is correct for the current node, move onto the next question if it exists, 
+        # if answer is correct for the current node, move onto the next question if it exists,
         # otherwise show they have finished the quiz
         if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num), routeID=routeID).exists(): #Check if user get's the answer correct
 
@@ -306,7 +306,7 @@ def contact(request):
 #creating route
 def create_route(request):
     """logic  for creating a custom route"""
-    
+
     routeId = request.POST.get('data2')
     routeName = request.POST.get('routeName')
     number = 0
@@ -337,20 +337,16 @@ def add_question(request):
     question = request.POST.get('question')
     answer = request.POST.get('answer')
     hint = request.POST.get('hint')
-    location = request.POST.get('location')
     latitude = request.POST.get('latitude')
     longtitude = request.POST.get('longtitude')
     node_num = request.POST.get('node_num')
     routeID = request.POST.get('routeID')
     routeID = striptext(routeID)
-    #
-    print(question,answer,hint,location,latitude,longtitude,node_num,routeID)
-    #setting up questions object
+    print(question,answer,hint,latitude,longtitude,node_num,routeID)
     b = Questions()
     b.questions = question
     b.answers = answer
     b.hints = hint
-    b.location = location
     b.latitude = float(latitude)
     b.longtitude = float(longtitude)
     b.node_num = int(node_num)
@@ -382,8 +378,6 @@ def removesign(variable):
 def get_route(request):
     """printing the nodes in the current route"""
     route_list = Routes.objects.all()
-    for i in route_list.iterator():
-        print(i)
     return HttpResponse({"route":route_list})
 
 
@@ -410,4 +404,89 @@ def set_map_false(request):
     group_num = request.session['groupcode']
     a = Gamecode.objects.get(groupcode = group_num)
     a.map = "False"
-    a.save() #???
+    a.save()
+
+
+
+def delete_question(request):
+     routeID = request.POST.get('routeID')
+     node_num = request.POST.get('node_num')
+     print(routeID,question)
+     if Questions.objects.filter(routeID=routeID, node_num=node_num).exists():
+         a = Questions.objects.get(routeID=routeID, node_num=node_num)
+         a.delete()
+         return HttpResponse("Deleted successfully")
+     else:
+         return HttpResponse("Not exist")
+
+
+
+
+def edit(request):
+
+    question = request.POST.get('question')
+    answer = request.POST.get('answer')
+    hint = request.POST.get('hint')
+    latitude = request.POST.get('latitude')
+    longtitude = request.POST.get('longtitude')
+    node_num = request.POST.get('node_num')
+    routeID = request.POST.get('routeID')
+    print(question,answer,hint,latitude,longtitude,node_num,routeID)
+    b = Questions.objects.get(node_num=node_num, routeID=routeID)
+    b.questions = question
+    b.answers = answer
+    b.hints = hint
+    b.latitude = float(latitude)
+    b.longtitude = float(longtitude)
+    b.node_num = int(node_num)
+    b.routeID_id = int(routeID)
+    b.save()
+    if Questions.objects.filter(questions=question).exists():
+        return HttpResponse("Added successfully")
+    else:
+        return HttpResponse("Not added")
+
+
+
+
+def add_question_existing(request):
+
+    question = request.POST.get('question')
+    answer = request.POST.get('answer')
+    hint = request.POST.get('hint')
+    node_num = 1
+    latitude = request.POST.get('latitude')
+    longtitude = request.POST.get('longtitude')
+    routeID = request.POST.get('routeID')
+    print(routeID)
+    while Questions.objects.filter(node_num=node_num, routeID=routeID).exists():
+        node_num += 1
+        print(node_num)
+    print(node_num)
+    print(question,answer,hint,latitude,longtitude,node_num,routeID)
+    b = Questions()
+    b.questions = question
+    b.answers = answer
+    b.hints = hint
+    b.latitude = float(latitude)
+    b.longtitude = float(longtitude)
+    b.node_num = int(node_num)
+    b.routeID_id = int(routeID)
+    b.save()
+    if Questions.objects.filter(questions=question).exists():
+        return HttpResponse("Added successfully")
+    else:
+        return HttpResponse("Not added")
+
+
+def delete_route(request):
+    routeID = request.POST.get('routeID')
+    print(routeID)
+    if Routes.objects.filter(routeID=int(routeID)).exists():
+        a = Routes.objects.get(routeID=int(routeID))
+        a.delete()
+    if Questions.objects.filter(routeID=int(routeID)).exists:
+        Questions.objects.filter(routeID=int(routeID)).delete()
+        return HttpResponse("Deleted successfully")
+    else:
+        return HttpResponse("Not exist")

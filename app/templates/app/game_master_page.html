@@ -25,6 +25,13 @@
   width: 100%;
   /* The width is the width of the web page */
 }
+#map2 {
+    height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
 
 html {
   height: 100%;
@@ -253,28 +260,35 @@ span.psw {
         <table id="myTable">
   <tr class="header">
       <th>routeID</th>
+      <th>Edit</th>
      <th>Questions</th>
         <th>Answers</th>
         <th>Hint</th>
-
           <th>Latitude</th>
           <th>Longtitude</th>
-      <th>Location</th>
+      <th>Edit</th>
+
   </tr>
     {% for i in questions %}
       <tr>
         <td>{{ i.routeID_id }}</td>
+          <td><button class="btn btn-outline-success" value="{{ i.node_num }}"type= "button" onclick="
+        deleteQuestion(this) " >Delete question</button></td>
         <td>{{ i.questions }}</td>
         <td>{{ i.answers }}</td>
-          <td>{{ i.hintsint }}</td>
+          <td>{{ i.hints}}</td>
       <td>{{ i.latitude }}</td>
       <td>{{ i.longtitude }}</td>
-       <td>{{ i.location }}</td>
+      <td><button class="btn btn-outline-success" value="{{ i.questions }}"type= "button" onclick="current_question = '{{ i.questions }}';
+      current_answer = '{{ i.answers }}'; current_hint = '{{ i.hints}}'; current_lat = '{{ i.latitude }}';
+      current_lng = '{{ i.longtitude }}'; node_num = '{{ i.node_num }}'; edit(this);
+              " >Edit question</button></td>
+
       </tr>
      {% endfor %}
 
 </table>
-
+    <td><button class="btn btn-outline-success" type= "button" onclick="document.getElementById('id07').style.display='none',document.getElementById('id12').style.display='block',initMap2()" >Add</button></td>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
@@ -314,6 +328,51 @@ span.psw {
 </div>
 
 
+    <div id="id10" class="modal">
+
+  <form class="modal-content animate"  id="editquestion">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id10').style.display='none', document.getElementById('id07').style.display='block'" class="close" title="Close Modal">&times;</span>
+
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Question</b></label>
+      <input type="text" placeholder="Enter Question" name="question" id="question_edit"required>
+
+      <label for="psw"><b>Answer</b></label>
+      <input type="text" placeholder="Enter Answer" name="answer" id="answer_edit" required>
+
+        <label for="psw"><b>Hint</b></label>
+      <input type="text" placeholder="Enter Hint" name="hint" id="hint_edit" required>
+        <label for="psw"><b>Drag the red pin to the location</b></label>
+	  <script src="{% static 'js/map_edit.js' %}"></script>
+	  <div id="map2" style="width: 100%; height: 500px;"></div>
+	  <input type="text" id="lat_edit" placeholder="Latitude" name="Latitude_edit" required>
+	  <input type="text" id="lng_edit" placeholder="Longitude" name="Longitude_edit" required>
+
+<!--
+        <label for="location"><b>Location</b></label>
+      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
+        <label for="psw"><b>Latitude</b></label>
+      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
+        <label for="psw"><b>Longtitude</b></label>
+      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
+
+      <input type="submit" name="click" value="Submit" />
+
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id10').style.display='none',
+      document.getElementById('id07').style.display='block'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
     <div id="id03" class="modal">
 
   <form class="modal-content animate"  id="createGame">
@@ -335,6 +394,7 @@ span.psw {
         <th>Route Name</th>
         <th>Create Game</th>
           <th>More details</th>
+          <th>Delete Route</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -348,6 +408,8 @@ span.psw {
       <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
       document.getElementById('id07').style.display='block'
         ,getQuestions(this), myFunction() " >More details</button></td>
+      <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="
+        deleteRoute(this) " >Delete Route</button></td>
       </tr>
      {% endfor %}
     </tbody>
@@ -360,6 +422,47 @@ span.psw {
 
 </div>
 
+
+
+
+
+    <div id="id12" class="modal">
+      <form class="modal-content animate"  id="myForm4">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Question</b></label>
+      <input type="text" placeholder="Enter Question" name="question" id="question_add"required>
+
+      <label for="psw"><b>Answer</b></label>
+      <input type="text" placeholder="Enter Answer" name="answer" id="answer_add" required>
+        <label for="psw"><b>Hint</b></label>
+      <input type="text" placeholder="Enter Hint" name="hint" id="hint_add" required>
+        <label for="psw"><b>Drag the red pin to the location</b></label>
+	  <script src="{% static 'js/map.js' %}"></script>
+	  <div id="map3" style="width: 100%; height: 500px;"></div>
+	  <input type="text" id="lat_add" placeholder="Latitude" name="Latitude" required>
+	  <input type="text" id="lng_add" placeholder="Longitude" name="Longitude" required>
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script>
+<!--
+        <label for="location"><b>Location</b></label>
+      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
+        <label for="psw"><b>Latitude</b></label>
+      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
+        <label for="psw"><b>Longtitude</b></label>
+      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
+
+      <input type="submit" name="click" value="Submit" />
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id12').style.display='none', window.location.reload();" class="cancelbtn">Finished</button>
+    </div>
+  </form>
+</div>
 
 
 
@@ -388,6 +491,7 @@ span.psw {
 
         <label for="psw"><b>Hint</b></label>
       <input type="text" placeholder="Enter Hint" name="hint" id="hint" required>
+        <label for="psw"><b>Drag the red pin to the location</b></label>
 	  <script src="{% static 'js/map.js' %}"></script>
 	  <div id="map"></div>
 	  <input type="text" id="lat" placeholder="Latitude" name="Latitude" required>
@@ -470,18 +574,17 @@ var routeID;
          $(function(){
             $("#myForm2").submit(function(event){
                 event.preventDefault();
-                var question, answer, hint, location, latitude, longtitude;
+                var question, answer, hint, latitude, longtitude;
                 var question = $('#question').val()
                 var answer = $('#answer').val()
                 var hint = $('#hint').val()
-                var location = $('#location').val()
-                var latitude = $('#Latitude').val()
-                var longtitude = $('#Longtitude').val()
+                var latitude = $('#lat').val()
+                var longtitude = $('#lng').val()
                 $.ajax({
                     type: "post",
                     url: '/add_question',
                     data : {question:question, answer: answer,
-                        hint: hint, location: location, latitude: latitude,
+                        hint: hint, latitude: latitude,
                          longtitude: longtitude, node_num: counter, routeID:routeID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
                     success: function(response){
                         if (response == "Added successfully") {
@@ -500,6 +603,45 @@ var routeID;
         });
     });
 </script>
+
+    <script>
+    $(document).ready(function(){
+
+         $(function(){
+            $("#myForm4").submit(function(event){
+                event.preventDefault();
+                var question, answer, hint, latitude, longtitude;
+                var question = $('#question_add').val()
+                var answer = $('#answer_add').val()
+                var hint = $('#hint_add').val()
+                var latitude = $('#lat_add').val()
+                var longtitude = $('#lng_add').val()
+                $.ajax({
+                    type: "post",
+                    url: '/add_question_existing',
+                    data : {question:question, answer: answer,
+                        hint: hint, latitude: latitude,
+                         longtitude: longtitude,  routeID:createGameID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added successfully") {
+                            alert("Inserted successfully");
+                            document.getElementById("myForm4").reset();
+                            location.reload();
+                } else {
+                    alert("Question not added, please try again")
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
+
     <script>
         $(document).ready(function(){
 
@@ -584,8 +726,148 @@ function myFunction() {
     }
   }
 }
+
+
+function deleteQuestion(node_num) {
+    var r = confirm("Are you sure you want to delete the question?");
+    if (r == true) {
+        node_num = node_num.value;
+        $.ajax({
+            url: '/delete_question',
+            method: 'POST',
+            data: {routeID: createGameID, node_num: node_num, 'csrfmiddlewaretoken': "{{ csrf_token }}"},
+            success: function (response) {
+                alert("question deleted");
+                location.reload();
+            },
+            error: function (xhr, desc, err) {
+                console.log(err);
+            }
+        });
+    }
+}
+
+function deleteRoute(routeID) {
+    var r = confirm("Are you sure you want to delete the selected Route?");
+    if (r == true) {
+        routeID = routeID.value;
+        $.ajax({
+            url: '/delete_route',
+            method: 'POST',
+            data: {routeID: routeID,  'csrfmiddlewaretoken': "{{ csrf_token }}"},
+            success: function (response) {
+                alert("Route deleted");
+                location.reload();
+            },
+            error: function (xhr, desc, err) {
+                console.log(err);
+            }
+        });
+    }
+}
+
+var current_question, current_answer, current_hint, current_lat, current_lng, node_num;
+function edit(){
+        document.getElementById('id10').style.display = 'block';
+        initMap1();
+        document.getElementById('question_edit').value = current_question;
+        document.getElementById('answer_edit').value = current_answer;
+        document.getElementById('hint_edit').value = current_hint;
+        document.getElementById('lat_edit').value = current_lat;
+        document.getElementById('lng_edit').value = current_lng;
+}
 </script>
-  
+<script>
+    function addQuestion(){
+
+    }
+    function initMap1() {
+	// make the map
+  var map1 = new google.maps.Map(
+    document.getElementById('map2'), {
+      zoom: 17,
+      center: new google.maps.LatLng(50.726, -3.531)
+    });
+	// put the marker on the map
+  var myMarker = new google.maps.Marker({
+    position: new google.maps.LatLng(50.737, -3.535),
+    map: map1,
+    draggable: true
+  });
+
+//   fill in the elements with latitude and longitud of the marker
+  google.maps.event.addListener(myMarker, 'dragend', function(evt) {
+	document.getElementById('lat_edit').value = evt.latLng.lat().toFixed(6);
+    document.getElementById('lng_edit').value = evt.latLng.lng().toFixed(6);
+  });
+
+  map1.setCenter(myMarker.position);
+  myMarker.setMap(map1);
+
+}
+
+
+
+function initMap2() {
+	// make the map
+  var map2 = new google.maps.Map(
+    document.getElementById('map3'), {
+      zoom: 17,
+      center: new google.maps.LatLng(50.726, -3.531)
+    });
+	// put the marker on the map
+  var myMarker = new google.maps.Marker({
+    position: new google.maps.LatLng(50.737, -3.535),
+    map: map2,
+    draggable: true
+  });
+
+//   fill in the elements with latitude and longitud of the marker
+  google.maps.event.addListener(myMarker, 'dragend', function(evt) {
+	document.getElementById('lat_add').value = evt.latLng.lat().toFixed(6);
+    document.getElementById('lng_add').value = evt.latLng.lng().toFixed(6);
+  });
+
+  map2.setCenter(myMarker.position);
+  myMarker.setMap(map2);
+
+}
+</script>
+
+    <script>
+    $(document).ready(function(){
+
+         $(function(){
+            $("#editquestion").submit(function(event){
+                event.preventDefault();
+                var question, answer, hint, latitude, longtitude;
+                var question = $('#question_add').val()
+                var answer = $('#answer_add').val()
+                var hint = $('#hint_add').val()
+                var latitude = $('#lat_add').val()
+                var longtitude = $('#lng_add').val()
+                $.ajax({
+                    type: "post",
+                    url: '/edit',
+                    data : {question:question, answer: answer,
+                        hint: hint, latitude: latitude,
+                         longtitude: longtitude,  node_num:node_num, routeID:createGameID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added successfully") {
+                            alert("Added successfully");
+                            location.reload();
+                } else {
+                    alert("Question not added, please try again")
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>
 <!--
 <h1>This is the game master page</h1>
 
