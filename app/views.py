@@ -16,8 +16,9 @@ import json
 # current node number, global variable
 num = 1
 score = 0
-
 def index(request):
+    """set node num to 1, returns index.html with the request being passed through"""
+
     # sets the node num to 1 when landing on index page
     global num
     num = 1
@@ -26,14 +27,18 @@ def index(request):
 
 @login_required(redirect_field_name='')  
 def game_master_page(request):
+    """load game master page"""
+
     route_list = Routes.objects.all()
     questions = Questions.objects.all()
     return render(request, 'app/game_master_page.html',{"route_list":route_list,"questions":questions})
-
 def login_page(request):
-    return render(request, 'app/login_page.html')
+    """load login page"""
 
+    return render(request, 'app/login_page.html')
 def login_view(request):
+    """handle log in methods - button presses, handling user events, handling the database"""
+
     # if sign up button pressed
     if request.method == 'POST' and 'submit-signUp' in request.POST:
         newUsername = request.POST['username']
@@ -112,8 +117,8 @@ def login_view(request):
     messages.error(request, 'did not get username or password')
     return render(request, 'app/login_page.html')
 
-# log the user out
 def logout_view(request):
+    """log out handling"""
     logout(request)
     messages.success(request, 'Logged out successfully!')
     return render(request, 'app/login_page.html') 
@@ -121,6 +126,7 @@ def logout_view(request):
         
 
 def redirect(request):
+        """handling what happens when the groupcode is entered and submitted aswell as the question logic"""
     global score
     global num
     map_check = False
@@ -232,6 +238,7 @@ def redirect(request):
 
 
 def hint(request):
+        """show hints"""
     global score           #Global score
     hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
     score1 = request.POST.get('score')        #  Get score from ajax request
@@ -241,6 +248,7 @@ def hint(request):
 
 
 def update_request(request):
+        """update the request if there is a difference between the question the user is on and the question on the request"""
     question_num = request.POST.get('current_question')
     group_num = request.session['groupcode']
     latest_question = Gamecode.objects.get(groupcode=group_num)
@@ -250,8 +258,8 @@ def update_request(request):
     else:
         return HttpResponse("Same Question")
 
-
 def reset_question(request):
+    """testing only - reset the questions in the current game"""
     global num
     t = Gamecode.objects.get(groupcode='0001')
     t.questionNum = '1'
@@ -259,49 +267,62 @@ def reset_question(request):
     num = 1
 
 
-
+##loading pages
 def health(request):
+    """return the status of the session"""
     state = {"status": "UP"}
     return JsonResponse(state)
 
 
 def handler404(request):
+    """rendering 404 page"""
     return render(request, '404.html', status=404)
 
 
 def handler500(request):
+    """rendering the 500 page"""
+
     return render(request, '500.html', status=500)
 
 
 def MVP_treasure_hunt(request):
+    """rendering the treasure_hunt page"""
     return render(request, 'app/MVP_treasure_hunt.html')
 
 def studentview(request):
+    """rendering the student view page"""
     return render(request,'app/studentview.html')
 
 
 def faq(request):
+    """render the FAQ"""
     return render(request,'app/FAQ.html')
 
 
 def contact(request):
+    """render the contact page"""
     return render(request,'app/contact.html')
 
-
+#creating route
 def create_route(request):
+    """logic  for creating a custom route"""
+    
     routeId = request.POST.get('data2')
     routeName = request.POST.get('routeName')
     number = 0
+    #getting the id of the route
     for i in range(len(routeId)):
         if routeId[i] == "=":
             number = i
     routeId= routeId[number+1::]
 
+    #boolean if route exists
     print(Routes.objects.filter(routeID=int(routeId)).exists())
     if Routes.objects.filter(routeID=int(routeId)).exists():
         print("Yeah it does")
         return HttpResponse("Exist")
     else:
+        #if route doesn't exist then create the route
         print("No it does not ")
         c = Routes.objects.create(routeID = routeId, RouteName = routeName, gameMaster_GMID_id=1, Node = "1", NodeID= 1)
         c.save()
@@ -311,7 +332,8 @@ def create_route(request):
 
 
 def add_question(request):
-
+    """adding the questions from the server into the current request"""
+    #adding question - getting data through post request
     question = request.POST.get('question')
     answer = request.POST.get('answer')
     hint = request.POST.get('hint')
@@ -321,7 +343,9 @@ def add_question(request):
     node_num = request.POST.get('node_num')
     routeID = request.POST.get('routeID')
     routeID = striptext(routeID)
+    #
     print(question,answer,hint,location,latitude,longtitude,node_num,routeID)
+    #setting up questions object
     b = Questions()
     b.questions = question
     b.answers = answer
@@ -332,6 +356,7 @@ def add_question(request):
     b.node_num = int(node_num)
     b.routeID_id = int(routeID)
     b.save()
+    #checking if the questions were added successfully or not
     if Questions.objects.filter(questions=question).exists():
         return HttpResponse("Added successfully")
     else:
@@ -339,6 +364,7 @@ def add_question(request):
 
 
 def striptext(variable):
+    """stripping text before an equals sign - getting all data after the equals"""
     number = 0
     for i in range(len(variable)):
         if variable[i] == "=":
@@ -348,11 +374,13 @@ def striptext(variable):
 
 
 def removesign(variable):
+    """getting rid of percent signs"""
     variable.replace("%"," ")
     return variable
 
 
 def get_route(request):
+    """printing the nodes in the current route"""
     route_list = Routes.objects.all()
     for i in route_list.iterator():
         print(i)
@@ -361,11 +389,14 @@ def get_route(request):
 
 
 def create_game(request):
+    """create the game - getting the groupcode and routeID"""
     groupcode1 = request.POST.get("groupcode")
     routeID = request.POST.get("routeID")
+    #check if the groupcode is valid
     if Gamecode.objects.filter(groupcode=groupcode1).exists():
         return HttpResponse("Exist")
     else:
+        #add groupcode to response
         a = Gamecode()
         a.groupcode = groupcode1
         a.routeID_id= routeID
@@ -375,7 +406,8 @@ def create_game(request):
 
 
 def set_map_false(request):
+    """hide the map"""
     group_num = request.session['groupcode']
     a = Gamecode.objects.get(groupcode = group_num)
     a.map = "False"
-    a.save()
+    a.save() #???
