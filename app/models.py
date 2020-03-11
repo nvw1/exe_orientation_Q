@@ -5,21 +5,6 @@ from django.db import models
 # Create your models here.
 
 #Used for the game
-class Gamecode(models.Model):
-    groupcode = models.CharField(max_length=250)
-    questionNum = models.IntegerField(default=1)
-    def __str__(self):     #convert objects in to strings
-        return self.groupcode
-
-class Questions(models.Model):
-    auto_increment_id = models.AutoField(primary_key=True)
-    questions = models.CharField(max_length=100)
-    answers = models.CharField(max_length=100)
-    node_num = models.IntegerField()
-    hints = models.CharField(max_length=100,default="")
-    location = models.CharField(max_length=1000,default="")
-    longtitude = models.FloatField(default=-1.1)
-    latitude = models.FloatField(default=-1.1)
 
 
 class User(models.Model):
@@ -56,10 +41,30 @@ class Players(models.Model):
     user_userID = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 
+class Questions(models.Model):
+    auto_increment_id = models.AutoField(primary_key=True)
+    questions = models.CharField(max_length=100)
+    answers = models.CharField(max_length=100)
+    node_num = models.IntegerField()
+    hints = models.CharField(max_length=100,default="")
+    location = models.CharField(max_length=1000,default="")
+    longtitude = models.FloatField(default=-1.1)
+    latitude = models.FloatField(default=-1.1)
+    routeID = models.ForeignKey(Routes, on_delete=models.CASCADE,default=1)
+
 class Groups(models.Model):
     GroupID = models.AutoField(primary_key=True)
     GroupName = models.CharField(max_length=45)
     Players_playerID = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
+
+
+class Gamecode(models.Model):
+    groupcode = models.CharField(max_length=250)
+    questionNum = models.IntegerField(default=1)
+    routeID = models.ForeignKey(Routes, on_delete=models.CASCADE,default=1)
+    map = models.CharField(max_length=50,default = "False")
+    def __str__(self):     #convert objects in to strings
+        return self.groupcode
 
 
 Questions.objects.all()
