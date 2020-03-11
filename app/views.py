@@ -126,7 +126,7 @@ def logout_view(request):
         
 
 def redirect(request):
-        """handling what happens when the groupcode is entered and submitted aswell as the question logic"""
+    """handling what happens when the groupcode is entered and submitted aswell as the question logic"""
     global score
     global num
     map_check = False
@@ -238,7 +238,7 @@ def redirect(request):
 
 
 def hint(request):
-        """show hints"""
+    """show hints"""
     global score           #Global score
     hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
     score1 = request.POST.get('score')        #  Get score from ajax request
@@ -248,7 +248,7 @@ def hint(request):
 
 
 def update_request(request):
-        """update the request if there is a difference between the question the user is on and the question on the request"""
+    """update the request if there is a difference between the question the user is on and the question on the request"""
     question_num = request.POST.get('current_question')
     group_num = request.session['groupcode']
     latest_question = Gamecode.objects.get(groupcode=group_num)
