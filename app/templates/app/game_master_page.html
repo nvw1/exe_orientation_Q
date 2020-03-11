@@ -11,11 +11,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
   <link rel="stylesheet" href="{%static 'css/all.css' %}"></link>
+  
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
 </head>
 <!-- Gradient background -->
 <style>
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
 html {
   height: 100%;
 }
@@ -229,7 +239,7 @@ $(document).ready(function(){
 
 
 
-    <div id="id01" class="modal">
+<div id="id01" class="modal">
 
   <form class="modal-content animate"  id="myForm1">
     <div class="imgcontainer">
@@ -243,11 +253,15 @@ $(document).ready(function(){
 
       <label for="psw"><b>Route Name</b></label>
       <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
-
-
+	  <script src="{% static 'js/map.js' %}"></script>
+	  <div id="map"></div>
+	  <input type="text" id="lat" placeholder="Latitude" name="Latitude">
+	  <input type="text" id="lng" placeholder="Longitude" name="Longitude">
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script>
+	  
 
       <input type="submit" name="click" value="Submit" />
-
+	
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
@@ -366,8 +380,8 @@ var routeID;
             });
         });
     });
-<!-- Footer will have logo in bottom right -->
 </script>
+<!-- Footer will have logo in bottom right -->
 <script>
     var counter = 1;
     $(document).ready(function(){
@@ -406,8 +420,8 @@ var routeID;
             });
         });
     });
-<!-- Footer will have logo in bottom right -->
 </script>
+<!-- Footer will have logo in bottom right -->
 <script>
     $(window).bind("load",function(){
         alert("hello")
