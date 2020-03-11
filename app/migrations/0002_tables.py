@@ -9,10 +9,11 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+		('app', '0001_initial'),
     ]
 
     operations = [
-        migrations.CreateModel(
+		migrations.CreateModel(
             name='Developers',
             fields=[
                 ('devID', models.AutoField(primary_key=True, serialize=False)),
@@ -84,11 +85,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='questions',
-            name='routeID',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='app.Routes'),
-        ),
-        migrations.AddField(
             model_name='players',
             name='user_userID',
             field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='app.User'),
@@ -109,15 +105,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.User'),
         ),
         migrations.AddField(
-            model_name='gamecode',
-            name='routeID',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='app.Routes'),
-        ),
-        migrations.AddField(
             model_name='developers',
             name='user_userID',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.User'),
         ),
-
-      
-    ]
+	]

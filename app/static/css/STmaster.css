@@ -1,0 +1,14 @@
+/*Global-S*/
+
+html{
+    height: 100%;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  min-height: 100%;
+  background: rgb(79,149,255);
+  background: linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
+}
+/*Global-E*/

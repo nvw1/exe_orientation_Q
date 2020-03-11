@@ -7,20 +7,6 @@ from django.db import models
 #Used for the game
 
 
-#Below table is for testing
-# class Musician(models.Model):
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     instrument = models.CharField(max_length=100)
-
-# class Album(models.Model):
-#     artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=100)
-#     release_date = models.DateField()
-#     num_stars = models.IntegerField()
-
-
-
 class User(models.Model):
     userID = models.AutoField(primary_key=True)
     username = models.CharField(max_length=45)
@@ -65,8 +51,6 @@ class Questions(models.Model):
     longtitude = models.FloatField(default=-1.1)
     latitude = models.FloatField(default=-1.1)
     routeID = models.ForeignKey(Routes, on_delete=models.CASCADE,default=1)
-
-
 
 class Groups(models.Model):
     GroupID = models.AutoField(primary_key=True)
