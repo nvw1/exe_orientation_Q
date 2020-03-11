@@ -158,7 +158,6 @@ def redirect(request):
             messages.error(request, 'The game code does not exist')
             return render(request, 'app/index.html')
 
-
     # if an answer to question is submitted, check if it is correct
     if request.method == 'POST' and 'submit-question' in request.POST:
         routeID = request.session['routeID']
