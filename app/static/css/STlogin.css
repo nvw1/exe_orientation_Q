@@ -1,0 +1,11 @@
+/*Global-S*/
+
+body{
+  min-height: 100%;
+  background: rgb(79,149,255);
+  background: linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
+}
+#login{
+  min-width: 375px;
+}
+/*Global-E*/
