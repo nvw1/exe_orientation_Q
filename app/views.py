@@ -115,8 +115,8 @@ def login_view(request):
 # log the user out
 def logout_view(request):
     logout(request)
-    messages.info(request, 'did not get username or password')
-    return render(request, 'app/index.html') 
+    messages.success(request, 'Logged out successfully!')
+    return render(request, 'app/login_page.html') 
 
         
 
