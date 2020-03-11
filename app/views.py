@@ -38,8 +38,14 @@ def redirect(request):
             request.session['groupcode'] = groupcode         #Add group code into user's session
             request.session['score'] = score            #  Add score into user's session
             request.session['routeID'] = routeID
-
-            latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+            if num >1:
+                print(num)
+                num -=1
+                print(num)
+                latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+                num +=1
+            else:
+                latest_question = Questions.objects.get(node_num=num , routeID=routeID)
             location = latest_question.location
             longtitude = latest_question.longtitude
             latitude = latest_question.latitude
@@ -111,7 +117,7 @@ def redirect(request):
         num = questionNum.questionNum
         mapcheck = questionNum.map
         info = Questions.objects.filter(node_num=int(num), routeID=routeID)  # Get question from the database using num counter
-        latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+        latest_question = Questions.objects.get(node_num=num-1, routeID=routeID)
         location = latest_question.location
         longtitude = latest_question.longtitude
         latitude = latest_question.latitude
