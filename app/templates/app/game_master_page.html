@@ -394,6 +394,7 @@ span.psw {
         <th>Route Name</th>
         <th>Create Game</th>
           <th>More details</th>
+          <th>Delete Route</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -407,6 +408,8 @@ span.psw {
       <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
       document.getElementById('id07').style.display='block'
         ,getQuestions(this), myFunction() " >More details</button></td>
+      <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="
+        deleteRoute(this) " >Delete Route</button></td>
       </tr>
      {% endfor %}
     </tbody>
@@ -743,6 +746,26 @@ function deleteQuestion(node_num) {
         });
     }
 }
+
+function deleteRoute(routeID) {
+    var r = confirm("Are you sure you want to delete the selected Route?");
+    if (r == true) {
+        routeID = routeID.value;
+        $.ajax({
+            url: '/delete_route',
+            method: 'POST',
+            data: {routeID: routeID,  'csrfmiddlewaretoken': "{{ csrf_token }}"},
+            success: function (response) {
+                alert("Route deleted");
+                location.reload();
+            },
+            error: function (xhr, desc, err) {
+                console.log(err);
+            }
+        });
+    }
+}
+
 var current_question, current_answer, current_hint, current_lat, current_lng, node_num;
 function edit(){
         document.getElementById('id10').style.display = 'block';

@@ -447,3 +447,16 @@ def add_question_existing(request):
         return HttpResponse("Added successfully")
     else:
         return HttpResponse("Not added")
+
+
+def delete_route(request):
+    routeID = request.POST.get('routeID')
+    print(routeID)
+    if Routes.objects.filter(routeID=int(routeID)).exists():
+        a = Routes.objects.get(routeID=int(routeID))
+        a.delete()
+    if Questions.objects.filter(routeID=int(routeID)).exists:
+        Questions.objects.filter(routeID=int(routeID)).delete()
+        return HttpResponse("Deleted successfully")
+    else:
+        return HttpResponse("Not exist")
