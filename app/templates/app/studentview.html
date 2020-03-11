@@ -1,661 +1,84 @@
-{% load static %}
-<!-- Authors: Hao, Nik -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Mobile Specific Metas
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-    <meta charset="UTF-8">
-	<title>Title</title>
-  <link rel="stylesheet" href="{%static 'css/all.css' %}"></link>
-  <style>
-.observablehq {
-  opacity: 1;
-  transition: opacity 250ms ease-in-out;
-}
-.browser-firefox .observablehq {
-  transition: opacity 250ms ease-in-out 250ms;
-}
-.observablehq--running {
-  opacity: 0;
-}
-.os-ios #gradient {
-  filter: saturate(150%);
-  -webkit-filter: saturate(150%);
-}
-.form{
-	background-color: transparent;
-}
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
-  overflow-x: hidden;
-  transition: 0.5s;
-}
-
-.overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
-}
-
-.overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-}
-
-@media screen and (max-height: 450px) {
-  .overlay a {font-size: 20px}
-  .overlay .closebtn {
-  font-size: 40px;
-  top: 15px;
-  right: 35px;
-  }
-}
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-</style>
-
-
-
-
-<link rel="shortcut icon" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/favicon.png" />
-<script type="text/javascript">document.documentElement.className = 'js';</script>
-  <meta name="description" content="OpenAI is an AI research laboratory discovering and enacting the path to safe artificial general intelligence." />
-    <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-    <link rel="canonical" href="https://openai.com/" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-
-    <meta property="og:site_name" content="OpenAI" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="OpenAI" />
-    <meta property="og:description" content="OpenAI is an AI research laboratory discovering and enacting the path to safe artificial general intelligence." />
-    <meta property="og:url" content="https://openai.com/" />
-    <meta property="og:image" content="https://openai.com/content/images/2019/05/openai-cover.png" />
-    <meta property="og:image:width" content="2400" />
-    <meta property="og:image:height" content="1350" />
-
-    <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "publisher": {
-        "@type": "Organization",
-        "name": "OpenAI",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://openai.com/content/images/2019/05/openai-avatar.png",
-            "width": 60,
-            "height": 60
-        }
-    },
-    "author": {
-        "@type": "Person",
-        "name": "OpenAI",
-        "sameAs": []
-    },
-    "headline": "OpenAI",
-    "url": "https://openai.com/",
-    "description": "Discovering and enacting the path \nto safe artificial general intelligence.",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://openai.com/"
-    }
-}
-    </script>
-	<script type="module">
-		import {Runtime, Inspector, Library} from "https://cdn.openai.com/home/20200218a/runtime.js";
-		import notebook from "https://cdn.openai.com/home/20200218a/home.js"
-		const renders = {
-		  "gradient": "#gradient",
-		};
-		new Runtime(Object.assign(new Library)).module(notebook, name => {
-		  const selector = renders[name];
-		  if (selector) { // key exists
-			return new Inspector(document.querySelector(selector));
-		  } else {
-			return true;
-		  }
-		});
-		</script>
-    <script defer src="{% static "js/members.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/config.js" %}"></script>
-    <meta name="generator" content="Ghost 3.7" />
-    <link rel="alternate" type="application/rss+xml" title="OpenAI" href="" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
-</head>
-
-<body>
-<div id="myNav" class="overlay">
-  <div class="overlay-content"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/faq">FAQ</a>
-    <a href="#"></a>
-    <a href="contact">Contact</a>
-  </div>
-
-</div>
-
-<div class="color-bg mb-2 mb-lg-2.5 position-relative">
-
-	<header class="header header--cover">
-		<nav class="nav js-nav">
-		<div class="container">
-		  <div class="nav-row row d-flex justify-content-between align-items-center">
-			<div class="col-2">
-			  <a href="/" class="nav-symbol fade">
-				<img src="{% static 'images/logo2.png' %}" ></img>
-				</div>
-			<div class="col" >
-			  <a href="/" class="nav-wordmark fade">
-				<h3 style="width:200px; padding-left: -20">Infinity Hunt</h3>
-				</div>
-			<div class="col-auto">
-			  <ul class="nav-items d-none d-desktop-flex justify-content-end small-caps">
-
-				  <li class="nav-item">
-					<a class="fade" href="{}"></a>
-				  </li>
-
-				  <li class="nav-item">
-					<a class="fade" href="/progress/"></a>
-				  </li>
-
-
-			  </ul>
-			  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-			</div>
-		  </div>
-		</div>
-	  </nav>
-	  <nav class="mobile-nav js-mobile-nav text-left">
-		<div class="container">
-		  <div class="nav-row row d-flex justify-content-between align-items-center">
-			<div class="col-2">
-			</div>
-			<div class="col-auto">
-			  <button class="nav-toggle nav-toggle--close js-mobile-nav-close"><svg id="mobile-nav-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path id="Glyph" d="M19.77,5.63,13.41,12l6.36,6.37a1,1,0,0,1-1.41,1.41L12,13.41,5.63,19.77a1,1,0,0,1-1.44-1.39l0,0L10.58,12,4.21,5.63a1,1,0,0,1,0-1.42,1,1,0,0,1,1.41,0l0,0L12,10.58l6.37-6.37a1,1,0,0,1,1.41,0A1,1,0,0,1,19.77,5.63Z"/></svg></button>
-			</div>
-		  </div>
-		</div>
-		<div class="container font-large">
-		  <ul class="mt-0.25 small-caps">
-
-				<li>
-				  <a class="fade d-block py-0.75" href="/about/">About</a>
-				</li>
-				<hr class="bg-fg">
-
-				<li>
-				  <a class="fade d-block py-0.75" href="/progress/">Progress</a>
-				</li>
-				<hr class="bg-fg">
-
-				<li>
-				  <a class="fade d-block py-0.75" href="/resources/">Resources</a>
-				</li>
-				<hr class="bg-fg">
-
-				<li>
-				  <a class="fade d-block py-0.75" href="/blog/">Blog</a>
-				</li>
-				<hr class="bg-fg">
-			<li>
-			  <a class="fade d-block py-0.75" href="/jobs/">Jobs</a>
-			</li>
-		  </ul>
-		</div>
-	  </nav>
-
-	  </header>
-
-	  {% block content %}
-	  <!--first section-->
-
-	  <div class="container color-white">
-		<hr class="hr-strong js-nav-fold">
-		<section class="mt-1 mb-1.5">
-		  <div class="row">
-			<div class="col-12 col-md-2">
-			  <h6 class="small-copy mb-0.5 mt-0.125">This is your group code
-                  <button id="myBtn">Open Modal</button>
-			</div>
-			<div class="col-12 col-md-10 col-lg-8">
-				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem"># :{{ groupcode }} </h1>
-               <h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem" id = "score">Hello</h1>
-			  <a class="btn icon-next right fade mt-0.5 color-bg-65" href="/">Sign out</a>
-			</div>
-		  </div>
-		</section>
-	  </div>
-
-	  <!--Question section v1-->
-	  {% for questions in data %}
-	  <div class="container color-white">
-		<hr class="hr-strong js-nav-fold">
-		<section class="mt-1 mb-1.5">
-		  <div class="row">
-			<div class="col-12 col-md-2">
-			  <h6 class="small-copy mb-0.5 mt-0.125">Enjoy the Game!</h6>
-			</div>
-			<div class="col-12 col-md-10 col-lg-8">
-				<h1 class="balance-text h2 font-normal" style="margin-left:-0.1rem;max-width:28rem">{{ questions.questions}}</h1>
-                <button id = "button_1" value = "val_1">reset questions<</button>
-                <script>
-                    var b = {{ questions.questions }}
-                </script>
-			</div>
-		  </div>
-		</section>
-	  </div>
-
-	  <!--Question section v2-->
-
-	  <section class="pb-1">
-		<div class="container color-white">
-		  <hr class="mb-0.75 hr-strong">
-		  <h6 class="small-copy">Below is where it counts.</h6>
-		</div>
-		<div class="overflow-hidden">
-		  <div class="overflow-x-auto mb-n2 pb-2">
-			<div class="container">
-			  <div class="row flex-nowrap flex-lg-wrap">
-					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-gutter mb-gutter mb-md-gutter">
-
-	<figure class="release-cover release-cover--titled rounded shadowed-heavy mb-0" style="background-color: transparent;">
-		<br>
-		<h1 class="balance-text h2 font-normal" ><center>Type answer below:</center></h1>
-        <br>
-        <br>
-		<form class="container" action="redirect" method = "post" id="question"  >
-			{% csrf_token %}
-				 <input class="small-copy mb-0.5 mt-0.125" type="text" name="answer" placeholder="Enter your answer" style="display: block; margin: 0 auto;">
-		   <br>
-		   <br>
-                <button class="small-copy mb-0.5 mt-0.125" name = gethaction id = "gethint" style="display: block; margin: 0 auto;" > Feeling stuck and need a hint? Click me!</button>
-            <br>
-            <br>
-			{%if messages%}
-				   {% for message in messages %}
-					   <div class="alert alert-danger" role="alert" style="color:black">
-						   {{ message }}
-					   </div>
-				   {% endfor%}
-                <br>
-			   {% endif %}
-
-	</figure>
-					</div>
-				  <div class="pl-container ml-row"></div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="container color-white mt-0.5">
-		  <div class="text-center"><a class="btn icon-next right" >
-			<input class="btn  icon-next right fade color-bg-65" type="submit" value="ANSWER " name="submit-question" style=""></a>
-
-		</div>
-
-		</div>
-	  </section>
-	</form>
-
-
-
-
-
-{% endfor %}
-{% endblock %}
-<div class="position-absolute w-100 h-100 overflow-hidden bg-cool-gray-1 bg-cover trbl-0" style="z-index:-1;pointer-events:none">
-	<div id="gradient" class="position-absolute d-flex justify-content-center align-items-center overflow-hidden trbl-0 observablehq--running" style="z-index:-1;pointer-events:none"></div>
-
-  </div>
-
-
-    <div class="container">
-
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Please go to the following location and press the buttons to verify</h2>
+<html lang="en" dir="ltr">
+  <head>
+      {% load static %}
+      <meta charset="utf-8">
+      <title>Exe Orientation</title>
+      <meta name="description" content="">
+      <meta name="author" content="Sam, Niklas, Hao">
+      <meta name="theme-color" content="#ffffff">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="{% static 'css/STmaster.css' %}">
+     <link rel="stylesheet" href="{% static 'css/STnavbar.css' %}">
+     <link rel="stylesheet" href="{% static 'css/STgame.css' %}">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!--MAIN MENU-S-->
+    <div class="header bg-transparent ">
+      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      <input type="checkbox" id="chk">
+      <label for="chk" class="show-menu-btn">
+        <img src="{% static '/images/STmenu/Hamburger.png' %}">
+      </label>
+      <ul class="menu">
+        <ul class="menu_item">
+          <a href="#">Locations</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/locations.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">Contacts</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/contacts.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">FAQs</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">About</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/about.svg' %}" alt="icon">
+        </ul>
+        <label for="chk" class="hide-menu-btn">
+          <img src="https://img.icons8.com/ios-filled/36/000000/delete-sign.png">
+        </label>
+        <img class="UOE_stamp" src="{% static '/images/STmenu/uniExeter.svg' %}" alt="Universit of Exeter">
+      </ul>
     </div>
-    <div class="modal-body">
-      <iframe src="{{ location }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        <h2 id="demo"></h2>
-        <div id="map"></div>
-      <button onclick="getLocation()">Try It</button>
-      <button onclick="setCompletionZone(circPos, radi)">Get Circle</button>
-      <button onclick="pointInCircle(pos, radi, circPos)">Is In Centre</button>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
+    <!--MAIN MENU-E-->
+    <div class="row">
+      <div class="game-top container-fluid">
+        <h2 id="pin">Pin: 0001</h2>
+        <button id="leave_button" onclick="window.location.href='b.php'">Leave</button>
+        <div class="game_info">
+          <h2 id=score>Score: 0</h2>
+        </div>
+      </div>
 
     </div>
-  </form>
-</div>
-</div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="row mt-4">
+      <div id="question-container" class="container-fluid p-3 my-3 bg-white">
+        <p>Question</p>
+        <button  onclick=""> <img src="{% static 'images/STgame/Hintbutton.png' %}" alt="icon"></button>
 
-<script type = "text/javascript">
-	function openNav() {
-  		document.getElementById("myNav").style.width = "100%";
-	}
 
-	function closeNav() {
-  		document.getElementById("myNav").style.width = "0%";
-	}
-    function sendRequest(){
-        {% for questions in data %}
-    var current_question =  {{ questions.node_num }}
-        {% endfor %}
-    $.ajax({
-        url: "/update_request",
-        type: "post",
-        data: {current_question:current_question,'csrfmiddlewaretoken': "{{ csrf_token }}" },
-        success:
-        function(result){
-            if (result == "Same Question"){
-            setTimeout(function(){
-                sendRequest(); //this will send request again and again;
-            }, 1000);}
-            else{
-                location.reload(true);
-            }
-        },
-        error: function() {
-                    alert("failed")
-                    location.reload(true);
-                    setTimeout(function(){
-                    sendRequest(); //this will send request again and again;
-                     }, 5000);
-                }
-    });
-    }
-    $(window).bind("load",function(){
-        sendRequest();
-    })
-    $(document).ready(function() {
-        var hint_got = false;
-        var a = "{{ score }}";
-        document.getElementById("score").innerHTML = "High score : " + a ;
-        $("#gethint").click(function (e) {
-            if (hint_got == false) {
-                a--;
-                hint_got = true;
-            }
-            document.getElementById("score").innerHTML = "High score : " + a ;
-			e.preventDefault();
-            $.ajax({
-                url: '/hint',
-                type: "post",
-                data :{score:a,'csrfmiddlewaretoken': "{{ csrf_token }}"},
-                success: function (response) {
-                    alert(response);
-                },
-                error: function(xhr, status, error) {
-                    alert("error");
-}
-            });
-        });
-    });
-    $(document).ready(function() {
-        $("#button_1").click(function (){
-            $.ajax({
-                url:'/reset_question',
-                success: function(response){
+      </div>
+    </div>
+    <div class="row mt-1">
+      <form action="redirect" method = "post" id="answer-form"  >
 
-                }
-            });
-        });
-    });
-    var map_check = "True";
-    $(window).bind("load",function(){
-        map_check = "{{ map_check }}"
-        if (map_check == "True"){
-            document.getElementById('myModal').style.display='block'
-        }
-    });
+         <textarea id="answer-box" rows="4" cols="50" placeholder="Answer" name="answer">
+         </textarea>
+         <input id="answer-button" type="submit" value="Submit " name="submit-answer">
 
-</script>
-<script>
-var x = document.getElementById("demo");
+      </form>
 
-var map, infoWindow, pos, marker, radi, circle, lon, lat;
-//This is the center coordinate for the circle for checking if player insde.
-var circPos = {
-
-lat: 50.7329933,
-lng:-3.54309
-}
-
-//This is the radius of circle.
-radi = 60;
-	//Ran at loading of website, intiliazes the map.
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
+    </div>
 
 
 
-            infoWindow.open(map);
-
-      }
-
-	  //Checks if player in the circle
-function pointInCircle(point, radius, center)
-{
 
 
-var p = new google.maps.LatLng(lat, lon );
-var c = new google.maps.LatLng({lat}, lon);
-
-	if((google.maps.geometry.spherical.computeDistanceBetween(p, c)) >= radius )
-	{
-		alert("You no there");
-	}
-	else{
-		alert("You there");
-		document.getElementById('myModal').style.display='none'
-	}
-}
-
-
-//Gets players current location
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-//Shows position of player on the map.
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-    lat = position.coords.latitude
-    lon = position.coords.longitude
-    pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            map.setCenter(pos);
-			map.setZoom(20);
-
-			marker = new google.maps.Marker({
-					  map: map,
-					  position: pos,
-					  title: 'your location'
-					});
-}
-
-//Draws circle of the completion zone.
-function setCompletionZone(posi, radi){
-
-  					marker = new google.maps.Marker({
-					  map: map,
-					  position: posi,
-					  title: 'circle centre'
-					});
-
-					circle = new google.maps.Circle({
-					  map: map,
-					  radius: radi,
-					     strokeColor: '#FF0000',
-					strokeOpacity: 0.8,
-					strokeWeight: 2,
-					fillColor: '#FF0000',
-					fillOpacity: 0.35
-					});
-					circle.bindTo('center', marker, 'position');
-
-					marker.setMap(null);
-
-
-}
-
-//Error handling for location request.
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred."
-      break;
-  }
-
-var MY_KEY = config.API;
-
-}
-</script>
-
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzaPwjwqJAXVNJh7Yhx50Xdvwb1h-FNV4&callback=initMap">
-</script>
-</body>
+  </body>
+</html>
