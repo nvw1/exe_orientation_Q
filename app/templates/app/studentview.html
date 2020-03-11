@@ -13,7 +13,10 @@
      <link rel="stylesheet" href="{% static 'css/STgame.css' %}">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     <script async defer
+     	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzaPwjwqJAXVNJh7Yhx50Xdvwb1h-FNV4&callback=initMap">
+     </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </head>
   <body>
     <!--MAIN MENU-S-->
@@ -50,9 +53,10 @@
       </ul>
     </div>
     <!--MAIN MENU-E-->
+    {% block content %}
     <div class="row">
       <div class="game-top container-fluid">
-        <h2 id="pin">Pin: 0001</h2>
+        <h2 id="pin">Pin: {{ groupcode }}</h2>
         <button id="leave_button" onclick="window.location.href='b.php'">Leave</button>
         <div class="game_info">
           <h2 id=score>Score: 0</h2>
@@ -82,18 +86,23 @@
     </div>
     <div class="row mt-1">
       <form action="redirect" method = "post" id="answer-form"  >
-
+        {% csrf_token %}
          <textarea id="answer-box" rows="4" cols="50" placeholder="Answer" name="answer">
          </textarea>
          <input id="answer-button" type="submit" value="Submit " name="submit-answer">
 
+         {%if messages%}
+   				   {% for message in messages %}
+   					   <div class="alert alert-danger" role="alert" style="color:black">
+   						   {{ message }}
+   					   </div>
+   				   {% endfor%}
+                   <br>
+   			   {% endif %}
+
       </form>
 
     </div>
-
-
-
-
-
+    {% endblock %}
   </body>
 </html>
