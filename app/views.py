@@ -24,7 +24,7 @@ def index(request):
     return render(request, 'app/index.html')
 
 
-@login_required(redirect_field_name='')  
+@login_required(redirect_field_name='', login_url='login_view')  
 def game_master_page(request):
     route_list = Routes.objects.all()
     questions = Questions.objects.all()
