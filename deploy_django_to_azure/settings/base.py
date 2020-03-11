@@ -108,4 +108,4 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_URL="/login_page"
