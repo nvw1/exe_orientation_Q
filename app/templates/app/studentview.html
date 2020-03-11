@@ -560,15 +560,15 @@ radi = 30;
         map = new google.maps.Map(document.getElementById('map'), {
 		//Change this to the values of the circle. From the database
           center: circPos,
-          zoom: 18
+          zoom: 17
         });
         infoWindow = new google.maps.InfoWindow;
-        var marker = new google.maps.Marker({
-          position: circPos,
-          map: map,
-          title: 'Hello World!'
-        });
-        setCompletionZone(circPos, 1);
+        // var marker = new google.maps.Marker({
+        //   position: circPos,
+        //   map: map,
+        //   title: 'Hello World!'
+        // });
+        setCompletionZone(circPos, radi);
         infoWindow.open(map);
 
 
@@ -577,6 +577,8 @@ radi = 30;
 
 
       }
+
+
 
 	  //Checks if player in the circle
 function pointInCircle(point, radius, circPos)
@@ -618,7 +620,7 @@ function showPosition(position) {
             };
 
             map.setCenter(pos);
-			map.setZoom(17);
+			map.setZoom(16);
 
 			marker.setMap(null);
 
