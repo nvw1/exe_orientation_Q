@@ -19,5 +19,7 @@ urlpatterns = [
 	path('game_master_page',views.game_master_page, name="game_master_page"),
 	path('create_route',views.create_route,name="create_route"),
 	path('add_question',views.add_question,name="add_question"),
-	path('get_route', views.get_route, name = "get_route")
+	path('get_route', views.get_route, name = "get_route"),
+	path('create_game',views.create_game, name="create_game"),
+	path('set_map_false',views.set_map_false, name="set_map_false"),
 ]

@@ -78,6 +78,7 @@ class Gamecode(models.Model):
     groupcode = models.CharField(max_length=250)
     questionNum = models.IntegerField(default=1)
     routeID = models.ForeignKey(Routes, on_delete=models.CASCADE,default=1)
+    map = models.CharField(max_length=50,default = "False")
     def __str__(self):     #convert objects in to strings
         return self.groupcode
 

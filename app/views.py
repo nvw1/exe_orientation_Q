@@ -31,14 +31,27 @@ def redirect(request):
         # if the group code exists, load the treasure hunt page with the correct questions
         if Gamecode.objects.filter(groupcode=groupcode).exists():
             questionNum = Gamecode.objects.get(groupcode=groupcode)
+            mapCheck = questionNum.map
             routeID = questionNum.routeID_id
             num = questionNum.questionNum
-            print(Gamecode.objects.all())
             info = Questions.objects.filter(node_num=int(num),routeID=routeID)  # Get question from the database using num counter
             request.session['groupcode'] = groupcode         #Add group code into user's session
             request.session['score'] = score            #  Add score into user's session
             request.session['routeID'] = routeID
-            return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score})
+            if num >1:
+                print(num)
+                num -=1
+                print(num)
+                latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+                num +=1
+            else:
+                latest_question = Questions.objects.get(node_num=num , routeID=routeID)
+            location = latest_question.location
+            longtitude = latest_question.longtitude
+            latitude = latest_question.latitude
+            place_name = latest_question.answers
+            return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score,"map_check":mapCheck,"location":location,"longtitude": longtitude,
+                                                               "latitude":latitude,"answer":place_name})
         else:
             print("Wrong")
             messages.error(request, 'The game code does not exist')
@@ -48,7 +61,6 @@ def redirect(request):
     # if an answer to question is submitted, check if it is correct
     if request.method == 'POST' and 'submit-question' in request.POST:
         routeID = request.session['routeID']
-
         groupcode = request.session['groupcode']            #Get groupcode from user's sessio
         data = str(request.POST.get('answer'))              #Get text from the input answer box
         questionNum = Gamecode.objects.get(groupcode=groupcode)
@@ -61,10 +73,13 @@ def redirect(request):
             location = latest_question.location
             longtitude = latest_question.longtitude
             latitude = latest_question.latitude
-            map_check = True
+            place_name = latest_question.answers
+            map_check = "True"
+
             num += 1  # Add 1 to the counter so the questions moves on to the next one
             if Questions.objects.filter(node_num=int(num), routeID=routeID).exists():     #Check whether if the user is on the last question
                 score += 3
+                questionNum.map = map_check
                 questionNum.questionNum = num
                 questionNum.save()
                 print(location)
@@ -73,28 +88,44 @@ def redirect(request):
                 return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,
                                                                "score":score, "map_check":map_check,
                                                                "location":location,"longtitude": longtitude,
-                                                               "latitude":latitude})
+                                                               "latitude":latitude,"answer":place_name})
 
             else:                 #Case when the user is on the last question
-                num -= 1
+                num -=1
                 questionNum.questionNum = num
+                questionNum.map = map_check
                 questionNum.save()
-                info = Questions.objects.filter(node_num=num, routeID=routeID)
+                info = Questions.objects.filter(node_num=num,routeID=routeID)
                 messages.success(request, 'You have finished the quiz, well done!')  #Generate message when user finish the quiz
-                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
+                return render(request, 'app/studentview.html', {"groupcode":groupcode,"data":info,"id":id,
+                                                               "score":score, "map_check":map_check,
+                                                               "location":location,"longtitude": longtitude,
+                                                               "latitude":latitude,"answer":place_name,"Finished":"True"})
         else:         # Case when user gets the answer wrong
 
-            info = Questions.objects.filter(node_num=num, routeID=routeID)
-            messages.error(request, 'That is the wrong answer, please try again')
-            # Return incorrect message
-            return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
+                info = Questions.objects.filter(node_num=num, routeID=routeID)
+                messages.error(request, 'That is the wrong answer, please try again')
+                # Return incorrect message
+                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
+
+
+
     if 'groupcode' in request.session:
         groupcode = request.session['groupcode']
         routeID = request.session['routeID']
         questionNum = Gamecode.objects.get(groupcode=groupcode)
         num = questionNum.questionNum
+        mapcheck = questionNum.map
         info = Questions.objects.filter(node_num=int(num), routeID=routeID)  # Get question from the database using num counter
-        return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
+        latest_question = Questions.objects.get(node_num=num-1, routeID=routeID)
+        location = latest_question.location
+        longtitude = latest_question.longtitude
+        latitude = latest_question.latitude
+        place_name = latest_question.answers
+        return render(request, 'app/studentview.html',
+                      {"groupcode": groupcode, "data": info, "id": id, "score": score, "map_check": mapcheck,
+                       "location": location, "longtitude": longtitude,
+                       "latitude": latitude, "answer": place_name})
     else:
         num = 1
         return render(request, 'app/index.html')
@@ -158,7 +189,9 @@ def contact(request):
 
 
 def game_master_page(request):
-    return render(request, 'app/game_master_page.html')
+    route_list = Routes.objects.all()
+    questions = Questions.objects.all()
+    return render(request, 'app/game_master_page.html',{"route_list":route_list,"questions":questions})
 
 
 def create_route(request):
@@ -227,4 +260,28 @@ def removesign(variable):
 
 def get_route(request):
     route_list = Routes.objects.all()
-    return JsonResponse({"route":route_list})
+    for i in route_list.iterator():
+        print(i)
+    return HttpResponse({"route":route_list})
+
+
+
+def create_game(request):
+    groupcode1 = request.POST.get("groupcode")
+    routeID = request.POST.get("routeID")
+    if Gamecode.objects.filter(groupcode=groupcode1).exists():
+        return HttpResponse("Exist")
+    else:
+        a = Gamecode()
+        a.groupcode = groupcode1
+        a.routeID_id= routeID
+        a.save()
+        return HttpResponse("Added")
+
+
+
+def set_map_false(request):
+    group_num = request.session['groupcode']
+    a = Gamecode.objects.get(groupcode = group_num)
+    a.map = "False"
+    a.save()
