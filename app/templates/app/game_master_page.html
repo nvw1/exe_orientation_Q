@@ -170,7 +170,7 @@ span.psw {
 <body >
     <!-- Header will just have logout button -->
 <div id="header">
-    <a class="btn">Logout</a>
+    <a class="btn" href="/logout">Logout</a>
 </div>
 <!-- Header will just have logout button -->
 <div class="container" id="body-master">
@@ -222,11 +222,11 @@ span.psw {
 
       <label for="psw"><b>Route Name</b></label>
       <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
-	  <script src="{% static 'js/map.js' %}"></script>
+	  <!-- <script src="{% static 'js/map.js' %}"></script>
 	  <div id="map"></div>
 	  <input type="text" id="lat" placeholder="Latitude" name="Latitude">
 	  <input type="text" id="lng" placeholder="Longitude" name="Longitude">
-	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script>
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script> -->
 	  
 
       <input type="submit" name="click" value="Submit" />
@@ -388,12 +388,18 @@ span.psw {
 
         <label for="psw"><b>Hint</b></label>
       <input type="text" placeholder="Enter Hint" name="hint" id="hint" required>
+	  <script src="{% static 'js/map.js' %}"></script>
+	  <div id="map"></div>
+	  <input type="text" id="lat" placeholder="Latitude" name="Latitude" required>
+	  <input type="text" id="lng" placeholder="Longitude" name="Longitude" required>
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script>
+<!-- 
         <label for="location"><b>Location</b></label>
       <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
         <label for="psw"><b>Latitude</b></label>
       <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
         <label for="psw"><b>Longtitude</b></label>
-      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required>
+      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
 
       <input type="submit" name="click" value="Submit" />
 
@@ -591,10 +597,10 @@ function myFunction() {
 	{{ form }}
 	<button type="submit">Save changes</button>
 </form> -->
-
+<!--
 <form action="/login_view" method = "post">
 	{% csrf_token %}
-	<!-- <input type="text" name="username" placeholder="Username"><br> -->
+	<!-- <input type="text" name="username" placeholder="Username"><br> --><!--
 	<input type="password" name="oldPass" placeholder="Old password"><br>
 	<input type="password" name="newPass" placeholder="New Passowrd"><br>
 	<input type="password" name="valPass" placeholder="enter again"><br>
@@ -627,5 +633,5 @@ function myFunction() {
 		{% endif %}
 	</form>
 {% endif %}
---!>
+-->
 </body>
