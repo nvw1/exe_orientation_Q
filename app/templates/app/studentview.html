@@ -160,6 +160,15 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+      #map {
+        height: 100%;
+      }
+
+	        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 </style>
 
 
@@ -234,6 +243,8 @@ span.psw {
 </head>
 
 <body>
+
+
 <div id="myNav" class="overlay">
   <div class="overlay-content"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/faq">FAQ</a>
@@ -427,15 +438,13 @@ span.psw {
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <h2>Please go to the following location and press the buttons to verify</h2>
+      <h2>Please go to the following location and press the buttons to verify  </h2>
     </div>
     <div class="modal-body">
-      <iframe src="{{ location }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        <h2 id="demo"></h2>
-        <div id="map"></div>
-      <button onclick="getLocation()">Try It</button>
-      <button onclick="setCompletionZone(circPos, radi)">Get Circle</button>
-      <button onclick="pointInCircle(pos, radi, circPos)">Is In Centre</button>
+        <h2 style="color:black" >{{ answer }} is your destination</h2>
+        <div id="map" style="width: 100%; height: 500px;"></div>
+      <button onclick="getLocation()">Submit My Location</button>
+
     </div>
     <div class="modal-footer">
       <h3>Modal Footer</h3>
@@ -527,7 +536,8 @@ span.psw {
     $(window).bind("load",function(){
         map_check = "{{ map_check }}"
         if (map_check == "True"){
-            document.getElementById('myModal').style.display='block'
+            document.getElementById('myModal').style.display='block';
+            initMap();
         }
     });
 
@@ -535,45 +545,57 @@ span.psw {
 <script>
 var x = document.getElementById("demo");
 
-var map, infoWindow, pos, marker, radi, circle, lon, lat;
-//This is the center coordinate for the circle for checking if player insde.
+var map, infoWindow, pos, marker, radi, circle;
+//CHANGE This is the center coordinate for the circle for checking if player insde. Get this from the databse.
 var circPos = {
-
-lat: 50.7329933,
-lng:-3.54309
+lat: {{latitude}},
+lng:{{ longtitude }}
 }
 
-//This is the radius of circle.
-radi = 60;
+//CHANGE This is the radius of circle. Get this from the database.
+radi = 30;
+
 	//Ran at loading of website, intiliazes the map.
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+		//Change this to the values of the circle. From the database
+          center: circPos,
+          zoom: 18
         });
         infoWindow = new google.maps.InfoWindow;
+        var marker = new google.maps.Marker({
+          position: circPos,
+          map: map,
+          title: 'Hello World!'
+        });
+        setCompletionZone(circPos, 1);
+        infoWindow.open(map);
 
 
 
-            infoWindow.open(map);
+
+
 
       }
 
 	  //Checks if player in the circle
-function pointInCircle(point, radius, center)
+function pointInCircle(point, radius, circPos)
 {
 
 
-var p = new google.maps.LatLng(lat, lon );
-var c = new google.maps.LatLng({lat}, lon);
+var p = new google.maps.LatLng(point.lat, point.lng );
+var c = new google.maps.LatLng(circPos.lat, circPos.lng);
 
 	if((google.maps.geometry.spherical.computeDistanceBetween(p, c)) >= radius )
 	{
-		alert("You no there");
+		//CHANGE this to whatever you want
+		alert("This is your current location. You are not there.");
 	}
 	else{
-		alert("You there");
-		document.getElementById('myModal').style.display='none'
+		//CHANGE this to whatver you want.
+		alert("This is your current location. You are there.");
+		document.getElementById('myModal').style.display='none';
+		setFalse();
 	}
 }
 
@@ -589,23 +611,24 @@ function getLocation() {
 
 //Shows position of player on the map.
 function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-    lat = position.coords.latitude
-    lon = position.coords.longitude
+
     pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
 
             map.setCenter(pos);
-			map.setZoom(20);
+			map.setZoom(17);
+
+			marker.setMap(null);
 
 			marker = new google.maps.Marker({
 					  map: map,
 					  position: pos,
 					  title: 'your location'
 					});
+
+			pointInCircle(pos, radi, circPos);
 }
 
 //Draws circle of the completion zone.
@@ -650,9 +673,21 @@ function showError(error) {
       break;
   }
 
-var MY_KEY = config.API;
+
 
 }
+
+function setFalse(){
+           $.ajax({
+                url:'/set_map_false',
+                success: function(response){
+
+                }
+            });
+}
+
+
+
 </script>
 
 <script async defer

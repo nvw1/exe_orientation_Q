@@ -1,10 +1,637 @@
+
+{% load static %}
+<!-- Authors: Nik, Hao-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+  <link rel="stylesheet" href="{%static 'css/all.css' %}"></link>
+  
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+</head>
+<!-- Gradient background -->
+<style>
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+body{
+background: #4CA1AF;  /* fallback for old browsers */
+/*background: -webkit-linear-gradient(45deg, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(45deg, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* Make card show up when hovering.*/
+.card:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+    input[type=text],input[type=number], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<body >
+    <!-- Header will just have logout button -->
+<div id="header">
+    <a class="btn" href="/logout">Logout</a>
+</div>
+<!-- Header will just have logout button -->
+<div class="container" id="body-master">
+    <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Create new Route</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-secondary btn-lg">Create route</button>
+            <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Start existing Route</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-outline-secondary btn-lg">Create game</button>
+            <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
+          </div>
+        </div>
+      </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class = "col align-self-end" id="footer"> what
+            <div class = "" id = "logo-bottom-right">Logo will be here in the bottom right!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate"  id="myForm1">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Route ID</b></label>
+      <input type="number" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
+
+      <label for="psw"><b>Route Name</b></label>
+      <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
+	  <!-- <script src="{% static 'js/map.js' %}"></script>
+	  <div id="map"></div>
+	  <input type="text" id="lat" placeholder="Latitude" name="Latitude">
+	  <input type="text" id="lng" placeholder="Longitude" name="Longitude">
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script> -->
+	  
+
+      <input type="submit" name="click" value="Submit" />
+	
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+    <div id="id07" class="modal">
+
+  <form class="modal-content animate"  id="myForm3">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <table id="myTable">
+  <tr class="header">
+      <th>routeID</th>
+     <th>Questions</th>
+        <th>Answers</th>
+        <th>Hint</th>
+
+          <th>Latitude</th>
+          <th>Longtitude</th>
+      <th>Location</th>
+  </tr>
+    {% for i in questions %}
+      <tr>
+        <td>{{ i.routeID_id }}</td>
+        <td>{{ i.questions }}</td>
+        <td>{{ i.answers }}</td>
+          <td>{{ i.hintsint }}</td>
+      <td>{{ i.latitude }}</td>
+      <td>{{ i.longtitude }}</td>
+       <td>{{ i.location }}</td>
+      </tr>
+     {% endfor %}
+
+</table>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id07').style.display='none',document.getElementById('id03').style.display='block'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+    <div id="id04" class="modal">
+
+  <form class="modal-content animate"  id="createGame">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id04').style.display='none', document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
+
+    </div>
+
+    <div class="container">
+        <h1 id ="code"></h1>
+      <label for="uname"><b>Generate a random groupcode or enter your own, please remember the code as it needs to be sent to your tutees</b></label>
+        <input type="text" placeholder="Enter Groupcode" name="groupcode" id="groupcode"required>
+        <button type="button" onclick ="generate()">Generate a groupcode</button>
+
+
+
+      <input type="submit" name="click" value="Submit" />
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id04').style.display='none',
+      document.getElementById('id03').style.display='block'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+    <div id="id03" class="modal">
+
+  <form class="modal-content animate"  id="createGame">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    </div>
+
+    <div class="container">
+
+  <h2>Filterable Table</h2>
+  <p>Type something in the input field to search the table for first names, last names or emails:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>RouteID</th>
+        <th>Route Name</th>
+        <th>Create Game</th>
+          <th>More details</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+    {% for routeID in route_list %}
+      <tr>
+
+        <td>{{ routeID.routeID }}</td>
+        <td>{{ routeID.RouteName }}</td>
+        <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id04').style.display='block',
+        document.getElementById('id03').style.display='none',getID(this) " >Create Game</button></td>
+      <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
+      document.getElementById('id07').style.display='block'
+        ,getQuestions(this), myFunction() " >More details</button></td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+    </div>
+  <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="id02" class="modal">
+      <form class="modal-content animate"  id="myForm2">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Question</b></label>
+      <input type="text" placeholder="Enter Question" name="question" id="question"required>
+
+      <label for="psw"><b>Answer</b></label>
+      <input type="text" placeholder="Enter Answer" name="answer" id="answer" required>
+
+        <label for="psw"><b>Hint</b></label>
+      <input type="text" placeholder="Enter Hint" name="hint" id="hint" required>
+	  <script src="{% static 'js/map.js' %}"></script>
+	  <div id="map"></div>
+	  <input type="text" id="lat" placeholder="Latitude" name="Latitude" required>
+	  <input type="text" id="lng" placeholder="Longitude" name="Longitude" required>
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script>
+<!-- 
+        <label for="location"><b>Location</b></label>
+      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
+        <label for="psw"><b>Latitude</b></label>
+      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
+        <label for="psw"><b>Longtitude</b></label>
+      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
+
+      <input type="submit" name="click" value="Submit" />
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none', window.location.reload();" class="cancelbtn">Finished</button>
+    </div>
+  </form>
+</div>
+
+{% csrf_token %}
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+// Get the modal
+
+var modal = document.getElementById('id01');
+
+function generate(){
+    let r = Math.random().toString(36).substring(7);
+    document.getElementById("groupcode").value = r;
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var routeID;
+</script>
+<script>
+    $(document).ready(function(){
+
+         $(function(){
+            $("#myForm1").submit(function(event){
+                event.preventDefault();
+                var data1 = $('#routeId').serialize()
+                var name = $('#routeName').val()
+                $.ajax({
+                    type: "post",
+                    url: '/create_route',
+                    data : {data2:data1, routeName: name, 'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Exist") {
+                    alert("Sorry the route ID already exist, please enter a new one")
+                } else {
+                    alert("New route created, please insert questions");
+                    routeID = data1;
+                    document.getElementById('id01').style.display = 'none';
+                    document.getElementById('id02').style.display = 'block';
+                    alert("done");
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>
+<!-- Footer will have logo in bottom right -->
+<script>
+    var counter = 1;
+    $(document).ready(function(){
+
+         $(function(){
+            $("#myForm2").submit(function(event){
+                event.preventDefault();
+                var question, answer, hint, location, latitude, longtitude;
+                var question = $('#question').val()
+                var answer = $('#answer').val()
+                var hint = $('#hint').val()
+                var location = $('#location').val()
+                var latitude = $('#Latitude').val()
+                var longtitude = $('#Longtitude').val()
+                $.ajax({
+                    type: "post",
+                    url: '/add_question',
+                    data : {question:question, answer: answer,
+                        hint: hint, location: location, latitude: latitude,
+                         longtitude: longtitude, node_num: counter, routeID:routeID,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added successfully") {
+                            alert("Inserted successfully");
+                            document.getElementById("myForm2").reset();
+                            counter += 1;
+                } else {
+                    alert("Question not added, please try again")
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>
+    <script>
+        $(document).ready(function(){
+
+         $(function(){
+            $("#createGame").submit(function(event){
+                event.preventDefault();
+                var groupcode;
+                var groupcode = $('#groupcode').val()
+                $.ajax({
+                    type: "post",
+                    url: '/create_game',
+                    data : {routeID:createGameID, groupcode:groupcode,'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(response){
+                        if (response == "Added") {
+                            alert("Game created, send the groupcode to your tutees for them to join the game");
+                            document.getElementById('id04').style.display = 'none';
+                } else {
+                    alert("Groupcode already exist, please enter or generate a new one and re-submit");
+                }
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+    </script>
+<script>
+    $(window).bind("load",function() {
+        $.ajax({
+            url: '/get_route',
+            method: 'GET',
+            success: function (response) {
+            },
+            error: function (xhr, desc, err) {
+                console.log(err);
+            }
+        });
+    });
+
+</script>
+<script>
+$(window).bind("load",function() {
+    {% for routeID in route_list %}
+    {% endfor %}
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+var createGameID = 0;
+function getID(what){
+    createGameID = what.value;
+    document.getElementById("code").innerHTML = "You have selected route: " + createGameID;
+};
+function getQuestions(what){
+        createGameID = what.value;
+};
+</script>
+<script>
+function myFunction() {
+  var  filter, table, tr, td, i, txtValue;
+  filter = createGameID.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue == createGameID) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+  
+<!--
+<h1>This is the game master page</h1>
+
+<a href="logout">logout</a>
+
+<h3>Change password</h3>
+<!-- <form method="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type="submit">Save changes</button>
+</form> -->
+<!--
+<form action="/login_view" method = "post">
+	{% csrf_token %}
+	<!-- <input type="text" name="username" placeholder="Username"><br> --><!--
+	<input type="password" name="oldPass" placeholder="Old password"><br>
+	<input type="password" name="newPass" placeholder="New Passowrd"><br>
+	<input type="password" name="valPass" placeholder="enter again"><br>
+	<input type="submit" value="change password" name="submit-changePass"><br>
+	{%if messages%}
+		{% for message in messages %}
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		{% endfor%}
+	{% endif %}
+</form>
+
+
+{% if request.user.is_superuser %}
+	<h3>Make new game master account</h3>
+	<form action="/login_view" method = "post">
+		{% csrf_token %}
+		<input type="text" name="username" placeholder="new username">
+		<input type="password" name="password" placeholder="new password"><br>
+		<input type="checkbox" if="superuser" name="superuser" value="Superuser">
+		<label for="superuser">Superuser</label><br>
+		<input type="submit" value="make account" name="submit-signUp">
+		{%if messages%}
+			{% for message in messages %}
+				<div class="alert alert-danger" role="alert">
+					{{ message }}
+				</div>
+			{% endfor%}
+		{% endif %}
+	</form>
+{% endif %}
+-->
 </body>
-</html>
