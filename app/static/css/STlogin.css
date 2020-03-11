@@ -1,3 +1,5 @@
+/*Author Nik, Tom */
+
 /*Global-S*/
 
 body{
@@ -5,7 +7,53 @@ body{
   background: rgb(79,149,255);
   background: linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
 }
+
+/*Global-E*/
+
 #login{
   min-width: 375px;
 }
-/*Global-E*/
+
+#changingWord:before{
+  content: 'Host';
+  animation: animate infinite 4s;
+}
+
+/*animating word*/
+@keyframes animate
+{
+  0%
+  {
+    opacity: 1;
+  }
+  2%{
+    content: 'Host';
+  }
+5%{
+  opacity: 1;
+}
+
+  25%
+  {
+    opacity: 0;
+  }
+  50%
+  {
+    opacity: 1;
+    
+  }
+  52%{
+    content: 'Create';
+  }
+  54%{
+    opacity: 1;
+  }
+  75%
+  {
+    opacity: 0;
+  }
+  100%
+  {
+    opacity: 1;
+  }
+}

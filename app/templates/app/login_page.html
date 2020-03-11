@@ -107,7 +107,7 @@ body {
 <body>
 	<div id="login" class="container align-items-center w-50">
 		  <div class="card p-3 my-3 bg-white text-center">
-			<h4 id="home_header" class="exampleOne-heading text-left">Find your way round campus. Create your treasure hunt now!</h4>
+			<h4 id="home_header" class="exampleOne-heading text-left">Show students their way around campus. <span id="changingWord"></span> your treasure hunt now!</h4>
 			 <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
 
 			 <form action="/login_view" method = "post" class="form-signin">
@@ -115,6 +115,7 @@ body {
 				<div class="form-label-group text-left">
 					<input id="inputUser" type="text" name="username" placeholder="User" class="form-control align-top">
 					<label for="inputUser" style="top:-5px">User</label>
+
 				</div>
 				<div class="form-label-group text-left">
 					<input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control">
