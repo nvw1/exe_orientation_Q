@@ -7,7 +7,6 @@
       <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,18 +44,6 @@
       <recent name="C:\Users\hjian\Documents\GitHub\exe_orientation_Q\app\migrations" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Django server.Unnamed">
     <configuration name="Unnamed (1)" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
       <module name="exe_orientation_Q" />
@@ -89,7 +76,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="deploy_django_to_azure.settings.local" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\user\.virtualenvs\exe_orientation_Q-oePaPRKV\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\hjian\.virtualenvs\exe_orientation_Q-tR0wyigz\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -165,17 +152,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="140" key="#Unnamed" timestamp="1583779071643">
+    <state x="679" y="140" key="#Unnamed" timestamp="1583881407939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="140" key="#Unnamed/0.0.1920.1040@0.0.1920.1040" timestamp="1583779071643" />
+    <state x="679" y="140" key="#Unnamed/0.0.1920.1040@0.0.1920.1040" timestamp="1583881407939" />
     <state x="414" y="176" width="1092" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583789012498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -184,22 +173,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="694" y="299" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583789005968" />
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583852765394">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1583896140075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583852765394" />
-    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583852765394">
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583896140075" />
+    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1583896140074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583852765394" />
-    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583852765394">
+    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583896140074" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1583896140074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583852765394" />
-    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583852765394">
+    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583896140074" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1583896140074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583852765394" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583896140074" />
     <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1583844180067">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

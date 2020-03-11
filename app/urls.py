@@ -21,4 +21,5 @@ urlpatterns = [
 	path('add_question',views.add_question,name="add_question"),
 	path('get_route', views.get_route, name = "get_route"),
 	path('create_game',views.create_game, name="create_game"),
+	path('set_map_false',views.set_map_false, name="set_map_false"),
 ]

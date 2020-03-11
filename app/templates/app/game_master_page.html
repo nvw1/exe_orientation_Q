@@ -31,7 +31,7 @@ background: linear-gradient(45deg, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Fire
 .card:hover{
     box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
-    input[type=text], input[type=password] {
+    input[type=text],input[type=number], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -156,38 +156,7 @@ span.psw {
 
 </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
 
-         $(function(){
-            $("#myForm").submit(function(event){
-        event.preventDefault();
-        alert("Hello")
-        var routeIdget = $(#routeId).val()
-        alert(routeIdget)
-        $.ajax({
-            method :'POST',
-            url: '/create_route',
-            type: "post",
-            data: {routeId: routeIdget.serialize(), 'csrfmiddlewaretoken': "{{ csrf_token }}"},
-            success: function (response) {
-                if (response == "Exist") {
-                    alert("Sorry the route ID already exist, please enter a new one")
-                } else {
-                    alert("New route created, please insert questions")
-                    routeID = routeIdget
-                    document.getElementById('id01').style.display = 'none'
-                    document.getElementById('id02').style.display = 'block'
-                }
-            },
-            error: function (xhr, status, error) {
-                alert("error");
-            }
-        });
-    };
-});
-});
-</script>
 <body >
     <!-- Header will just have logout button -->
 <div id="header">
@@ -233,13 +202,13 @@ $(document).ready(function(){
 
   <form class="modal-content animate"  id="myForm1">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="img_avatar2.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
       <label for="uname"><b>Route ID</b></label>
-      <input type="text" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
+      <input type="number" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
 
       <label for="psw"><b>Route Name</b></label>
       <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
@@ -258,11 +227,56 @@ $(document).ready(function(){
 
 
 
+    <div id="id07" class="modal">
+
+  <form class="modal-content animate"  id="myForm3">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <table id="myTable">
+  <tr class="header">
+      <th>routeID</th>
+     <th>Questions</th>
+        <th>Answers</th>
+        <th>Hint</th>
+
+          <th>Latitude</th>
+          <th>Longtitude</th>
+      <th>Location</th>
+  </tr>
+    {% for i in questions %}
+      <tr>
+        <td>{{ i.routeID_id }}</td>
+        <td>{{ i.questions }}</td>
+        <td>{{ i.answers }}</td>
+          <td>{{ i.hintsint }}</td>
+      <td>{{ i.latitude }}</td>
+      <td>{{ i.longtitude }}</td>
+       <td>{{ i.location }}</td>
+      </tr>
+     {% endfor %}
+
+</table>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id07').style.display='none',document.getElementById('id03').style.display='block'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
     <div id="id04" class="modal">
 
   <form class="modal-content animate"  id="createGame">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id04').style.display='none', document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
 
     </div>
 
@@ -280,20 +294,17 @@ $(document).ready(function(){
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id04').style.display='none',
-      document.getElementById('id04').style.display='block'" class="cancelbtn">Cancel</button>
+      document.getElementById('id03').style.display='block'" class="cancelbtn">Cancel</button>
     </div>
   </form>
 </div>
 
 
-
-
-
-     <div id="id03" class="modal">
+    <div id="id03" class="modal">
 
   <form class="modal-content animate"  id="createGame">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 
     </div>
 
@@ -309,6 +320,7 @@ $(document).ready(function(){
         <th>RouteID</th>
         <th>Route Name</th>
         <th>Create Game</th>
+          <th>More details</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -319,20 +331,30 @@ $(document).ready(function(){
         <td>{{ routeID.RouteName }}</td>
         <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id04').style.display='block',
         document.getElementById('id03').style.display='none',getID(this) " >Create Game</button></td>
+      <td ><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
+      document.getElementById('id07').style.display='block'
+        ,getQuestions(this), myFunction() " >More details</button></td>
       </tr>
      {% endfor %}
     </tbody>
   </table>
-
-</div>
-
-
-
-    <div class="container" style="background-color:#f1f1f1">
+    </div>
+  <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
     </div>
   </form>
+
 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -355,22 +377,20 @@ $(document).ready(function(){
         <label for="location"><b>Location</b></label>
       <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
         <label for="psw"><b>Latitude</b></label>
-      <input type="text" placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
+      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
         <label for="psw"><b>Longtitude</b></label>
-      <input type="text" placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required>
+      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required>
 
       <input type="submit" name="click" value="Submit" />
-
-
 
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Finished</button>
+      <button type="button" onclick="document.getElementById('id02').style.display='none', window.location.reload();" class="cancelbtn">Finished</button>
     </div>
   </form>
 </div>
-    </div>
+
 {% csrf_token %}
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -407,10 +427,11 @@ var routeID;
                         if (response == "Exist") {
                     alert("Sorry the route ID already exist, please enter a new one")
                 } else {
-                    alert("New route created, please insert questions")
-                    routeID = data1
-                    document.getElementById('id01').style.display = 'none'
-                    document.getElementById('id02').style.display = 'block'
+                    alert("New route created, please insert questions");
+                    routeID = data1;
+                    document.getElementById('id01').style.display = 'none';
+                    document.getElementById('id02').style.display = 'block';
+                    alert("done");
                 }
                     },
                     error: function(xhr, desc, err){
@@ -478,7 +499,6 @@ var routeID;
                             document.getElementById('id04').style.display = 'none';
                 } else {
                     alert("Groupcode already exist, please enter or generate a new one and re-submit");
-                    alert(response)
                 }
                     },
                     error: function(xhr, desc, err){
@@ -495,7 +515,6 @@ var routeID;
             url: '/get_route',
             method: 'GET',
             success: function (response) {
-                alert(response);
             },
             error: function (xhr, desc, err) {
                 console.log(err);
@@ -522,8 +541,29 @@ $(document).ready(function(){
 var createGameID = 0;
 function getID(what){
     createGameID = what.value;
-    alert(createGameID);
     document.getElementById("code").innerHTML = "You have selected route: " + createGameID;
 };
+function getQuestions(what){
+        createGameID = what.value;
+};
+</script>
+<script>
+function myFunction() {
+  var  filter, table, tr, td, i, txtValue;
+  filter = createGameID.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue == createGameID) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>
 </body>
