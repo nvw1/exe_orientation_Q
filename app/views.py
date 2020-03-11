@@ -1,12 +1,13 @@
 # author : Hao, Sam
 
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect as rd
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from app.models import Gamecode
 from app.models import Questions
+
 
 # current node number, global variable
 num = 1
@@ -17,6 +18,9 @@ def index(request):
     global num
     num = 1
     return render(request, 'app/index.html')
+
+def chat(request):
+    return rd('http://127.0.0.1:8080/?' + request.session['groupcode'])
 
 
 def redirect(request):

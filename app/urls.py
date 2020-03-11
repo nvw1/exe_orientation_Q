@@ -5,6 +5,7 @@ from app import views
 
 
 urlpatterns = [
+	path('chat',  views.chat, name = 'chat'),
 	path('', views.index, name='index'),
 	path('404', views.handler404, name='404'),
 	path('500', views.handler500, name='500'),

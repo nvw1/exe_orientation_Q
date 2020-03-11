@@ -21,6 +21,9 @@
       <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button>Send</button>
     </form>
     <script>
+      var query = window.location.search;
+      console.log('the room code will be!' + query);
+            console.log(URL);
             var socket = io('/chatRooms')
             // submit text message without reload/refresh the page
             $('form').submit(function(e){
@@ -38,10 +41,9 @@
                 $('#messages').append($('<li>').html(username));
             });
             // ask username
+            socket.emit('room', query)
             var username = prompt('Please tell me your name');
             socket.emit('username', username);
-            var room = prompt('please enter the room you would like to enter');
-            socket.emit('room', room)
     </script>
   </body>
 </html>
