@@ -152,12 +152,6 @@ def redirect(request):
             place_name = latest_question.answers
             return render(request, 'app/studentview.html',{"groupcode":groupcode, "data":info, "id":id, "score":score,"map_check":mapCheck,"location":location,"longtitude": longtitude,
                                                                "latitude":latitude,"answer":place_name})
-        else:
-            print("Wrong")
-            messages.error(request, 'The game code does not exist')
-            return render(request, 'app/index.html')
-
-
         # otherwise show an error message
         else:
             print("Wrong")

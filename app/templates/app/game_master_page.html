@@ -170,7 +170,7 @@ span.psw {
 <body >
     <!-- Header will just have logout button -->
 <div id="header">
-    <a class="btn">Logout</a>
+    <a class="btn" href="/logout">Logout</a>
 </div>
 <!-- Header will just have logout button -->
 <div class="container" id="body-master">
@@ -591,10 +591,10 @@ function myFunction() {
 	{{ form }}
 	<button type="submit">Save changes</button>
 </form> -->
-
+<!--
 <form action="/login_view" method = "post">
 	{% csrf_token %}
-	<!-- <input type="text" name="username" placeholder="Username"><br> -->
+	<!-- <input type="text" name="username" placeholder="Username"><br> --><!--
 	<input type="password" name="oldPass" placeholder="Old password"><br>
 	<input type="password" name="newPass" placeholder="New Passowrd"><br>
 	<input type="password" name="valPass" placeholder="enter again"><br>
@@ -627,5 +627,5 @@ function myFunction() {
 		{% endif %}
 	</form>
 {% endif %}
---!>
+-->
 </body>
