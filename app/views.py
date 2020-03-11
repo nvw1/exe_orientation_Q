@@ -45,7 +45,7 @@ def login_view(request):
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
         else:
             newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
-                    
+ 
         # save the user in the database
         newUser.save()
 
@@ -118,7 +118,6 @@ def logout_view(request):
 
         
 
-@login_required
 def redirect(request):
     global score
     global num
