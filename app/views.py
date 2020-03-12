@@ -122,7 +122,11 @@ def login_view(request):
             login(request, user)
             print("logged in")
             messages.success(request, 'log in success')
-            return render(request, 'app/game_master_page.html')
+            route_list = Routes.objects.all()
+            questions = Questions.objects.all()
+            games = Gamecode.objects.all()
+            return render(request, 'app/game_master_page.html',
+                          {"route_list": route_list, "questions": questions, "games": games})
         else:
             # report error
             print("log in failure")
