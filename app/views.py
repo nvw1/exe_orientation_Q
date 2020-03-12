@@ -303,6 +303,10 @@ def contact(request):
     """render the contact page"""
     return render(request,'app/contact.html')
 
+def locations(request):
+    """render the locations page"""
+    return render(request, 'app/locations.html')
+
 #creating route
 def create_route(request):
     """logic  for creating a custom route"""

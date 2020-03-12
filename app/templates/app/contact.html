@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+{% load static %}
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Exe Orientation</title>
   <meta name="description" content="Contact page">
-  <meta name="author" content="Hao">
+  <meta name="author" content="Sam">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -20,46 +20,52 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <style>
-.collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-.active, .collapsible:hover {
-  background-color: #555;
-}
-
-.collapsible:after {
-  content: '\002B';
-  color: white;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2212";
-}
-
-.content {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
-}
-  </style>
+<link rel="stylesheet" href="{% static 'css/STmaster.css' %}">
+<link rel="stylesheet" href="{% static 'css/STnavbar.css' %}">
+<link rel="stylesheet" href="{% static 'css/SThome.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/STcollapse.css' %}">
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+	<!--MAIN MENU-S-->
+    <div class="header bg-transparent ">
+      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      <input type="checkbox" id="chk">
+      <label for="chk" class="show-menu-btn">
+        <img src="{% static '/images/STmenu/Hamburger.png' %}">
+      </label>
+      <ul class="menu">
+        <ul class="menu_item">
+          <a href="/locations">Locations</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/locations.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="/contact">Contacts</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/contacts.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="/faq">FAQs</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
+        </ul>
+        <ul class="menu_item">
+          <a href="#">About</a>
+          <img class="logo_menu" src="{% static '/images/STmenu/about.svg' %}" alt="icon">
+        </ul>
+        <label for="chk" class="hide-menu-btn">
+          <img src="https://img.icons8.com/ios-filled/36/000000/delete-sign.png">
+        </label>
+        <img class="UOE_stamp" src="{% static '/images/STmenu/uniExeter.svg' %}" alt="Universit of Exeter">
+      </ul>
+    </div>
+    <!--MAIN MENU-E-->
 
 
 
@@ -69,7 +75,7 @@
 	<!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-
+<div style="width:95%" class="container-fluid p-3 my-3 bg-white ">
     <h1><center>Contacts</center></h1>
 <button class="collapsible">Key contacts</button>
 <div class="content">
@@ -175,7 +181,7 @@
   <p>Change me</p>
 </div>
 
-
+</div>
 
 
 <script>

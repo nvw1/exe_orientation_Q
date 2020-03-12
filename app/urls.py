@@ -24,5 +24,6 @@ urlpatterns = [
 	path('set_map_false',views.set_map_false, name="set_map_false"),
 	path('login_page', views.login_page, name="login_page"),
 	path('login_view', views.login_view, name="login_view"),
-	path('logout', views.logout_view, name="logout_view")
+	path('logout', views.logout_view, name="logout_view"),
+	path('locations', views.locations, name="locations")
 ]
