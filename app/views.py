@@ -156,7 +156,6 @@ def login_view(request):
         user = request.user
         user.is_active = False
         user.save()
-        logout(user)
         messages.success(request, 'Account successfully deactivated')
         return render(request, 'app/login_page.html')
 
