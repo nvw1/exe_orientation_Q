@@ -28,7 +28,8 @@ def index(request):
     return render(request, 'app/index.html')
 
 
-@login_required(redirect_field_name='')
+
+@login_required(redirect_field_name='', login_url='login_view')  
 def game_master_page(request):
     """
     Load game master page, sends all the available routeID's and questions to the game_master_page as objects
@@ -53,6 +54,11 @@ def login_page(request):
 def signUp_page(request):
     """load signUp page"""
     return render(request, 'app/signUp_page.html')
+
+@login_required(redirect_field_name='')
+def manage_account(request):
+    """load manage account page"""
+    return render(request, 'app/manage_account.html')
 
 def login_view(request):
     """
@@ -137,15 +143,23 @@ def login_view(request):
                 user.save()
                 update_session_auth_hash(request, user)
                 messages.success(request, 'password changed')
-                return render(request, 'app/game_master_page.html')
+                return render(request, 'app/manage_account.html')
             else:
                 messages.error(request, 'passwords did not match')
-                return render(request, 'app/game_master_page.html')
+                return render(request, 'app/manage_account.html')
         else:
             # report errors
             print("log in failure")
             messages.error(request, 'log in failure')
             return render(request, 'app/login_page.html')
+    
+    if request.method == "POST" and 'submit-deleteAcc' in request.POST:
+        user = request.user
+        user.is_active = False
+        user.save()
+        messages.success(request, 'Account successfully deactivated')
+        return render(request, 'app/login_page.html')
+
 
     print("did not get username or password")
     messages.error(request, 'did not get username or password')
