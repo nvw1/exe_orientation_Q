@@ -25,5 +25,9 @@ urlpatterns = [
 	path('login_page', views.login_page, name="login_page"),
 	path('login_view', views.login_view, name="login_view"),
 	path('logout', views.logout_view, name="logout_view"),
+	path('delete_question',views.delete_question, name="delete_question"),
+	path('edit',views.edit,name="edit"),
+	path('add_question_existing',views.add_question_existing,name="add_question_existing"),
+	path('delete_route',views.delete_route,name="delete_route"),
 	path('locations', views.locations, name="locations")
 ]
