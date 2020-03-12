@@ -8,7 +8,7 @@ class TestUrls(SimpleTestCase):
 
     def test_(self):
         """
-        
+        Test the redirect works properly.
         """
         url = reverse('redirect')
         self.assertEqual(resolve(url).func, redirect)
