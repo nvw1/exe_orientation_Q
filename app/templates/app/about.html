@@ -1,14 +1,14 @@
-<!-- Authors: Nik, Hao, Sam-->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% load static %}
+
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Exe Orientation</title>
-  <meta name="description" content="Contact page">
+  <meta name="description" content="">
   <meta name="author" content="Sam">
 
   <!-- Mobile Specific Metas
@@ -17,28 +17,29 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+  
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <link rel="stylesheet" href="{% static 'css/STmaster.css' %}">
 <link rel="stylesheet" href="{% static 'css/STnavbar.css' %}">
 <link rel="stylesheet" href="{% static 'css/SThome.css' %}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/STcollapse.css' %}">
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/STcollapse.css' %}">
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+
 
 </head>
 <body>
-  
-	<!-- MAIN MENU-S-->
+	<!--MAIN MENU-S-->
     <div class="header bg-transparent ">
-		<a href="/">
+      <a href="/">
       <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;"></a>
       <input type="checkbox" id="chk">
       <label for="chk" class="show-menu-btn">
@@ -67,66 +68,27 @@
         <img class="UOE_stamp" src="{% static '/images/STmenu/uniExeter.svg' %}" alt="Universit of Exeter">
       </ul>
     </div>
-    <!--MAIN MENU-E -->
+    <!--MAIN MENU-E-->
 
 	<!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+    
 <div style="width:95%" class="container-fluid p-3 my-3 bg-white ">
-    <h1><center>Contacts</center></h1>
-	<img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="250px" height="250px">
-<button class="collapsible">University Reception</button>
-<div class="content">
-	<p>The University's reception handles general enquiries and visitors to the University. The address for the reception is:</p>
-	<p>University of Exeter Reception<br>Stocker Road<br>Exeter EX4 4PY</p>
-	<p><strong>Telephone:</strong> +44 (0) 1392 661000</p>
-	<p>Access information for the main reception is available on the <a href="https://accessable.co.uk/venues/main-university-reception" bis_skin_checked="1">AccessAble website</a>.</p>
-	</div>
+	<h1><center>About this app</center></h1>
+	<img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
+	<p ><center style="font-size: 14px;">
 
-<button class="collapsible">Accommodation Office</button>
+		Exeter Orientation is primarily designed as a treasure hunt app to help first year students around the daunting Exeter campus, it will also promote teamwork and help the students socialise when they first join the University. The app also has many features that a first year student might find very useful such as a list of useful contacts, an FAQ and a list of helpful locations. Students will form teams and work through a route that consists of riddles and geolocation checking.
+	</center>
+	</p>
+	<!-- <button class="collapsible">What are the opening time of the SID desk?</button>
 	<div class="content">
-		<p><p>Phone: 0300 555 0444 (UK callers)<br>+44 1392 722524 (EU/International callers)<br>Email: <a href="mailto:sid@exeter.ac.uk" bis_skin_checked="1">sid@exeter.ac.uk</a> <br>Visit the <a href="/accommodation/" bis_skin_checked="1">Accommodation website</a></p></p>
-	</div>
-
-<button class="collapsible">IT Support</button>
-	<div class="content">
-		<p>Phone: 01392 723934<br>Web:&nbsp;<a href="http://www.exeter.ac.uk/ithelpdesk" bis_skin_checked="1">http://www.exeter.ac.uk/ithelpdesk</a></p>
-	</div>
-
-<button class="collapsible">Career Zone</button>
-	<div class="content">
-		<p>Phone +44 (0) 1392 724493<br>Email: <a href="mailto:careers@exeter.ac.uk" bis_skin_checked="1">careers@exeter.ac.uk</a></p>
-	</div>
-
-<button class="collapsible">Student Health Centre</button>
-	<div class="content">
-
-		<p>Student Health Centre<br>
-			Reed Mews<br>
-			Streatham Drive<br>
-			University Campus<br>
-			Exeter<br>
-			EX4 4QP<br>
-
-			Tel: 01392 676606<br>
-			Email: <a href="mailto:studenthealth@exeter.ac.uk" bis_skin_checked="1">studenthealth@exeter.ac.uk</p>
-	</div>	
+	</div> -->
 </div>
 
-<script>
-// Functionality for drop down lists
-var coll = document.getElementsByClassName("collapsible");
-var i;
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-</script>
+
+
+
+
+
 </body>

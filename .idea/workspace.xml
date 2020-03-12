@@ -4,6 +4,7 @@
     <list default="true" id="f65e46e5-fdf6-46a8-acb0-d240f1659d43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/app/game_master_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/game_master_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +176,7 @@
       <workItem from="1583777464422" duration="25596000" />
       <workItem from="1583844176197" duration="7029000" />
       <workItem from="1583856222205" duration="11702000" />
-      <workItem from="1583995208416" duration="4377000" />
+      <workItem from="1583995208416" duration="7403000" />
     </task>
     <servers />
   </component>

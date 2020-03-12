@@ -1,9 +1,10 @@
+<!-- Authors: Sam, Nik-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	{% load static %}
 	<meta charset="utf-8">
-	<title>Exe Orientation Login</title>
+	<title>Exe Orientation Sign Up</title>
 	<meta name="description" content="">
 	<meta name="author" content="Sam, Niklas">
 	<meta name="theme-color" content="#ffffff">
@@ -20,19 +21,16 @@
 			<h4 id="home_header" class="exampleOne-heading text-left">Create new account.</h4>
 			<button style="position:absolute; top:10px; right:10px; " type="button" onclick="location.href='/login_page';" class="btn-lg btn-outline-secondary w-25">Back</button>
 			 <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
-
 			 <form action="/login_view" method = "post" class="form-signin">
 				{% csrf_token %}
 				<div class="form-label-group text-left">
 					<input id="inputUser" type="text" name="username" placeholder="Username" class="form-control align-top">
 					<label for="inputUser" style="top:-5px">Username</label>
-
 				</div>
 				<div class="form-label-group text-left">
 					<input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control">
 					<label for="inputPassword" style="top:-5px">Password</label>
 				</div>
-					
 					<input type="submit" value="create account" name="submit-signUp" class="btn-lg btn-outline-success">
 					{%if messages%}
 						{% for message in messages %}
@@ -41,12 +39,9 @@
 							</div>
 						{% endfor%}
 					{% endif %}
-	
 					<p class="mt-5 mb-3 text-muted text-center"> Group Q @ 2020</p>
 			</form>
-	
 		  </div>
-	
 	</div>
 </body>
 </html>

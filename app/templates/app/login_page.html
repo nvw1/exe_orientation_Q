@@ -1,3 +1,4 @@
+<!-- Authors: Nik, Hao, Sam -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,26 +13,23 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
 </head>
+
 <body>
 	<div id="login" class="container align-items-center w-50">
 		  <div class="card p-3 my-3 bg-white text-center">
 			<h4 id="home_header" class="exampleOne-heading text-left">Show students their way around campus. <span id="changingWord"></span> your treasure hunt now!</h4>
 			 <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
-
 			 <form action="/login_view" method = "post" class="form-signin">
 				{% csrf_token %}
 				<div class="form-label-group text-left">
 					<input id="inputUser" type="text" name="username" placeholder="User" class="form-control align-top">
 					<label for="inputUser" style="top:-5px">User</label>
-
 				</div>
 				<div class="form-label-group text-left">
 					<input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control">
 					<label for="inputPassword" style="top:-5px">Password</label>
 				</div>
-					
 					<input type="submit" value="log in" name="submit-logIn" class="btn-lg btn-outline-success">
 					<button type="button" onclick="location.href='/signUp_page';" class="btn-lg btn-outline-secondary">make new account</button>
 					{%if messages%}
@@ -41,7 +39,6 @@
 							</div>
 						{% endfor%}
 					{% endif %}
-	
 					<p class="mt-5 mb-3 text-muted text-center"> Group Q @ 2020</p>
 			</form>
 	

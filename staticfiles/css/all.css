@@ -1,3 +1,6 @@
+/*
+Authors: OpenAi @ openai.com
+*/
 @font-face {
     font-family: "ColfaxAI";
     src: url(../fonts/ColfaxAIRegular.woff2?v=1.2) format("woff2"),url(../fonts/ColfaxAIRegular.woff?v=1.2) format("woff");
@@ -16223,10 +16226,6 @@ select.form-control[size],select.form-control[multiple] {
 
 .font-pnum {
     font-variant-numeric: proportional-nums
-}
-
-.balance-text {
-    text-wrap: balance
 }
 
 .token.comment,.token.prolog,.token.doctype,.token.cdata {
