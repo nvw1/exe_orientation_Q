@@ -107,7 +107,7 @@
     {% endblock %}
 
 
-<div id="myModal" class="modal map-c">
+<div id="myModal" class="modal map-c" >
 
   <!-- Modal content -->
   <div class="modal-content" style="border-radius: 8px;">
@@ -201,7 +201,6 @@
     var map_check = "False";
     $(window).bind("load",function(){
         map_check = "{{ map_check }}"
-        alert(map_check)
         if (map_check == "True"){
             document.getElementById('myModal').style.display='inline-block';
             initMap();
