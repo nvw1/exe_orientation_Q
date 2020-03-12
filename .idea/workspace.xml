@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f65e46e5-fdf6-46a8-acb0-d240f1659d43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/tests.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django tests.Test: app.test">
+  <component name="RunManager" selected="Django server.Unnamed">
     <configuration name="Test: app.test" type="DjangoTestsConfigurationType">
       <module name="exe_orientation_Q" />
       <option name="INTERPRETER_OPTIONS" value="" />
