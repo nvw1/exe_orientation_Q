@@ -22,25 +22,25 @@
   <body>
     <!--MAIN MENU-S-->
     <div class="header bg-transparent text-center">
-      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      <button id='backtreebtn' onclick="location.href='/';">
+        <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      </button>
       <input type="checkbox" id="chk">
-      <div class="Team">
-        <h3 id="team-id">Teamname</h3>
-      </div>
+
       <label for="chk" class="show-menu-btn">
         <img src="{% static '/images/STmenu/Hamburger.png' %}">
       </label>
       <ul class="menu">
         <ul class="menu_item">
-          <a href="#">Locations</a>
+          <a href="/locations">Locations</a>
           <img class="logo_menu" src="{% static '/images/STmenu/locations.svg' %}" alt="icon">
         </ul>
         <ul class="menu_item">
-          <a href="#">Contacts</a>
+          <a href="/contacts">Contacts</a>
           <img class="logo_menu" src="{% static '/images/STmenu/contacts.svg' %}" alt="icon">
         </ul>
         <ul class="menu_item">
-          <a href="#">FAQs</a>
+          <a href="/faq">FAQs</a>
           <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
         </ul>
         <ul class="menu_item">
@@ -58,7 +58,7 @@
     <div class="row">
       <div class="game-top container-fluid">
         <h2 id="pin">Pin: {{ groupcode }}</h2>
-        <button id="leave_button" onclick="window.location.href='b.php'">Leave</button>
+        <button id="leave_button" onclick="location.href='/';">Leave</button>
         <div class="game_info">
           <h2 id=score>Score: 0</h2>
         </div>
@@ -70,17 +70,17 @@
         {% for questions in data %}
         <p>{{ questions.questions }}</p>
         {% endfor %}
-        <div class="points-lost-container">
-          <h3 id="points-lost"></h3>
+        <div id="points-lost-container" class="points-lost-container">
+          <h3 id="points-lost">-1</h3>
           <img src="{% static 'images/STgame/lose.svg' %}">
         </div>
-        <button  id="show-hint" onclick="">
+        <button  id="gethint" onclick="showhint()">
           Hint<img src="{% static 'images/STgame/Hintbutton.svg' %}" alt="icon">
         </button>
-        <div class="hint-box">
+        <div id="hint-box" class="hint-box">
           <h4 style="color:black;">Hint*</h4>
           <div class="hint-container">
-            <p id="hint-text">ewfewfoewjfiejfejfi</p>
+            <p id="hint-text"></p>
           </div>
         </div>
       </div>
@@ -88,8 +88,7 @@
     <div class="row mt-1">
       <form action="redirect" method = "post" id="answer-form"  >
         {% csrf_token %}
-         <textarea id="answer-box" rows="4" cols="50" placeholder="Answer" name="answer">
-         </textarea>
+         <textarea id="answer-box" rows="1" cols="1" placeholder="Answer" name="answer"></textarea>
          <input id="answer-button" type="submit" value="Submit " name="submit-question">
 
          {%if messages%}
@@ -131,13 +130,14 @@
 
 
  <script type = "text/javascript">
-	function openNav() {
-  		document.getElementById("myNav").style.width = "100%";
-	}
 
-	function closeNav() {
-  		document.getElementById("myNav").style.width = "0%";
-	}
+ function showhint() {
+   document.getElementById("hint-box").style.display = "block";
+   document.getElementById("points-lost-container").style.display = "block";
+   document.getElementById("gethint").style.display = "none";
+ }
+
+
     function sendRequest(){
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
@@ -173,6 +173,7 @@
         var a = "{{ score }}";
         document.getElementById("score").innerHTML = "High score : " + a ;
         $("#gethint").click(function (e) {
+            showhint();
             if (hint_got == false) {
                 a--;
                 hint_got = true;
@@ -184,7 +185,7 @@
                 type: "post",
                 data :{score:a,'csrfmiddlewaretoken': "{{ csrf_token }}"},
                 success: function (response) {
-                    alert(response);
+                    document.getElementById('hint-text').innerHTML = response;
                 },
                 error: function(xhr, status, error) {
                     alert("error");

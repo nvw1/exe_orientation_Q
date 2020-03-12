@@ -28,6 +28,9 @@
   margin-top: 20px;
 }
 
+#submit-groupcode{
+  background: #ffffff;
+}
 #submit-solo{
   width:150px;
   height: 60px;
@@ -46,5 +49,5 @@
   width: 95% !important;
   max-width: 280px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 15px;
 }

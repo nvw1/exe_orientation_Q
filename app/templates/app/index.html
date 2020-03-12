@@ -37,7 +37,7 @@
           <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
         </ul>
         <ul class="menu_item">
-          <a href="#">About</a>
+          <a href="/about">About</a>
           <img class="logo_menu" src="{% static '/images/STmenu/about.svg' %}" alt="icon">
         </ul>
         <label for="chk" class="hide-menu-btn">
@@ -54,9 +54,9 @@
          <form id="groupform" action="/redirect" method = "post">
              {% csrf_token %}
           <div class="input-group justify-content-center">
-           <input id="groupcode" type="text" name="groupCode" placeholder="Game Code" size="8">
-           <button type="submit" name='submit-groupcode'>
-             <img id=submit-groupcode src="{% static '/images/SThome/arrow.svg' %}">
+           <input id="groupcode" type="text" name="groupCode" placeholder="Game Code" size="9.5">
+           <button id=submit-groupcode type="submit" name='submit-groupcode'>
+             <img src="{% static '/images/SThome/arrow.svg' %}">
            </button>
            {%if messages%}
              {% for message in messages %}
@@ -66,9 +66,6 @@
              {% endfor%}
          {% endif %}
          </div>
-        </form>
-        <form id="soloForm" action="/redirect" method="post">
-          <input id="submit-solo" type="submit" value="Single Player" name="submit-solo">
         </form>
       </div>
 

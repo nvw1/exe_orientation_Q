@@ -1,4 +1,6 @@
 
+# author : Hao, Nik
+
 from django.conf.urls import url
 from django.urls import path
 from app import views
@@ -29,5 +31,6 @@ urlpatterns = [
 	path('delete_route',views.delete_route,name="delete_route"),
 	path('locations', views.locations, name="locations"),
 	path('signUp_page', views.signUp_page, name="signUp_page"),
-	path('manage_account',views.manage_account, name="manage_account")
+	path('manage_account',views.manage_account, name="manage_account"),
+	path('about', views.about, name="about")
 ]
