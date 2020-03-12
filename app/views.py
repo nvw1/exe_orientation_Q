@@ -15,7 +15,6 @@ from app.models import *
 import json
 # current node number, global variable
 num = 1
-score = 0
 def index(request):
     """
     Display the index page for user
@@ -41,7 +40,8 @@ def game_master_page(request):
 
     route_list = Routes.objects.all()
     questions = Questions.objects.all()
-    return render(request, 'app/game_master_page.html',{"route_list":route_list,"questions":questions})
+    games = Gamecode.objects.all()
+    return render(request, 'app/game_master_page.html',{"route_list":route_list,"questions":questions,"games":games})
 def login_page(request):
     """
     Load login page for user
@@ -207,6 +207,7 @@ def redirect(request):
             mapCheck = questionNum.map
             routeID = questionNum.routeID_id
             num = questionNum.questionNum
+            score = questionNum.score
             # Get question by using the question number the group is currently on
             info = Questions.objects.filter(node_num=int(num),routeID=routeID)
             # Add group code into user's session
@@ -267,6 +268,7 @@ def redirect(request):
                 score += 3
                 questionNum.map = map_check
                 questionNum.questionNum = num
+                questionNum.score = score
                 questionNum.save()
                 print(location)
                 info = Questions.objects.filter(node_num=num, routeID=routeID)
@@ -296,7 +298,7 @@ def redirect(request):
                 # Return incorrect message
                 messages.error(request, 'That is the wrong answer, please try again')
                 # Return the information back to user's view
-                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id})
+                return render(request, 'app/studentview.html', {"groupcode": groupcode, "data": info, "id": id,"score":score})
 
 
     # Case when user refreshes the page during the game
@@ -330,7 +332,7 @@ def hint(request):
     :param request:
     :return: Returns the hint information retrieve from the database to the html page
     """
-    global score#Global score
+    global score
     hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
     score1 = request.POST.get('score')        #  Get score from ajax request
     request.session['score'] = score1      # update score variable
@@ -531,6 +533,7 @@ def create_game(request):
         a = Gamecode()
         a.groupcode = groupcode1
         a.routeID_id= routeID
+        a.score = 0
         # Save instance
         a.save()
         return HttpResponse("Added")
