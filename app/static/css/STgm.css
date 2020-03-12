@@ -18,10 +18,14 @@ body {
 }
 
 
-/*fixes*/
+/* Bug fixes*/
 .row{
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.card-image-top{
+  width: 50px;
 }
 
 /* Modal Css */
