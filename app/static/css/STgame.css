@@ -144,7 +144,6 @@ body{
   /* text-align: center !important; */
   display: inline-block !important;
   border-radius: 10px !important; 
-  padding-bottom: 10px !important;
 }
 
 .modal-btn {
