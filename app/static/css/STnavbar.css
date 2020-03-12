@@ -10,10 +10,13 @@
   margin-bottom: 40px !important;
   border-bottom: 2px solid white;
 }
-.nav_logo{
+#backtreebtn{
   margin-top: 10px;
   float: left;
+  border: none;
+  background: none;
 }
+
 .menu{
   display: block;
   position: fixed;
