@@ -105,24 +105,22 @@
     </div>
     {% endblock %}
 
-    <div class="container">
 
-<div id="myModal" class="modal">
+<div id="myModal" class="modal map-c">
 
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="modal-content" style="border-radius: 8px;">
     <div class="modal-header">
-      <h2>Please go to the following location and press the buttons to verify  </h2>
+      <h2>Please go to the following location and press the buttons to verify</h2>
     </div>
     <div class="modal-body">
         <h2 style="color:black" >{{ answer }} is your destination</h2>
-        <div id="map" style="width: 100%; height: 500px;"></div>
-      <button onclick="getLocation()">Submit My Location</button>
+        <div id="map" style="width: 100%; height: 420px;"></div><br>
+      <button class="modal-btn btn btn-success btn-lg btn-block"onclick="getLocation()">Submit My Location</button>
 
     </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
+
+
   </div>
 
 </div>
@@ -207,7 +205,7 @@
     $(window).bind("load",function(){
         map_check = "{{ map_check }}"
         if (map_check == "True"){
-            document.getElementById('myModal').style.display='block';
+            document.getElementById('myModal').style.display='inline-block';
             initMap();
         }
     });
