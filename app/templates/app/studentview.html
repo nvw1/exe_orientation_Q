@@ -198,9 +198,10 @@
             });
         });
     });
-    var map_check = "True";
+    var map_check = "False";
     $(window).bind("load",function(){
         map_check = "{{ map_check }}"
+        alert(map_check)
         if (map_check == "True"){
             document.getElementById('myModal').style.display='inline-block';
             initMap();
