@@ -1,3 +1,4 @@
+<!-- Authors: Thomas, Nik, Hao, Martin, Sam -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -122,10 +123,7 @@
 
 
   </div>
-
 </div>
-
-
 
  <script type = "text/javascript">
 
@@ -134,7 +132,6 @@
    document.getElementById("points-lost-container").style.display = "block";
    document.getElementById("gethint").style.display = "none";
  }
-
 
     function sendRequest(){
         {% for questions in data %}
@@ -341,22 +338,16 @@ function showError(error) {
       x.innerHTML = "An unknown error occurred."
       break;
   }
-
-
-
 }
 
 function setFalse(){
            $.ajax({
                 url:'/set_map_false',
                 success: function(response){
-
                 }
             });
 }
+</script>
 
-
-
-  </script>
-  </body>
+</body>
 </html>

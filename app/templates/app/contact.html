@@ -1,3 +1,4 @@
+<!-- Authors: Nik, Hao, Sam-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +33,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
 </head>
 <body>
+  
 	<!-- MAIN MENU-S-->
     <div class="header bg-transparent ">
 		<a href="/">
@@ -109,16 +110,13 @@
 
 			Tel: 01392 676606<br>
 			Email: <a href="mailto:studenthealth@exeter.ac.uk" bis_skin_checked="1">studenthealth@exeter.ac.uk</p>
-				
 	</div>	
-
 </div>
 
-
 <script>
-    var coll = document.getElementsByClassName("collapsible");
+// Functionality for drop down lists
+var coll = document.getElementsByClassName("collapsible");
 var i;
-
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -127,9 +125,8 @@ for (i = 0; i < coll.length; i++) {
       content.style.maxHeight = null;
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-    }
+    } 
   });
 }
-  </script>
-
+</script>
 </body>
