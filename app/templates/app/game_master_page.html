@@ -1,36 +1,27 @@
 
 {% load static %}
-<!-- Authors: Nik, Hao-->
+<!-- Authors: Nik, Hao, Sam-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Mobile Specific Metas
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
     <meta charset="UTF-8">
-    <title>Title</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/STgm.css' %}">
-</head>
-<!-- Gradient background -->
-<style>
-
-.card-image-top{
-  width: 50px;
-}
-</style>
+    <title>Game master main page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/STgm.css' %}">
+</head>
+
 
 <body >
     <!-- Header will just have logout button -->
 <div id="header" class="navbar">
-
     <a class="buttonX" href="/logout"style="margin:10px;" >Logout</a>
 	<a class="buttonX" href="/manage_account"style="margin:10px;">Manage account</a>
 </div>
-<!-- Header will just have logout button -->
+
+
+
+<!-- Two main option Cards -->
 
 <div id="body-master">
 <div class="container">
@@ -56,77 +47,57 @@
           </div>
         </div>
       </div>
-
 </div>
 
-
-
-
-
-
+<!-- ID01 Modal Route Initiater -->
 
 <div id="id01" class="modal">
-
   <form class="modal-content animate"  id="myForm1">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      
     </div>
-
     <div class="container">
       <label for="uname"><b>Route ID</b></label>
       <input type="number" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
-
       <label for="psw"><b>Route Name</b></label>
       <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
-	  <!-- <script src="{% static 'js/map.js' %}"></script>
-	  <div id="map"></div>
-	  <input type="text" id="lat" placeholder="Latitude" name="Latitude">
-	  <input type="text" id="lng" placeholder="Longitude" name="Longitude">
-	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script> -->
-
-
-
-	
     </div>
     <div class="container" style="background-color:#f1f1f1; border-radius: 10px; padding: 10 px;">
-    <div class="row">
-      <div class="col-sm">
-        <input type="submit" name="click" value="Submit" class="buttonX btnGreen"/>
-      </div>
-      <div class="col-sm">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="buttonX btnRed">Cancel</button>
+      <div class="row">
+        <div class="col-sm">
+          <input type="submit" name="click" value="Submit" class="buttonX btnGreen"/>
+        </div>
+        <div class="col-sm">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="buttonX btnRed">Cancel</button>
+        </div>
       </div>
     </div>
-
-    </div>
-
-
   </form>
 </div>
 
 
-
-    <div id="id07" class="modal">
-
+<!-- ID07 Modal Route Initiater -->
+<div id="id07" class="modal">
   <form class="modal-content animate"  id="myForm3">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id07').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
-
     <div class="container">
-        <table id="myTable">
+        <table id="myTable" class="table table-striped">
+        <thead>
   <tr class="header">
-      <th>routeID</th>
-      <th>Edit</th>
-     <th>Questions</th>
-        <th>Answers</th>
-        <th>Hint</th>
-          <th>Latitude</th>
-          <th>Longtitude</th>
-      <th>Edit</th>
+      <th scope = "col">routeID</th>
+      <th scope = "col">Edit</th>
+     <th scope = "col">Questions</th>
+        <th scope = "col">Answers</th>
+        <th scope = "col">Hint</th>
+          <th scope = "col">Latitude</th>
+          <th scope = "col">Longtitude</th>
+      <th scope = "col">Edit</th>
 
   </tr>
+  </thead>
+        <tbody>
     {% for i in questions %}
       <tr>
         <td>{{ i.routeID_id }}</td>
@@ -144,7 +115,7 @@
 
       </tr>
      {% endfor %}
-
+</tbody>
 </table>
     <td><button class="btn btn-outline-success" type= "button" onclick="document.getElementById('id07').style.display='none',document.getElementById('id12').style.display='block',initMap2()" >Add</button></td>
     </div>
@@ -153,6 +124,57 @@
     </div>
   </form>
 </div>
+
+
+<!-- ID04 Modal Generate Group Session -->
+
+
+
+<div id="id14" class="modal">
+
+  <form class="modal-content animate"  id="myForm7">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id14').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+        <table id="myTable2" class="table table-striped">
+        <thead>
+  <tr class="header">
+      <th scope = "col">routeID</th>
+      <th scope = "col">Group code</th>
+     <th scope = "col">Current question</th>
+        <th scope = "col">score</th>
+          </tr>
+</thead>
+
+<tbody>
+
+    {% for game in games %}
+      <tr>
+        <td>{{ game.routeID_id }}</td>
+        <td>{{ game.groupcode }}</td>
+        <td>{{ game.questionNum }}</td>
+          <td>{{ game.score}}</td>
+
+
+      </tr>
+     {% endfor %}
+</tbody>
+</table>
+    </div>
+    <div class="container" style="background-color:#f1f1f1; border-radius: 10px; padding: 10px;">
+      <button type="button" onclick="document.getElementById('id14').style.display='none',document.getElementById('id03').style.display='block'" class="width: auto; padding: 10px 18px; background-color: #f44336; text-shadow: none;">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -169,14 +191,9 @@
         <h1 id ="code"></h1>
       <label for="uname"><b>Generate a random groupcode or enter your own, please remember the code as it needs to be sent to your tutees</b></label>
         <input type="text" placeholder="Enter Groupcode" name="groupcode" id="groupcode"required>
-
-
-
-
-
     </div>
 
-    <div class="container row" style="background-color:#f1f1f1; border-radius: 10px; padding: 10 px;">
+    <div class="container row" style="margin:auto; background-color:#f1f1f1; border-radius: 10px; padding: 10px;">
       <div class="col-sm">
         <button type="button" onclick ="generate()"class="buttonX btnGreen">Generate a groupcode</button>
       </div>
@@ -187,9 +204,6 @@
         <button type="button" onclick="document.getElementById('id04').style.display='none',
       document.getElementById('id03').style.display='block'" class="buttonX btnRed">Cancel</button>
       </div>
-
-
-
     </div>
   </form>
 </div>
@@ -217,17 +231,7 @@
 	  <div id="map2" style="width: 100%; height: 500px;"></div>
 	  <input type="text" id="lat_edit" placeholder="Latitude" name="Latitude_edit" required>
 	  <input type="text" id="lng_edit" placeholder="Longitude" name="Longitude_edit" required>
-
-<!--
-        <label for="location"><b>Location</b></label>
-      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
-        <label for="psw"><b>Latitude</b></label>
-      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
-        <label for="psw"><b>Longtitude</b></label>
-      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
-
       <input type="submit" name="click" value="Submit" />
-
     </div>
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id10').style.display='none',
@@ -241,7 +245,7 @@
 
 
     <div id="id03" class="modal">
-      
+
 
   <form class="modal-content animate"  id="createGame">
     <div class="imgcontainer">
@@ -263,6 +267,7 @@
         <th>Create Game</th>
           <th>More details</th>
           <th>Delete Route</th>
+          <th>See running games</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -278,6 +283,9 @@
         ,getQuestions(this), myFunction() " >More details</button></td>
       <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="
         deleteRoute(this) " >Delete Route</button></td>
+      <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
+      document.getElementById('id14').style.display='block',filtertable(this)
+         " >See running games</button></td>
       </tr>
      {% endfor %}
     </tbody>
@@ -304,7 +312,7 @@
     <div id="id12" class="modal">
       <form class="modal-content animate"  id="myForm4">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id12').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
@@ -618,6 +626,26 @@ function myFunction() {
   }
 }
 
+function filtertable(value) {
+    createGameID = value.value
+  var  filter, table, tr, td, i, txtValue;
+  table = document.getElementById("myTable2");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue == createGameID) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";   // Display nothing if values aren't equal
+      }
+    }
+  }
+}
+
+
+
 /**
  * The function sends informatio to django backend using ajax which allows user to delete a question from a route in the
  * database
@@ -643,6 +671,8 @@ function deleteQuestion(node_num) {
         });
     }
 }
+
+
 
 /**
  * The function sends informatio to django backend using ajax which allows user to delete a route from the game in the
