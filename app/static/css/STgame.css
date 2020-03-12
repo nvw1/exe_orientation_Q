@@ -1,0 +1,133 @@
+/*top bar-S*/
+.game-top{
+  width: 90% !important;
+
+}
+body{
+  background: rgb(79,149,255);
+  background: url('background.svg') center no-repeat, linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
+}
+
+.Team{
+  display:inline-block;
+  text-align: center;
+  margin: auto;
+  padding-top: 30px;
+}
+
+#team-id{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#leave_button{
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #F35757;
+  color: white;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+}
+#pin{
+  color: white;
+  padding-bottom: 15px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.game_info{
+  display:block;
+  float: right;
+  padding-right: 5px;
+  color: white;
+}
+
+.game_info h2{
+  padding-top: 8px;
+  font-size: 25px;
+  font-weight: bold;
+}
+/*top bar-E*/
+#question-container{
+  width: 80%;
+  height:180px;
+  max-width: 600px;
+  border-radius: 5px;
+  opacity: 0.8;
+}
+#question-container p{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#answer-box{
+  margin: auto;
+  display: block;
+  width: 80%;
+  height:100px;
+  max-width: 600px;
+  font-size: 20px;
+}
+
+#answer-form{
+  width: 100%;
+
+}
+
+#answer-button{
+  display: block;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+  margin: auto;
+  margin-top: 10px;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #07D283;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#show-hint{
+  margin-top: 100px;
+  background-color: white;
+  border: none;
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+#show-hint img{
+  margin-top: 2px;
+  width: 24px;
+  height: 24px;
+}
+.hint-container{
+  background-color: black;
+  width: 80%;
+}
+.hint-box{
+  display: none
+}
+#hint-text{
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#points-lost{
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FF0000;
+}
+.points-lost-container{
+  display: none;
+  float: right;
+  margin-top: 100px;
+}

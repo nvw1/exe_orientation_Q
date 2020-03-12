@@ -1,144 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-      {% load static %}
-      <meta charset="utf-8">
-      <title>Exe Orientation</title>
-      <meta name="description" content="">
-      <meta name="author" content="Sam, Niklas, Hao">
-      <meta name="theme-color" content="#ffffff">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="{% static 'css/STmaster.css' %}">
-     <link rel="stylesheet" href="{% static 'css/STnavbar.css' %}">
-     <link rel="stylesheet" href="{% static 'css/STgame.css' %}">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <script async defer
-     	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzaPwjwqJAXVNJh7Yhx50Xdvwb1h-FNV4&callback=initMap">
-     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <!--MAIN MENU-S-->
-    <div class="header bg-transparent text-center">
-      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
-      <input type="checkbox" id="chk">
-      <div class="Team">
-        <h3 id="team-id">Teamname</h3>
-      </div>
-      <label for="chk" class="show-menu-btn">
-        <img src="{% static '/images/STmenu/Hamburger.png' %}">
-      </label>
-      <ul class="menu">
-        <ul class="menu_item">
-          <a href="#">Locations</a>
-          <img class="logo_menu" src="{% static '/images/STmenu/locations.svg' %}" alt="icon">
-        </ul>
-        <ul class="menu_item">
-          <a href="#">Contacts</a>
-          <img class="logo_menu" src="{% static '/images/STmenu/contacts.svg' %}" alt="icon">
-        </ul>
-        <ul class="menu_item">
-          <a href="#">FAQs</a>
-          <img class="logo_menu" src="{% static '/images/STmenu/faq.svg' %}" alt="icon">
-        </ul>
-        <ul class="menu_item">
-          <a href="#">About</a>
-          <img class="logo_menu" src="{% static '/images/STmenu/about.svg' %}" alt="icon">
-        </ul>
-        <label for="chk" class="hide-menu-btn">
-          <img src="https://img.icons8.com/ios-filled/36/000000/delete-sign.png">
-        </label>
-        <img class="UOE_stamp" src="{% static '/images/STmenu/uniExeter.svg' %}" alt="Universit of Exeter">
-      </ul>
-    </div>
-    <!--MAIN MENU-E-->
-    {% block content %}
-    <div class="row">
-      <div class="game-top container-fluid">
-        <h2 id="pin">Pin: {{ groupcode }}</h2>
-        <button id="leave_button" onclick="window.location.href='b.php'">Leave</button>
-        <div class="game_info">
-          <h2 id=score>Score: 0</h2>
-        </div>
-      </div>
-
-    </div>
-    <div class="row mt-4">
-      <div id="question-container" class="container-fluid p-3 my-3 bg-white">
-        {% for questions in data %}
-        <p>{{ questions.questions }}</p>
-        {% endfor %}
-        <div class="points-lost-container">
-          <h3 id="points-lost"></h3>
-          <img src="{% static 'images/STgame/lose.svg' %}">
-        </div>
-        <button  id="show-hint" onclick="">
-          Hint<img src="{% static 'images/STgame/Hintbutton.svg' %}" alt="icon">
-        </button>
-        <div class="hint-box">
-          <h4 style="color:black;">Hint*</h4>
-          <div class="hint-container">
-            <p id="hint-text">ewfewfoewjfiejfejfi</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-1">
-      <form action="redirect" method = "post" id="answer-form"  >
-        {% csrf_token %}
-         <textarea id="answer-box" rows="4" cols="50" placeholder="Answer" name="answer">
-         </textarea>
-         <input id="answer-button" type="submit" value="Submit " name="submit-question">
-
-         {%if messages%}
-   				   {% for message in messages %}
-   					   <div class="alert alert-danger" role="alert" style="color:black">
-   						   {{ message }}
-   					   </div>
-   				   {% endfor%}
-                   <br>
-   			   {% endif %}
-
-      </form>
-
-    </div>
-    {% endblock %}
-
-    <div class="container">
-
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Please go to the following location and press the buttons to verify  </h2>
-    </div>
-    <div class="modal-body">
-        <h2 style="color:black" >{{ answer }} is your destination</h2>
-        <div id="map" style="width: 100%; height: 500px;"></div>
-      <button onclick="getLocation()">Submit My Location</button>
-
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
+function showhint() {
+  var lost = document.getElementById("myDIV");
+  var hint = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 
 
-
- <script type = "text/javascript">
-	function openNav() {
-  		document.getElementById("myNav").style.width = "100%";
-	}
-
-	function closeNav() {
-  		document.getElementById("myNav").style.width = "0%";
-	}
-    function sendRequest(){
+function sendRequest(){
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
         {% endfor %}
@@ -188,7 +59,7 @@
                 },
                 error: function(xhr, status, error) {
                     alert("error");
-}
+								}
             });
         });
     });
@@ -211,8 +82,7 @@
         }
     });
 
-</script>
-<script>
+
 var x = document.getElementById("demo");
 
 var map, infoWindow, pos, marker, radi, circle;
@@ -358,6 +228,4 @@ function setFalse(){
 
 
 
-  </script>
-  </body>
-</html>
+</script>

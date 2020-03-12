@@ -17,23 +17,26 @@
 <body>
 	<div id="login" class="container align-items-center w-50">
 		  <div class="card p-3 my-3 bg-white text-center">
-			<h4 id="home_header" class="exampleOne-heading text-left">Show students their way around campus. <span id="changingWord"></span> your treasure hunt now!</h4>
+			  <div>
+				<h4 id="home_header" class="exampleOne-heading text-left">Manage Account.</h4>
+			 	<button style="position:absolute; top:10px; right:10px; " type="button" onclick="location.href='/game_master_page';" class="btn-lg btn-outline-secondary w-25">Back</button>
+			  </div>
 			 <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
 
 			 <form action="/login_view" method = "post" class="form-signin">
 				{% csrf_token %}
 				<div class="form-label-group text-left">
-					<input id="inputUser" type="text" name="username" placeholder="User" class="form-control align-top">
-					<label for="inputUser" style="top:-5px">User</label>
+					<input id="inputPassword" type="password" name="newPass" placeholder="Password" class="form-control align-top">
+					<label for="inputPassword" style="top:-5px">New Password</label>
 
 				</div>
 				<div class="form-label-group text-left">
-					<input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control">
-					<label for="inputPassword" style="top:-5px">Password</label>
+					<input id="inputPassword" type="password" name="valPass" placeholder="Password" class="form-control">
+					<label for="inputPassword" style="top:-5px">Validate Password</label>
 				</div>
 					
-					<input type="submit" value="log in" name="submit-logIn" class="btn-lg btn-outline-success">
-					<button type="button" onclick="location.href='/signUp_page';" class="btn-lg btn-outline-secondary">make new account</button>
+					<input type="submit" value="change password" name="submit-changePass" class="btn-lg btn-outline-warning">
+					<input type="submit" value="delete account" name="submit-deleteAcc" class="btn-lg btn-outline-danger">
 					{%if messages%}
 						{% for message in messages %}
 							<div class="alert alert-danger" role="alert">
