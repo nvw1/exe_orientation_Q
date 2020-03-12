@@ -37,7 +37,8 @@
 <body>
 	<!--MAIN MENU-S-->
     <div class="header bg-transparent ">
-      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;">
+      <a href="/">
+      <img class="nav_logo" src="{% static '/images/STmenu/Treelogo.png' %}" alt="Logo" style="width:40px;"></a>
       <input type="checkbox" id="chk">
       <label for="chk" class="show-menu-btn">
         <img src="{% static '/images/STmenu/Hamburger.png' %}">
@@ -74,19 +75,35 @@
     <h1><center>Important Locations</center></h1><br>
 
 
-	<button class="collapsible">Innovation center?</button>
+	<button class="collapsible">Innovation Centre</button>
 	<div style="padding: 0;" class="content">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.001315555496!2d-3.533126948831451!3d50.73846447435062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da4436e4494cb%3A0x1c62c9fa168f33ac!2sInnovation%20Centre%2C%20Rennes%20Dr%2C%20Exeter%20EX4%204RN!5e0!3m2!1sen!2suk!4v1583676576539!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-	</div>
-	<button class="collapsible">Harrison building?</button>
-	<div style="padding: 0;" class="content">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.0407281779853!2d-3.534819648831507!3d50.73773347440346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da44487f91b0b%3A0x8619b7fe1d5d6661!2sHarrison%2C%20N%20Park%20Rd%2C%20Exeter%20EX4%204QF!5e0!3m2!1sen!2suk!4v1583676407608!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-	</div>
-	<button class="collapsible">Forum?</button>
-	<div style="padding: 0;" class="content">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.849954738592!2d-3.527333248831976!3d50.72272277548934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da43d86a27d67%3A0xf6369103a1b93c1b!2sThe%20Forum!5e0!3m2!1sen!2suk!4v1583676513618!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.001315555496!2d-3.533126948831451!3d50.73846447435062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da4436e4494cb%3A0x1c62c9fa168f33ac!2sInnovation%20Centre%2C%20Rennes%20Dr%2C%20Exeter%20EX4%204RN!5e0!3m2!1sen!2suk!4v1583676576539!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 	</div>
 
+	<button class="collapsible">Harrison building</button>
+	<div style="padding: 0;" class="content">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.0407281779853!2d-3.534819648831507!3d50.73773347440346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da44487f91b0b%3A0x8619b7fe1d5d6661!2sHarrison%2C%20N%20Park%20Rd%2C%20Exeter%20EX4%204QF!5e0!3m2!1sen!2suk!4v1583676407608!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
+
+	<button class="collapsible">Forum</button>
+	<div style="padding: 0;" class="content">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1312.701104209714!2d-3.534471970516621!3d50.735124986942665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfe908f3ea68dad67!2sUniversity%20of%20Exeter%20Forum%20Library!5e0!3m2!1sen!2suk!4v1583998856228!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
+
+	<button class="collapsible">Newman and Peter Chalk</button>
+	<div style="padding: 0;" class="content">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1312.6808231369275!2d-3.5363571060708776!3d50.735848615746676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da445c09d96f3%3A0x50d1a001e0033170!2sUniversity%20of%20Exeter%20Peter%20Chalk%20Centre!5e0!3m2!1sen!2suk!4v1583998816962!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
+	
+	<button class="collapsible">Queens building</button>
+	<div style="padding: 0;" class="content">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1312.7068422882114!2d-3.5339978979659947!3d50.73492025091005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da4113c8130b1%3A0x77373b2168b9fd76!2sUniversity%20of%20Exeter%20Queen&#39;s%20Building!5e0!3m2!1sen!2suk!4v1583998763410!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
+
+	<button class="collapsible">Student Health Centre</button>
+	<div style="padding: 0;" class="content">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1775.685972201162!2d-3.5386771610435437!3d50.73497428585123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18555535eaf42dc1!2sStudent%20Health%20Centre!5e0!3m2!1sen!2suk!4v1583998953336!5m2!1sen!2suk" width=100% height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
 </div>
 
 <script>
