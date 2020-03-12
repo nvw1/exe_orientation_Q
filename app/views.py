@@ -588,6 +588,7 @@ def edit(request):
     b.questions = question
     b.answers = answer
     b.hints = hint
+    print(latitude,longtitude,"hello")
     b.latitude = float(latitude)
     b.longtitude = float(longtitude)
     b.node_num = int(node_num)

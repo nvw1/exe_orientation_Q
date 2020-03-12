@@ -784,11 +784,11 @@ function initMap2() {
                 event.preventDefault();
                 // Below code is to get value of each input field and store them into a variable
                 var question, answer, hint, latitude, longtitude;
-                var question = $('#question_add').val()
-                var answer = $('#answer_add').val()
-                var hint = $('#hint_add').val()
-                var latitude = $('#lat_add').val()
-                var longtitude = $('#lng_add').val()
+                var question = $('#question_edit').val()
+                var answer = $('#answer_edit').val()
+                var hint = $('#hint_edit').val()
+                var latitude = $('#lat_edit').val()
+                var longtitude = $('#lng_edit').val()
                 // Ajax call to send data to django backend
                 $.ajax({
                     type: "post",
