@@ -55,6 +55,10 @@ def signUp_page(request):
     """load signUp page"""
     return render(request, 'app/signUp_page.html')
 
+def about(request):
+    """load about page"""
+    return render(request, 'app/about.html')
+
 @login_required(redirect_field_name='')
 def manage_account(request):
     """load manage account page"""
