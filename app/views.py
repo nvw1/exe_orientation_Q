@@ -28,7 +28,8 @@ def index(request):
     return render(request, 'app/index.html')
 
 
-@login_required(redirect_field_name='')
+
+@login_required(redirect_field_name='', login_url='login_view')  
 def game_master_page(request):
     """
     Load game master page, sends all the available routeID's and questions to the game_master_page as objects
