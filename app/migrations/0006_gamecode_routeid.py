@@ -11,9 +11,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='gamecode',
-            name='routeID',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='app.Routes'),
-        ),
+       
     ]

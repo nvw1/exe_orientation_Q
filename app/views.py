@@ -190,7 +190,7 @@ def redirect(request):
             routeID = questionNum.routeID_id
             num = questionNum.questionNum
             # Get question by using the question number the group is currently on
-            info = Questions.objects.filter(node_num=int(num),routeID=routeID)
+            info = Questions.objects.filter(node_num=int(num),routeID_id=routeID)
             # Add group code into user's session
             request.session['groupcode'] = groupcode
             # Add score into user's session
@@ -204,11 +204,12 @@ def redirect(request):
                 #set map value to the previous question
                 num -=1
                 print(num)
-                latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+                latest_question = Questions.objects.get(node_num=num, routeID_id=routeID)
                 #Return number to the correct question number
                 num +=1
             else:
-                latest_question = Questions.objects.get(node_num=num , routeID=routeID)
+                print(routeID)
+                latest_question = Questions.objects.get(node_num=num , routeID_id=routeID)
             location = latest_question.location
             longtitude = latest_question.longtitude
             latitude = latest_question.latitude
@@ -234,9 +235,9 @@ def redirect(request):
 
         # if answer is correct for the current node, move onto the next question if it exists,
         # otherwise show they have finished the quiz
-        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num), routeID=routeID).exists():
+        if Questions.objects.filter(answers__icontains=data.strip(), node_num=int(num), routeID_id=routeID).exists():
 
-            latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+            latest_question = Questions.objects.get(node_num=num, routeID_id=routeID)
             location = latest_question.location
             longtitude = latest_question.longtitude
             latitude = latest_question.latitude
@@ -245,13 +246,13 @@ def redirect(request):
             # Add 1 to the counter so the questions moves on to the next one
             num += 1
             # Check whether if the user is on the last question
-            if Questions.objects.filter(node_num=int(num), routeID=routeID).exists():
+            if Questions.objects.filter(node_num=int(num), routeID_id=routeID).exists():
                 score += 3
                 questionNum.map = map_check
                 questionNum.questionNum = num
                 questionNum.save()
                 print(location)
-                info = Questions.objects.filter(node_num=num, routeID=routeID)
+                info = Questions.objects.filter(node_num=num, routeID_id=routeID)
                 messages.success(request, 'Correct!')  #Generate message saying correct
                 return render(request, 'app/studentview.html',{"groupcode":groupcode,"data":info,"id":id,
                                                                "score":score, "map_check":map_check,
@@ -264,7 +265,7 @@ def redirect(request):
                 questionNum.questionNum = num
                 questionNum.map = map_check
                 questionNum.save()
-                info = Questions.objects.filter(node_num=num,routeID=routeID)
+                info = Questions.objects.filter(node_num=num,routeID_id=routeID)
                 # Generate message when user finish the quiz
                 messages.success(request, 'You have finished the quiz, well done!')
                 # Return the information back to user's view
@@ -274,7 +275,7 @@ def redirect(request):
                                                                "latitude":latitude,"answer":place_name,"Finished":"True"})
         # Case when user gets the answer wrong
         else:
-                info = Questions.objects.filter(node_num=num, routeID=routeID)
+                info = Questions.objects.filter(node_num=num, routeID_id=routeID)
                 # Return incorrect message
                 messages.error(request, 'That is the wrong answer, please try again')
                 # Return the information back to user's view
@@ -290,8 +291,8 @@ def redirect(request):
         num = questionNum.questionNum
         mapcheck = questionNum.map
         # Get question from the database using num counter
-        info = Questions.objects.filter(node_num=int(num), routeID=routeID)
-        latest_question = Questions.objects.get(node_num=num-1, routeID=routeID)
+        info = Questions.objects.filter(node_num=int(num), routeID_id=routeID)
+        latest_question = Questions.objects.get(node_num=num-1, routeID_id=routeID)
         location = latest_question.location
         longtitude = latest_question.longtitude
         latitude = latest_question.latitude
@@ -506,6 +507,7 @@ def create_game(request):
     groupcode1 = request.POST.get("groupcode")
     routeID = request.POST.get("routeID")
     # Check if the groupcode already exist
+    print(groupcode1,routeID)
     if Gamecode.objects.filter(groupcode=groupcode1).exists():
         return HttpResponse("Exist")
     else:
