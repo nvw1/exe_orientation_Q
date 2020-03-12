@@ -157,6 +157,55 @@
 
 
 
+
+
+<div id="id14" class="modal">
+
+  <form class="modal-content animate"  id="myForm7">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id14').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+        <table id="myTable2">
+  <tr class="header">
+      <th>routeID</th>
+      <th>Group code</th>
+     <th>Current question</th>
+        <th>score</th>
+
+
+
+  </tr>
+    {% for game in games %}
+      <tr>
+        <td>{{ game.routeID_id }}</td>
+        <td>{{ game.groupcode }}</td>
+        <td>{{ game.questionNum }}</td>
+          <td>{{ game.score}}</td>
+
+
+      </tr>
+     {% endfor %}
+
+</table>
+    </div>
+    <div class="container" style="background-color:#f1f1f1; border-radius: 10px; padding: 10px;">
+      <button type="button" onclick="document.getElementById('id14').style.display='none',document.getElementById('id03').style.display='block'" class="width: auto; padding: 10px 18px; background-color: #f44336; text-shadow: none;">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
     <div id="id04" class="modal">
 
   <form class="modal-content animate"  id="createGame">
@@ -263,6 +312,7 @@
         <th>Create Game</th>
           <th>More details</th>
           <th>Delete Route</th>
+          <th>See running games</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -278,6 +328,9 @@
         ,getQuestions(this), myFunction() " >More details</button></td>
       <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="
         deleteRoute(this) " >Delete Route</button></td>
+      <td><button class="btn btn-outline-success" value="{{ routeID.routeID }}"type= "button" onclick="document.getElementById('id03').style.display='none',
+      document.getElementById('id14').style.display='block',filtertable(this)
+         " >See running games</button></td>
       </tr>
      {% endfor %}
     </tbody>
@@ -618,6 +671,26 @@ function myFunction() {
   }
 }
 
+function filtertable(value) {
+    createGameID = value.value
+  var  filter, table, tr, td, i, txtValue;
+  table = document.getElementById("myTable2");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue == createGameID) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";   // Display nothing if values aren't equal
+      }
+    }
+  }
+}
+
+
+
 /**
  * The function sends informatio to django backend using ajax which allows user to delete a question from a route in the
  * database
@@ -643,6 +716,8 @@ function deleteQuestion(node_num) {
         });
     }
 }
+
+
 
 /**
  * The function sends informatio to django backend using ajax which allows user to delete a route from the game in the
