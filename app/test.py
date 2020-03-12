@@ -1,11 +1,14 @@
-import unittest
-from django.test import TestCase
+from django.test import SimpleTestCase
+from django.urls import reverse, resolve
+from app.views import *
 
+class TestUrls(SimpleTestCase):
 
-class MyTestCase(TestCase):
     def test_(self):
-        self.assertEqual(True, False)
+        url = reverse('redirect')
+        self.assertEqual(resolve(url).func, redirect)
 
 
-if __name__ == '__main__':
-    unittest.main()
+
+
+
