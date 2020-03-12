@@ -5,7 +5,7 @@
 body{
   min-height: 100%;
   background: rgb(79,149,255);
-  background: linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
+  background: linear-gradient(157deg, rgb(21, 114, 255) 0%, rgb(65, 168, 0) 100%);
 }
 
 /*Global-End*/
@@ -18,11 +18,11 @@ body {
 }
 
 
-#button1:hover,#button2:hover{
-  background: rgb(92,145,59,1);
-  background: linear-gradient(157deg, rgba(92,145,59,1) 0%, rgba(79,149,255,1) 100%);
+/*fixes*/
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
 }
-
 
 /* Modal Css */
 
@@ -47,7 +47,7 @@ width: 100%;
 padding: 12px 20px;
 margin: 8px 0;
 display: inline-block;
-border: 1px solid #ccc;
+border: 0px solid #ccc;
 box-sizing: border-box;
 }
 
@@ -60,6 +60,7 @@ margin: 8px 0;
 border: none;
 cursor: pointer;
 width: 100%;
+outline: none;
 }
 
 button:hover {
@@ -107,6 +108,7 @@ height: 100%; /* Full height */
 overflow: auto; /* Enable scroll if needed */
 background-color: rgb(0,0,0); /* Fallback color */
 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+padding-bottom: 200px;
 }
 
 /* Modal Content */
@@ -177,14 +179,7 @@ color: white;
 
 /*Neumorphism features*/
 
-/* various buttom adaptationis*/
 
-.btnGreen{
-  width: auto; 
-  background-color: #4CAF50;
-  text-shadow: none;
-
-}
 
 /* sass back development
 $ruler: 16px;
@@ -240,7 +235,7 @@ label {
   width: 100%;
 }*/
 
-input {
+input,.input {
   margin-right: 16px/2;
   box-shadow:  inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
   width: 100%;
@@ -250,8 +245,9 @@ input {
   -webkit-appearance: none;
   border-radius: 10px;
   outline: none;
+  border: none;
 }
-input:focus{
+input:focus, .input:hover{
   box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
 
@@ -314,3 +310,40 @@ input:focus{
 }
 
 */
+
+
+/* various buttom adaptationis*/
+
+.btnGreen{
+  width: auto; 
+  display: block;
+  margin: auto;
+  color: rgb(53, 189, 58);
+  outline: none;
+  text-shadow: none;
+}
+
+.btnRed{
+  display: block;
+  margin: auto;
+  color: red;
+  width: auto;
+  outline: none;
+}
+
+.input{
+  border:none;
+}
+
+
+
+/* wave */
+
+.background-img
+{
+   position: absolute;
+   right: 20px;
+   bottom: 10px;
+   width: 10%;
+   z-index: 1050;
+}
