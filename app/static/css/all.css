@@ -16225,10 +16225,6 @@ select.form-control[size],select.form-control[multiple] {
     font-variant-numeric: proportional-nums
 }
 
-.balance-text {
-    text-wrap: balance
-}
-
 .token.comment,.token.prolog,.token.doctype,.token.cdata {
     color: rgba(5,5,38,0.5);
     color: rgba(var(--fg), 0.5)

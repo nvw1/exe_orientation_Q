@@ -1,36 +1,27 @@
 
 {% load static %}
-<!-- Authors: Nik, Hao-->
+<!-- Authors: Nik, Hao, Sam-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Mobile Specific Metas
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
     <meta charset="UTF-8">
-    <title>Title</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/STgm.css' %}">
-</head>
-<!-- Gradient background -->
-<style>
-
-.card-image-top{
-  width: 50px;
-}
-</style>
+    <title>Game master main page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/STgm.css' %}">
+</head>
+    
 
 <body >
     <!-- Header will just have logout button -->
 <div id="header" class="navbar">
-
     <a class="buttonX" href="/logout"style="margin:10px;" >Logout</a>
 	<a class="buttonX" href="/manage_account"style="margin:10px;">Manage account</a>
 </div>
-<!-- Header will just have logout button -->
+
+
+
+<!-- Two main option Cards -->
 
 <div id="body-master">
 <div class="container">
@@ -56,72 +47,49 @@
           </div>
         </div>
       </div>
-
 </div>
 
-
-
-
-
-
+<!-- ID01 Modal Route Initiater -->
 
 <div id="id01" class="modal">
-
   <form class="modal-content animate"  id="myForm1">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      
     </div>
-
     <div class="container">
       <label for="uname"><b>Route ID</b></label>
       <input type="number" placeholder="Enter Route ID" name="routeID"  id = "routeId" required >
-
       <label for="psw"><b>Route Name</b></label>
       <input type="text" placeholder="Enter Route Name" name="routeName" id ="routeName" required>
-	  <!-- <script src="{% static 'js/map.js' %}"></script>
-	  <div id="map"></div>
-	  <input type="text" id="lat" placeholder="Latitude" name="Latitude">
-	  <input type="text" id="lng" placeholder="Longitude" name="Longitude">
-	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHEtEv3vrbgnUWoS7z2rlJJq3ricJdDU&callback=initMap"></script> -->
-
-
-
-	
     </div>
     <div class="container" style="background-color:#f1f1f1; border-radius: 10px; padding: 10 px;">
-    <div class="row">
-      <div class="col-sm">
-        <input type="submit" name="click" value="Submit" class="buttonX btnGreen"/>
-      </div>
-      <div class="col-sm">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="buttonX btnRed">Cancel</button>
+      <div class="row">
+        <div class="col-sm">
+          <input type="submit" name="click" value="Submit" class="buttonX btnGreen"/>
+        </div>
+        <div class="col-sm">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="buttonX btnRed">Cancel</button>
+        </div>
       </div>
     </div>
-
-    </div>
-
-
   </form>
 </div>
 
 
-
-    <div id="id07" class="modal">
-
+<!-- ID07 Modal Route Initiater -->
+<div id="id07" class="modal">
   <form class="modal-content animate"  id="myForm3">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
-
     <div class="container">
-        <table id="myTable">
-  <tr class="header">
-      <th>routeID</th>
-      <th>Edit</th>
-     <th>Questions</th>
-        <th>Answers</th>
-        <th>Hint</th>
+      <table id="myTable">
+        <tr class="header">
+          <th>routeID</th>
+          <th>Edit</th>
+          <th>Questions</th>
+          <th>Answers</th>
+          <th>Hint</th>
           <th>Latitude</th>
           <th>Longtitude</th>
       <th>Edit</th>
@@ -155,7 +123,7 @@
 </div>
 
 
-
+<!-- ID04 Modal Generate Group Session -->
 
     <div id="id04" class="modal">
 
@@ -169,14 +137,9 @@
         <h1 id ="code"></h1>
       <label for="uname"><b>Generate a random groupcode or enter your own, please remember the code as it needs to be sent to your tutees</b></label>
         <input type="text" placeholder="Enter Groupcode" name="groupcode" id="groupcode"required>
-
-
-
-
-
     </div>
 
-    <div class="container row" style="background-color:#f1f1f1; border-radius: 10px; padding: 10 px;">
+    <div class="container row" style="margin:auto; background-color:#f1f1f1; border-radius: 10px; padding: 10px;">
       <div class="col-sm">
         <button type="button" onclick ="generate()"class="buttonX btnGreen">Generate a groupcode</button>
       </div>
@@ -187,9 +150,6 @@
         <button type="button" onclick="document.getElementById('id04').style.display='none',
       document.getElementById('id03').style.display='block'" class="buttonX btnRed">Cancel</button>
       </div>
-
-
-
     </div>
   </form>
 </div>
@@ -217,17 +177,7 @@
 	  <div id="map2" style="width: 100%; height: 500px;"></div>
 	  <input type="text" id="lat_edit" placeholder="Latitude" name="Latitude_edit" required>
 	  <input type="text" id="lng_edit" placeholder="Longitude" name="Longitude_edit" required>
-
-<!--
-        <label for="location"><b>Location</b></label>
-      <input type="text" placeholder="Enter Location URL" name="location" id="location" required>
-        <label for="psw"><b>Latitude</b></label>
-      <input type="number" step = any placeholder="Enter Latitude" name="Latitude" id="Latitude" required>
-        <label for="psw"><b>Longtitude</b></label>
-      <input type="number" step = any placeholder="Enter Longtitude" name="Longtitude" id="Longtitude" required> -->
-
       <input type="submit" name="click" value="Submit" />
-
     </div>
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id10').style.display='none',
