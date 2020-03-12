@@ -40,6 +40,11 @@ def signUp_page(request):
     """load signUp page"""
     return render(request, 'app/signUp_page.html')
 
+@login_required(redirect_field_name='')
+def manage_account(request):
+    """load manage account page"""
+    return render(request, 'app/manage_account.html')
+
 def login_view(request):
     """handle log in methods - button presses, handling user events, handling the database"""
 
@@ -117,15 +122,24 @@ def login_view(request):
                 user.save()
                 update_session_auth_hash(request, user)
                 messages.success(request, 'password changed')
-                return render(request, 'app/game_master_page.html')
+                return render(request, 'app/manage_account.html')
             else:
                 messages.error(request, 'passwords did not match')
-                return render(request, 'app/game_master_page.html')
+                return render(request, 'app/manage_account.html')
         else:
             # report errors
             print("log in failure")
             messages.error(request, 'log in failure')
             return render(request, 'app/login_page.html')
+    
+    if request.method == "POST" and 'submit-deleteAcc' in request.POST:
+        user = request.user
+        user.is_active = False
+        user.save()
+        logout(user)
+        messages.success(request, 'Account successfully deactivated')
+        return render(request, 'app/login_page.html')
+
 
     print("did not get username or password")
     messages.error(request, 'did not get username or password')
