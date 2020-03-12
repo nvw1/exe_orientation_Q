@@ -15,7 +15,7 @@ STATIC_URL = 'https://exeblobstorage.blob.core.windows.net/static-files/'
 DATABASES = {
     'default':{
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'DB-exeterOrientation',
+        'NAME': 'test-DB-exeterOrientation',
         'USER': 'user-admin',
         'PASSWORD': 'v%mRn3os#9P2JnjnV*dJ',
         'PORT': '',
