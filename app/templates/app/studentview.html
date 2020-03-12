@@ -106,20 +106,20 @@
     </div>
     {% endblock %}
 
+    <div class="container">
+
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <h2>Please go to the following location and press the buttons to verify</h2>
+      <h2>Please go to the following location and press the buttons to verify  </h2>
     </div>
     <div class="modal-body">
-      <iframe src="{{ location }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        <h2 id="demo"></h2>
-        <div id="map"></div>
-      <button onclick="getLocation()">Try It</button>
-      <button onclick="setCompletionZone(circPos, radi)">Get Circle</button>
-      <button onclick="pointInCircle(pos, radi, circPos)">Is In Centre</button>
+        <h2 style="color:black" >{{ answer }} is your destination</h2>
+        <div id="map" style="width: 100%; height: 500px;"></div>
+      <button onclick="getLocation()">Submit My Location</button>
+
     </div>
     <div class="modal-footer">
       <h3>Modal Footer</h3>
@@ -130,8 +130,15 @@
 
 
 
-  <script>
-      function sendRequest(){
+ <script type = "text/javascript">
+	function openNav() {
+  		document.getElementById("myNav").style.width = "100%";
+	}
+
+	function closeNav() {
+  		document.getElementById("myNav").style.width = "0%";
+	}
+    function sendRequest(){
         {% for questions in data %}
     var current_question =  {{ questions.node_num }}
         {% endfor %}
@@ -181,20 +188,32 @@
                 },
                 error: function(xhr, status, error) {
                     alert("error");
-								}
+}
             });
         });
     });
-      var map_check = "True";
+    $(document).ready(function() {
+        $("#button_1").click(function (){
+            $.ajax({
+                url:'/reset_question',
+                success: function(response){
+
+                }
+            });
+        });
+    });
+    var map_check = "True";
     $(window).bind("load",function(){
         map_check = "{{ map_check }}"
         if (map_check == "True"){
-            alert("hello")
             document.getElementById('myModal').style.display='block';
             initMap();
         }
     });
-    var x = document.getElementById("demo");
+
+</script>
+<script>
+var x = document.getElementById("demo");
 
 var map, infoWindow, pos, marker, radi, circle;
 //CHANGE This is the center coordinate for the circle for checking if player insde. Get this from the databse.
@@ -211,15 +230,15 @@ radi = 30;
         map = new google.maps.Map(document.getElementById('map'), {
 		//Change this to the values of the circle. From the database
           center: circPos,
-          zoom: 17
+          zoom: 18
         });
         infoWindow = new google.maps.InfoWindow;
-        // var marker = new google.maps.Marker({
-        //   position: circPos,
-        //   map: map,
-        //   title: 'Hello World!'
-        // });
-        setCompletionZone(circPos, radi);
+        var marker = new google.maps.Marker({
+          position: circPos,
+          map: map,
+          title: 'Hello World!'
+        });
+        setCompletionZone(circPos, 1);
         infoWindow.open(map);
 
 
@@ -228,8 +247,6 @@ radi = 30;
 
 
       }
-
-
 
 	  //Checks if player in the circle
 function pointInCircle(point, radius, circPos)
@@ -271,7 +288,7 @@ function showPosition(position) {
             };
 
             map.setCenter(pos);
-			map.setZoom(16);
+			map.setZoom(17);
 
 			marker.setMap(null);
 
@@ -329,6 +346,18 @@ function showError(error) {
 
 
 }
+
+function setFalse(){
+           $.ajax({
+                url:'/set_map_false',
+                success: function(response){
+
+                }
+            });
+}
+
+
+
   </script>
   </body>
 </html>
