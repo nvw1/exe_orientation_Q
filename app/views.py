@@ -125,6 +125,7 @@ def login_view(request):
             route_list = Routes.objects.all()
             questions = Questions.objects.all()
             games = Gamecode.objects.all()
+            game_master_page(request)
             return render(request, 'app/game_master_page.html',
                           {"route_list": route_list, "questions": questions, "games": games})
         else:

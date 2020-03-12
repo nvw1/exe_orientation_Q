@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f65e46e5-fdf6-46a8-acb0-d240f1659d43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/studentview.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/studentview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -117,9 +116,9 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="" />
+      <option name="host" value="10.173.119.31" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -177,6 +176,7 @@
       <workItem from="1583844176197" duration="7029000" />
       <workItem from="1583856222205" duration="11702000" />
       <workItem from="1583995208416" duration="7403000" />
+      <workItem from="1584017282469" duration="325000" />
     </task>
     <servers />
   </component>

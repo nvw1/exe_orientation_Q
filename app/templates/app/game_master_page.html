@@ -482,6 +482,7 @@ var routeID;  // Variable to store routeID created by user
                         if (response == "Added") {
                             alert("Game created, send the groupcode to your tutees for them to join the game");
                             document.getElementById('id04').style.display = 'none'; // Hide modal
+                            location.reload()
                 } else {
                     alert("Groupcode already exist, please enter or generate a new one and re-submit");
                 }
