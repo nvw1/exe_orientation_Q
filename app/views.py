@@ -311,7 +311,16 @@ def redirect(request):
         mapcheck = questionNum.map
         # Get question from the database using num counter
         info = Questions.objects.filter(node_num=int(num), routeID=routeID)
-        latest_question = Questions.objects.get(node_num=num-1, routeID=routeID)
+        if num > 1:
+            print(num)
+            # set map value to the previous question
+            num -= 1
+            print(num)
+            latest_question = Questions.objects.get(node_num=num, routeID=routeID)
+            # Return number to the correct question number
+            num += 1
+        else:
+            latest_question = Questions.objects.get(node_num=num, routeID=routeID)
         location = latest_question.location
         longtitude = latest_question.longtitude
         latitude = latest_question.latitude
