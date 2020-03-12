@@ -1,3 +1,4 @@
+<!-- Authors: Thomas, Nik, Hao, Martin, Sam -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -109,7 +110,7 @@
 
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
+<!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <h2>Please go to the following location and press the buttons to verify  </h2>
@@ -124,10 +125,7 @@
       <h3>Modal Footer</h3>
     </div>
   </div>
-
 </div>
-
-
 
  <script type = "text/javascript">
 
@@ -136,7 +134,6 @@
    document.getElementById("points-lost-container").style.display = "block";
    document.getElementById("gethint").style.display = "none";
  }
-
 
     function sendRequest(){
         {% for questions in data %}
@@ -343,22 +340,16 @@ function showError(error) {
       x.innerHTML = "An unknown error occurred."
       break;
   }
-
-
-
 }
 
 function setFalse(){
            $.ajax({
                 url:'/set_map_false',
                 success: function(response){
-
                 }
             });
 }
+</script>
 
-
-
-  </script>
-  </body>
+</body>
 </html>
