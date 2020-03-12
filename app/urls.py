@@ -27,4 +27,6 @@ urlpatterns = [
 	path('edit',views.edit,name="edit"),
 	path('add_question_existing',views.add_question_existing,name="add_question_existing"),
 	path('delete_route',views.delete_route,name="delete_route"),
+	path('locations', views.locations, name="locations"),
+	path('signUp_page', views.signUp_page, name="signUp_page")
 ]

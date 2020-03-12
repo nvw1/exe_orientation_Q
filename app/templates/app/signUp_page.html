@@ -17,14 +17,14 @@
 <body>
 	<div id="login" class="container align-items-center w-50">
 		  <div class="card p-3 my-3 bg-white text-center">
-			<h4 id="home_header" class="exampleOne-heading text-left">Show students their way around campus. <span id="changingWord"></span> your treasure hunt now!</h4>
+			<h4 id="home_header" class="exampleOne-heading text-left">Create new account.</h4>
 			 <img id="home_logo" class="mx-auto d-block img-fluid" src="{% static '/images/SThome/logo_login.png' %}" alt="logo_login" width="400px" height="400px">
 
 			 <form action="/login_view" method = "post" class="form-signin">
 				{% csrf_token %}
 				<div class="form-label-group text-left">
-					<input id="inputUser" type="text" name="username" placeholder="User" class="form-control align-top">
-					<label for="inputUser" style="top:-5px">User</label>
+					<input id="inputUser" type="text" name="username" placeholder="Username" class="form-control align-top">
+					<label for="inputUser" style="top:-5px">Username</label>
 
 				</div>
 				<div class="form-label-group text-left">
@@ -32,8 +32,7 @@
 					<label for="inputPassword" style="top:-5px">Password</label>
 				</div>
 					
-					<input type="submit" value="log in" name="submit-logIn" class="btn-lg btn-outline-success">
-					<button type="button" onclick="location.href='/signUp_page';" class="btn-lg btn-outline-secondary">make new account</button>
+					<input type="submit" value="create account" name="submit-signUp" class="btn-lg btn-outline-success">
 					{%if messages%}
 						{% for message in messages %}
 							<div class="alert alert-danger" role="alert">

@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as auth_user
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -48,8 +48,12 @@ def login_page(request):
     :return: Returns view of login page
     """
     """load login page"""
-
     return render(request, 'app/login_page.html')
+
+def signUp_page(request):
+    """load signUp page"""
+    return render(request, 'app/signUp_page.html')
+
 def login_view(request):
     """
     It handles login methods,  return game master page if details are correct, also allows signup and change password
@@ -64,17 +68,27 @@ def login_view(request):
         newUsername = request.POST['username']
         newPassword = request.POST['password']
 
+        # check if username is used
+        u = auth_user.objects.get(username=newUsername)
+        if u is not None:
+            messages.error(request, 'Username already in use')
+            return render(request, 'app/signUp_page.html')
+
+        # if u is not None:
+
         # if the user does not already exist
         # set new user
         print("making new user")
         # if they are a superuser
         if 'superuser' in request.POST:
-            newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
+            newUser = auth_user.objects.create_user(username=newUsername, password=newPassword, is_superuser=True)
         else:
-            newUser = User.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
+            newUser = auth_user.objects.create_user(username=newUsername, password=newPassword, is_superuser=False)
 
         # save the user in the database
         newUser.save()
+        # log user in
+        login(request, newUser)
 
         messages.success(request, 'Successfully made new user')
         return render(request, 'app/game_master_page.html')
@@ -395,7 +409,11 @@ def contact(request):
     """
     return render(request,'app/contact.html')
 
+def locations(request):
+    """render the locations page"""
+    return render(request, 'app/locations.html')
 
+#creating route
 def create_route(request):
     """
     handling requests when gamemaster is trying to create a new routeID
