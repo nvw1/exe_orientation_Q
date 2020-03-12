@@ -67,31 +67,31 @@ class Gamecode(models.Model):
         return self.groupcode
 
 
-Questions.objects.all()
-question = "Where is the library located?"
+# Questions.objects.all()
+# question = "Where is the library located?"
 
 
-if Questions.objects.filter(questions=question.strip()).exists():
-    pass
-else:
-    a = Questions(questions=question, answers="The forum",node_num=1,hints="the name also refers to discussion board on the Internet")
-    a.save()
+# if Questions.objects.filter(questions=question.strip()).exists():
+#     pass
+# else:
+#     a = Questions(questions=question, answers="The forum",node_num=1,hints="the name also refers to discussion board on the Internet")
+#     a.save()
 
-question = "Which is the tallest building on campus?"
-if Questions.objects.filter(questions=question.strip()).exists():
-    pass
-else:
-    b= Questions(questions="Which is the tallest building on campus?", answers="Physics building",node_num=2, hints = "What subject did albert einstein study in?")
-    b.save()
+# question = "Which is the tallest building on campus?"
+# if Questions.objects.filter(questions=question.strip()).exists():
+#     pass
+# else:
+#     b= Questions(questions="Which is the tallest building on campus?", answers="Physics building",node_num=2, hints = "What subject did albert einstein study in?")
+#     b.save()
 
-question = "A place where new ideas are produced"
+# question = "A place where new ideas are produced"
 
-if Questions.objects.filter(questions=question.strip()).exists():
-    pass
-else:
-    a = Questions(questions=question, answers="Innovation centre",node_num=3,hints="It is past the Harrison Building",
-                  location= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10100.076253535459!2d-3.5306391!3d50.7381353!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9a5f61816c99672c!2sThe%20Innovation%20Centre!5e0!3m2!1sen!2suk!4v1583711670328!5m2!1sen!2suk",
-                  latitude= 50.738162, longtitude=-3.530587)
+# if Questions.objects.filter(questions=question.strip()).exists():
+#     pass
+# else:
+#     a = Questions(questions=question, answers="Innovation centre",node_num=3,hints="It is past the Harrison Building",
+#                   location= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10100.076253535459!2d-3.5306391!3d50.7381353!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9a5f61816c99672c!2sThe%20Innovation%20Centre!5e0!3m2!1sen!2suk!4v1583711670328!5m2!1sen!2suk",
+#                   latitude= 50.738162, longtitude=-3.530587)
 
 
-    a.save()
+#     a.save()
