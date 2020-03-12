@@ -5,7 +5,7 @@
 }
 body{
   background: rgb(79,149,255);
-  background: url('background.svg') center no-repeat, linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
+  background: url('../images/STgame/background.svg') center no-repeat, linear-gradient(157deg, rgba(79,149,255,1) 0%, rgba(92,145,59,1) 100%);
 }
 
 .Team{
