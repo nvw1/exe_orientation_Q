@@ -51,7 +51,7 @@
 <!-- ID01 Modal Route Initiater -->
 
 <div id="id01" class="modal">
-  <form class="modal-content animate"  id="myForm1">
+  <form class="modal-content animate"  id="myForm1"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -77,7 +77,7 @@
 
 <!-- ID07 Modal Route Initiater -->
 <div id="id07" class="modal">
-  <form class="modal-content animate"  id="myForm3">
+  <form class="modal-content animate"  id="myForm3"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id07').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -125,7 +125,7 @@
 <!-- ID14 Modal Show Games running -->
 
 <div id="id14" class="modal">
-  <form class="modal-content animate"  id="myForm7">
+  <form class="modal-content animate"  id="myForm7"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id14').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -160,7 +160,7 @@
 <!-- ID04 Modal Generate Group Session -->
 
 <div id="id04" class="modal">
-  <form class="modal-content animate"  id="createGame">
+  <form class="modal-content animate"  id="createGame"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id04').style.display='none', document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -187,7 +187,7 @@
 <!-- ID10 Modal Generate and Add Question -->
 
 <div id="id10" class="modal">
-  <form class="modal-content animate"  id="editquestion">
+  <form class="modal-content animate"  id="editquestion"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id10').style.display='none', document.getElementById('id07').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -213,9 +213,8 @@
 </div>
 
 <!-- ID03 Modal Generate and Add Question -->
-
 <div id="id03" class="modal">
-  <form class="modal-content animate"  id="createGame">
+  <form class="modal-content animate"  id="createGame"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -268,7 +267,7 @@
 <!-- ID12 Modal Generate and Add Question to existing Route IDs-->
 
 <div id="id12" class="modal">
-  <form class="modal-content animate"  id="myForm4">
+  <form class="modal-content animate"  id="myForm4"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id12').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -296,7 +295,7 @@
 <!-- ID12 Modal Generate and Add Question to new Routes-->
 
 <div id="id02" class="modal">
-  <form class="modal-content animate"  id="myForm2">
+  <form class="modal-content animate"  id="myForm2"> {% csrf_token %}
     <div class="imgcontainer">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -482,6 +481,7 @@ var routeID;  // Variable to store routeID created by user
                         if (response == "Added") {
                             alert("Game created, send the groupcode to your tutees for them to join the game");
                             document.getElementById('id04').style.display = 'none'; // Hide modal
+                            location.reload()
                 } else {
                     alert("Groupcode already exist, please enter or generate a new one and re-submit");
                 }
