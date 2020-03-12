@@ -239,7 +239,7 @@ def redirect(request):
 
 def hint(request):
     """show hints"""
-    global score           #Global score
+    global score#Global score
     hint = Questions.objects.values_list('hints', flat=True).filter(node_num=num)
     score1 = request.POST.get('score')        #  Get score from ajax request
     request.session['score'] = score1      # update score variable
@@ -342,7 +342,9 @@ def add_question(request):
     node_num = request.POST.get('node_num')
     routeID = request.POST.get('routeID')
     routeID = striptext(routeID)
+    #
     print(question,answer,hint,latitude,longtitude,node_num,routeID)
+    #setting up questions object
     b = Questions()
     b.questions = question
     b.answers = answer
