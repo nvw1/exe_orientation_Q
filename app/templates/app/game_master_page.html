@@ -111,22 +111,25 @@
 
   <form class="modal-content animate"  id="myForm3">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id07').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
-        <table id="myTable">
+        <table id="myTable" class="table table-striped">
+        <thead>
   <tr class="header">
-      <th>routeID</th>
-      <th>Edit</th>
-     <th>Questions</th>
-        <th>Answers</th>
-        <th>Hint</th>
-          <th>Latitude</th>
-          <th>Longtitude</th>
-      <th>Edit</th>
+      <th scope = "col">routeID</th>
+      <th scope = "col">Edit</th>
+     <th scope = "col">Questions</th>
+        <th scope = "col">Answers</th>
+        <th scope = "col">Hint</th>
+          <th scope = "col">Latitude</th>
+          <th scope = "col">Longtitude</th>
+      <th scope = "col">Edit</th>
 
   </tr>
+  </thead>
+        <tbody>
     {% for i in questions %}
       <tr>
         <td>{{ i.routeID_id }}</td>
@@ -144,7 +147,7 @@
 
       </tr>
      {% endfor %}
-
+</tbody>
 </table>
     <td><button class="btn btn-outline-success" type= "button" onclick="document.getElementById('id07').style.display='none',document.getElementById('id12').style.display='block',initMap2()" >Add</button></td>
     </div>
@@ -163,20 +166,22 @@
 
   <form class="modal-content animate"  id="myForm7">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id14').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id14').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
-        <table id="myTable2">
+        <table id="myTable2" class="table table-striped">
+        <thead>
   <tr class="header">
-      <th>routeID</th>
-      <th>Group code</th>
-     <th>Current question</th>
-        <th>score</th>
+      <th scope = "col">routeID</th>
+      <th scope = "col">Group code</th>
+     <th scope = "col">Current question</th>
+        <th scope = "col">score</th>
+          </tr>
+</thead>
 
+<tbody>
 
-
-  </tr>
     {% for game in games %}
       <tr>
         <td>{{ game.routeID_id }}</td>
@@ -187,7 +192,7 @@
 
       </tr>
      {% endfor %}
-
+</tbody>
 </table>
     </div>
     <div class="container" style="background-color:#f1f1f1; border-radius: 10px; padding: 10px;">
@@ -357,7 +362,7 @@
     <div id="id12" class="modal">
       <form class="modal-content animate"  id="myForm4">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id12').style.display='none',document.getElementById('id03').style.display='block'" class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
