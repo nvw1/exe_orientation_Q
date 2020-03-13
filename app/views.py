@@ -13,6 +13,7 @@ from app.models import Gamecode
 from app.models import Questions
 from app.models import *
 import json
+from django.views.decorators.csrf import csrf_exempt
 # current node number, global variable
 num = 1
 def index(request):
@@ -64,6 +65,10 @@ def manage_account(request):
     """load manage account page"""
     return render(request, 'app/manage_account.html')
 
+
+
+
+@csrf_exempt
 def login_view(request):
     """
     It handles login methods,  return game master page if details are correct, also allows signup and change password

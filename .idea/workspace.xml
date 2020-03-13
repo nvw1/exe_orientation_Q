@@ -149,9 +149,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django server.Unnamed" />
-      <item itemvalue="Django server.Unnamed (1)" />
       <item itemvalue="Django tests.Test: app.test" />
+      <item itemvalue="Django server.Unnamed (1)" />
+      <item itemvalue="Django server.Unnamed" />
     </list>
   </component>
   <component name="SvnConfiguration">
